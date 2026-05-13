@@ -1,7 +1,7 @@
-﻿import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Trophy, Users, Zap, Target, ArrowRight, Clock, CheckCircle2 } from 'lucide-react';
-import { torneos, statsGlobales, getPartidosRecientes, getPartidosProximos } from '../data/mock';
+import { Trophy, Users, FileText, Zap, ArrowRight, MapPin, Calendar, Star, Activity, HeartPulse, PlusCircle, TrendingUp } from 'lucide-react';
+import { torneos, statsGlobales } from '../data/mock';
 
 const stagger = {
   container: { hidden: {}, show: { transition: { staggerChildren: 0.07 } } },
@@ -9,151 +9,181 @@ const stagger = {
 };
 
 const stats = [
-  { label: 'Torneos Activos',   value: statsGlobales.torneosActivos,  icon: Trophy,  color: '#C8FF00', bg: '#1E2800' },
-  { label: 'Equipos Totales',   value: statsGlobales.totalEquipos,    icon: Users,   color: '#4E8FFF', bg: '#0D1A3A' },
-  { label: 'Partidos Jugados',  value: statsGlobales.partidosJugados, icon: Zap,     color: '#00E87A', bg: '#002A1A' },
-  { label: 'Goles Marcados',    value: statsGlobales.golesMarcados,   icon: Target,  color: '#FF3B5C', bg: '#2A000F' },
+  { label: 'Torneos',         value: statsGlobales.torneosActivos.toString().padStart(2, '0'), icon: Trophy,    hint: 'En temporada' },
+  { label: 'Jugadores U18',   value: '842',                                                     icon: Users,     hint: '15 proyectos elite' },
+  { label: 'Informes',        value: '1,205',                                                   icon: FileText,  hint: '86 nuevos hoy' },
+  { label: 'Goles U12-U18',   value: '3,128',                                                   icon: Zap,       hint: 'Prom. 4.2 p/p' },
 ];
 
-function StatusBadge({ status }: { status: string }) {
-  const map: Record<string, { label: string; color: string; dot: string }> = {
-    activo:     { label: 'En Curso',   color: '#C8FF00', dot: '#C8FF00' },
-    proximo:    { label: 'PrÃ³ximo',    color: '#4E8FFF', dot: '#4E8FFF' },
-    finalizado: { label: 'Finalizado', color: '#4A4A70', dot: '#2A2A45' },
-  };
-  const s = map[status];
-  return (
-    <span className="flex items-center gap-1.5 text-xs font-mono font-medium px-2 py-0.5 rounded-full border"
-      style={{ color: s.color, borderColor: s.color + '40', background: s.color + '14' }}>
-      <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: s.dot }} />
-      {s.label}
-    </span>
-  );
-}
+const tagMap = {
+  activo:     { label: 'En Curso',   className: 'bg-[#C8FF00] text-[#161F00]' },
+  proximo:    { label: 'Proximo',    className: 'bg-[#333627] text-[#C4CAAC]' },
+  finalizado: { label: 'Finalizado', className: 'bg-[#282C1D] text-[#8E9479]' },
+};
+
+const scoutingFeed = [
+  { tone: 'green',  icon: Star,        title: 'Jugador Revelacion U15', desc: 'Lukas Meyer (Bayer Ac.) destaca en fase zonal.', when: 'Hace 45 min' },
+  { tone: 'blue',   icon: Activity,    title: 'Metrica de Rendimiento', desc: 'Actualizacion de Heatmaps: Villarreal U18.',      when: 'Hace 3 horas' },
+  { tone: 'red',    icon: HeartPulse,  title: 'Informe Medico Acad.',   desc: 'Baja por sobrecarga: Pivot Cantera A.',           when: 'Ayer' },
+];
 
 export default function Dashboard() {
-  const recientes = getPartidosRecientes().slice(0, 4);
-  const proximos  = getPartidosProximos().slice(0, 3);
-
   return (
-    <div className="min-h-screen p-6 lg:p-8 max-w-6xl mx-auto">
+    <div className="p-4 md:p-8 space-y-10">
       {/* Header */}
-      <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <p className="text-xs font-mono text-[#4A4A70] uppercase tracking-widest mb-1">
-          Panel de Control
-        </p>
-        <h1 className="font-display font-extrabold text-5xl text-[#E8E8FF] uppercase tracking-tight leading-none">
-          Dashboard
-        </h1>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex flex-col md:flex-row md:items-end justify-between gap-4"
+      >
+        <div>
+          <span className="label-caps text-[#C8FF00] mb-2 block">Temporada 2026 — Youth Elite</span>
+          <h1 className="font-display font-extrabold text-5xl md:text-6xl text-white leading-none uppercase tracking-tight">
+            Panel de Cantera
+          </h1>
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#C8FF00]/10 border border-[#C8FF00]/30">
+            <span className="w-2 h-2 rounded-full bg-[#C8FF00] animate-pulse glow-green" />
+            <span className="label-caps text-[#C8FF00]">12 Scouts Activos</span>
+          </div>
+        </div>
       </motion.div>
 
-      {/* Stats */}
-      <motion.div variants={stagger.container} initial="hidden" animate="show"
-        className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
-        {stats.map(({ label, value, icon: Icon, color, bg }) => (
-          <motion.div key={label} variants={stagger.item}
-            className="rounded-xl border border-[#1C1C32] p-4 flex flex-col gap-3 hover:border-[#2A2A45] transition-colors"
-            style={{ background: '#0E0E1C' }}>
-            <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: bg }}>
-              <Icon size={18} style={{ color }} strokeWidth={2.5} />
+      {/* Stats bento */}
+      <motion.div
+        variants={stagger.container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-2 lg:grid-cols-4 gap-4"
+      >
+        {stats.map(({ label, value, icon: Icon, hint }) => (
+          <motion.div
+            key={label}
+            variants={stagger.item}
+            className="glass-card p-5 rounded-xl group hover:border-[#C8FF00]/50 transition-all duration-300"
+          >
+            <div className="flex justify-between items-start mb-4">
+              <span className="label-caps text-[#C4CAAC]">{label}</span>
+              <Icon size={18} className="text-[#C8FF00] opacity-70 group-hover:opacity-100 transition-opacity" />
             </div>
-            <div>
-              <p className="font-mono font-semibold text-3xl leading-none" style={{ color }}>
-                {value}
-              </p>
-              <p className="text-xs text-[#4A4A70] mt-1 font-medium">{label}</p>
+            <div className="font-mono font-semibold text-3xl text-white tracking-tight">{value}</div>
+            <div className="mt-2 flex items-center gap-1.5">
+              <TrendingUp size={11} className="text-[#C8FF00]" />
+              <span className="text-xs text-[#8E9479] font-mono">{hint}</span>
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      <div className="grid lg:grid-cols-5 gap-6">
-        {/* Torneos activos */}
-        <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 }}
-          className="lg:col-span-3 rounded-xl border border-[#1C1C32] bg-[#0E0E1C] overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-4 border-b border-[#1C1C32]">
-            <h2 className="font-display font-bold text-lg uppercase tracking-wider text-[#E8E8FF]">
-              Torneos
+      {/* Main grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Tournaments */}
+        <motion.div
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2 }}
+          className="lg:col-span-2 space-y-5"
+        >
+          <div className="flex justify-between items-center">
+            <h2 className="font-display font-bold text-2xl text-white uppercase tracking-tight">
+              Proximos Torneos Top
             </h2>
-            <Link to="/torneos" className="text-xs text-[#4A4A70] hover:text-[#C8FF00] flex items-center gap-1 transition-colors">
-              Ver todos <ArrowRight size={12} />
+            <Link
+              to="/torneos"
+              className="text-[#C8FF00] label-caps flex items-center gap-1.5 hover:gap-2.5 transition-all"
+            >
+              Explorar <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="divide-y divide-[#1C1C32]">
-            {torneos.map(t => (
-              <Link key={t.id} to={`/torneos/${t.id}`}
-                className="flex items-center gap-4 px-5 py-3.5 hover:bg-[#13131F] transition-colors group">
-                <span className="text-2xl shrink-0">{t.logo}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-sm text-[#E8E8FF] truncate group-hover:text-[#C8FF00] transition-colors">
-                    {t.nombre}
-                  </p>
-                  <p className="text-xs text-[#4A4A70] mt-0.5">{t.categoria} Â· {t.totalEquipos} equipos</p>
-                </div>
-                <StatusBadge status={t.status} />
-              </Link>
-            ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {torneos.slice(0, 4).map(t => {
+              const tag = tagMap[t.status];
+              return (
+                <Link
+                  key={t.id}
+                  to={`/torneos/${t.id}`}
+                  className="bg-[#191D10] rounded-xl overflow-hidden border border-[#434933] hover:border-[#C8FF00] transition-all duration-300 group"
+                >
+                  <div className="h-44 relative pitch-bg overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center text-[80px] opacity-30 group-hover:scale-105 transition-transform duration-500">
+                      {t.logo}
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#191D10] via-transparent to-transparent" />
+                    <div className="absolute bottom-3 left-3 flex items-center gap-2">
+                      <span className={['px-2 py-0.5 text-[10px] font-bold rounded label-caps', tag.className].join(' ')}>
+                        {tag.label}
+                      </span>
+                      <span className="text-white label-caps text-[10px] drop-shadow-md">
+                        {t.categoria}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <h3 className="font-display font-bold text-xl text-white mb-2 uppercase tracking-tight group-hover:text-[#C8FF00] transition-colors">
+                      {t.nombre}
+                    </h3>
+                    <div className="flex justify-between text-[#C4CAAC] font-mono text-xs">
+                      <span className="flex items-center gap-1.5">
+                        <MapPin size={12} /> {t.equipos[0]?.ciudad ?? 'Multisede'}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Calendar size={12} /> {t.fechaInicio.slice(0, 7)}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </motion.div>
 
-        {/* PrÃ³ximos partidos */}
-        <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 }}
-          className="lg:col-span-2 flex flex-col gap-4">
+        {/* Scouting feed */}
+        <motion.div
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.25 }}
+          className="space-y-5"
+        >
+          <h2 className="font-display font-bold text-2xl text-white uppercase tracking-tight">
+            Reporte de Scouting
+          </h2>
 
-          {proximos.length > 0 && (
-            <div className="rounded-xl border border-[#1C1C32] bg-[#0E0E1C] overflow-hidden">
-              <div className="px-5 py-4 border-b border-[#1C1C32]">
-                <h2 className="font-display font-bold text-lg uppercase tracking-wider text-[#E8E8FF] flex items-center gap-2">
-                  <Clock size={16} className="text-[#4E8FFF]" /> PrÃ³ximos
-                </h2>
-              </div>
-              <div className="divide-y divide-[#1C1C32]">
-                {proximos.map(p => (
-                  <div key={p.id} className="px-5 py-3">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-[10px] font-mono text-[#4A4A70] uppercase tracking-widest">
-                        {p.fase ?? `J${p.jornada}`}
-                      </span>
-                      <span className="text-[10px] font-mono text-[#4E8FFF]">{p.hora}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs text-[#E8E8FF] font-medium truncate flex-1 text-right">{p.local.nombre}</span>
-                      <span className="text-[10px] font-mono text-[#2A2A45] px-1.5 py-0.5 rounded bg-[#13131F] border border-[#1C1C32]">VS</span>
-                      <span className="text-xs text-[#E8E8FF] font-medium truncate flex-1">{p.visitante.nombre}</span>
-                    </div>
-                    <p className="text-[10px] text-[#4A4A70] mt-1 font-mono">{p.fecha}</p>
+          <div className="bg-[#191D10] border border-[#434933] rounded-xl divide-y divide-[#434933] shadow-lg">
+            {scoutingFeed.map(({ tone, icon: Icon, title, desc, when }, i) => {
+              const toneMap = {
+                green: { bg: 'bg-[#C8FF00]/10', color: 'text-[#C8FF00]' },
+                blue:  { bg: 'bg-[#464556]',    color: 'text-[#C7C4D8]' },
+                red:   { bg: 'bg-[#93000a]/40', color: 'text-[#FFB4AB]' },
+              }[tone] ?? { bg: 'bg-[#282C1D]', color: 'text-white' };
+              return (
+                <div key={i} className="p-4 flex gap-3 items-center hover:bg-[#282C1D] transition-colors">
+                  <div className={['w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0', toneMap.bg].join(' ')}>
+                    <Icon size={18} className={toneMap.color} />
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-white">{title}</p>
+                    <p className="text-xs text-[#C4CAAC]">{desc}</p>
+                    <span className="text-[10px] font-mono text-[#8E9479]">{when}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
 
-          {/* Ãšltimos resultados */}
-          {recientes.length > 0 && (
-            <div className="rounded-xl border border-[#1C1C32] bg-[#0E0E1C] overflow-hidden">
-              <div className="px-5 py-4 border-b border-[#1C1C32]">
-                <h2 className="font-display font-bold text-lg uppercase tracking-wider text-[#E8E8FF] flex items-center gap-2">
-                  <CheckCircle2 size={16} className="text-[#00E87A]" /> Resultados
-                </h2>
-              </div>
-              <div className="divide-y divide-[#1C1C32]">
-                {recientes.map(p => (
-                  <div key={p.id} className="px-5 py-3">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs text-[#4A4A70] truncate flex-1 text-right">{p.local.nombre}</span>
-                      <span className="font-mono font-bold text-sm text-[#E8E8FF] px-2 py-0.5 rounded bg-[#13131F] border border-[#2A2A45] whitespace-nowrap">
-                        {p.golesLocal} â€“ {p.golesVisitante}
-                      </span>
-                      <span className="text-xs text-[#4A4A70] truncate flex-1">{p.visitante.nombre}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <Link
+            to="/nuevo"
+            className="bg-[#C8FF00] p-4 rounded-xl flex items-center justify-between glow-green-lg hover:scale-[1.02] transition-transform"
+          >
+            <div>
+              <p className="text-[#161F00] font-bold leading-tight">Registrar Nuevo Torneo</p>
+              <p className="text-[#161F00]/80 text-xs">Anade tu estructura de cantera.</p>
             </div>
-          )}
+            <PlusCircle size={32} className="text-[#161F00]" />
+          </Link>
         </motion.div>
       </div>
     </div>
   );
 }
-

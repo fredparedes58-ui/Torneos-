@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Trophy, Users, Calendar, Layers } from 'lucide-react';
+import { ArrowLeft, Trophy, Users, MapPin, Layers, Calendar } from 'lucide-react';
 import { getTorneoById } from '../data/mock';
 import BracketView from '../components/bracket/BracketView';
 import StandingsTable from '../components/standings/StandingsTable';
@@ -9,10 +9,10 @@ import FixtureList from '../components/fixture/FixtureList';
 
 type Tab = 'bracket' | 'tabla' | 'fixture' | 'equipos';
 
-const statusMap = {
-  activo:     { label: 'En Curso',   color: '#C8FF00', bg: '#1E2800', border: '#C8FF0040' },
-  proximo:    { label: 'Proximo',    color: '#4E8FFF', bg: '#0D1A3A', border: '#4E8FFF40' },
-  finalizado: { label: 'Finalizado', color: '#4A4A70', bg: '#13131F', border: '#2A2A45' },
+const tagMap = {
+  activo:     { label: 'En Curso',   cls: 'bg-[#C8FF00] text-[#161F00]' },
+  proximo:    { label: 'Proximo',    cls: 'bg-[#333627] text-[#C4CAAC]' },
+  finalizado: { label: 'Finalizado', cls: 'bg-[#282C1D] text-[#8E9479]' },
 };
 
 const formatoMap: Record<string, { tabs: Tab[]; defaultTab: Tab }> = {
@@ -25,7 +25,7 @@ const tabLabels: Record<Tab, { label: string; icon: React.ElementType }> = {
   bracket: { label: 'Bracket', icon: Layers },
   tabla:   { label: 'Tabla',   icon: Trophy },
   fixture: { label: 'Fixture', icon: Calendar },
-  equipos: { label: 'Equipos', icon: Users },
+  equipos: { label: 'Cantera', icon: Users },
 };
 
 const formatoLabel: Record<string, string> = {
@@ -43,91 +43,116 @@ export default function TorneoDetail() {
 
   if (!torneo) {
     return (
-      <div className="flex items-center justify-center h-full text-[#4A4A70]">
+      <div className="flex items-center justify-center h-full text-[#8E9479] p-12">
         <p>Torneo no encontrado</p>
       </div>
     );
   }
 
-  const s = statusMap[torneo.status];
+  const tag = tagMap[torneo.status];
 
   return (
-    <div className="min-h-screen p-6 lg:p-8 max-w-6xl mx-auto">
-      <Link to="/torneos" className="inline-flex items-center gap-2 text-xs text-[#4A4A70] hover:text-[#E8E8FF] transition-colors mb-6">
-        <ArrowLeft size={14} /> Todos los torneos
-      </Link>
-
-      {/* Hero */}
-      <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-        className="rounded-xl border border-[#1C1C32] bg-[#0E0E1C] p-6 mb-6 relative overflow-hidden">
-        <div className="absolute right-6 top-1/2 -translate-y-1/2 text-[120px] opacity-5 select-none pointer-events-none leading-none">
-          {torneo.logo}
+    <div className="relative">
+      {/* Hero with stadium pitch bg */}
+      <div className="relative pitch-bg">
+        <div className="absolute inset-0 stadium-overlay" />
+        <div className="absolute top-4 left-4 z-10">
+          <Link
+            to="/torneos"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0C0F04]/70 backdrop-blur text-xs text-[#C4CAAC] hover:text-white transition-colors border border-[#434933]"
+          >
+            <ArrowLeft size={14} /> Volver
+          </Link>
         </div>
 
-        <div className="relative">
-          <div className="flex items-start gap-4 mb-4">
-            <span className="text-4xl">{torneo.logo}</span>
-            <div>
-              <span className="inline-flex items-center gap-1.5 text-[10px] font-mono font-medium px-2 py-0.5 rounded-full border mb-2"
-                style={{ color: s.color, borderColor: s.border, background: s.bg }}>
-                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: s.color }} />
-                {s.label}
+        <motion.div
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative px-4 md:px-8 pt-20 pb-10"
+        >
+          <div className="absolute right-8 top-12 text-[180px] opacity-10 select-none pointer-events-none leading-none">
+            {torneo.logo}
+          </div>
+
+          <div className="relative max-w-4xl">
+            <span className={['inline-block label-caps px-3 py-1 rounded-full mb-4', tag.cls].join(' ')}>
+              {tag.label}
+            </span>
+
+            <h1 className="font-display font-extrabold text-5xl md:text-7xl text-white uppercase leading-[0.9] tracking-tight mb-3">
+              {torneo.nombre}
+            </h1>
+
+            <p className="font-display font-bold text-lg md:text-xl text-[#C8FF00] uppercase tracking-wider mb-5">
+              {torneo.categoria} · {formatoLabel[torneo.formato]}
+            </p>
+
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-[#C4CAAC] font-mono text-xs md:text-sm">
+              <span className="flex items-center gap-1.5">
+                <MapPin size={13} className="text-[#C8FF00]" /> {torneo.equipos[0]?.ciudad ?? 'Multisede'}
               </span>
-              <h1 className="font-display font-extrabold text-4xl text-[#E8E8FF] uppercase leading-none">
-                {torneo.nombre}
-              </h1>
+              <span className="flex items-center gap-1.5">
+                <Users size={13} className="text-[#C8FF00]" /> {torneo.totalEquipos} equipos
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Calendar size={13} className="text-[#C8FF00]" /> {torneo.fechaInicio} a {torneo.fechaFin}
+              </span>
             </div>
-          </div>
 
-          <p className="text-sm text-[#4A4A70] max-w-xl mb-4">{torneo.descripcion}</p>
+            {torneo.status === 'activo' && (
+              <button className="mt-6 bg-[#C8FF00] text-[#161F00] label-caps px-6 py-3 rounded-lg glow-green-lg hover:scale-[1.02] transition-transform">
+                Seguir Torneo
+              </button>
+            )}
 
-          <div className="flex flex-wrap gap-4 text-xs text-[#4A4A70]">
-            <span className="flex items-center gap-1.5 font-mono">
-              <Users size={12} className="text-[#C8FF00]" /> {torneo.totalEquipos} equipos
-            </span>
-            <span className="flex items-center gap-1.5 font-mono">
-              <Trophy size={12} className="text-[#C8FF00]" /> {formatoLabel[torneo.formato]}
-            </span>
-            <span className="flex items-center gap-1.5 font-mono">
-              <Calendar size={12} className="text-[#C8FF00]" /> {torneo.fechaInicio} to {torneo.fechaFin}
-            </span>
-            <span className="flex items-center gap-1.5 font-mono px-2 py-0.5 rounded bg-[#13131F] border border-[#1C1C32]">
-              {torneo.categoria}
-            </span>
-          </div>
-
-          {torneo.campeon && (
-            <div className="mt-4 inline-flex items-center gap-3 bg-[#1A1200] border border-[#FFB80030] rounded-lg px-4 py-2">
-              <span className="text-[#FFB800] text-lg">🏆</span>
-              <div>
-                <p className="text-[10px] font-mono text-[#4A4A70] uppercase tracking-widest">Campeon</p>
-                <p className="font-display font-bold text-lg text-[#FFB800] uppercase">{torneo.campeon.nombre}</p>
+            {torneo.campeon && (
+              <div className="mt-5 inline-flex items-center gap-3 bg-[#FFB80020] border border-[#FFB80060] rounded-lg px-4 py-2.5">
+                <Trophy size={20} className="text-[#FFB800]" />
+                <div>
+                  <p className="label-caps text-[#FFB800]/80">Campeon</p>
+                  <p className="font-display font-bold text-lg text-[#FFB800] uppercase">{torneo.campeon.nombre}</p>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      </motion.div>
+            )}
+          </div>
+        </motion.div>
+      </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 mb-6 border-b border-[#1C1C32]">
-        {fmtConfig.tabs.map(tab => {
-          const { label, icon: Icon } = tabLabels[tab];
-          const active = activeTab === tab;
-          return (
-            <button key={tab} onClick={() => setActiveTab(tab)}
-              className={['flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-all -mb-px',
-                active ? 'text-[#C8FF00] border-[#C8FF00]' : 'text-[#4A4A70] border-transparent hover:text-[#E8E8FF] hover:border-[#2A2A45]'].join(' ')}>
-              <Icon size={15} /> {label}
-            </button>
-          );
-        })}
+      <div className="px-4 md:px-8 sticky top-16 bg-[#111508]/95 backdrop-blur-md z-30 border-b border-[#434933]">
+        <div className="flex gap-1 overflow-x-auto">
+          {fmtConfig.tabs.map(tab => {
+            const { label, icon: Icon } = tabLabels[tab];
+            const active = activeTab === tab;
+            return (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={[
+                  'flex items-center gap-2 px-4 py-4 label-caps border-b-2 transition-all -mb-px whitespace-nowrap',
+                  active
+                    ? 'text-[#C8FF00] border-[#C8FF00]'
+                    : 'text-[#8E9479] border-transparent hover:text-white hover:border-[#434933]',
+                ].join(' ')}
+              >
+                <Icon size={15} /> {label}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Tab content */}
-      <motion.div key={activeTab} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+      <motion.div
+        key={activeTab}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25 }}
+        className="p-4 md:p-8"
+      >
         {activeTab === 'bracket' && torneo.bracket && <BracketView bracket={torneo.bracket} />}
         {activeTab === 'bracket' && !torneo.bracket && (
-          <div className="text-center py-16 text-[#4A4A70]">
+          <div className="text-center py-16 text-[#8E9479]">
             <Layers size={40} className="mx-auto mb-3 opacity-30" />
             <p>El bracket se generara cuando comiencen los partidos</p>
           </div>
@@ -135,22 +160,28 @@ export default function TorneoDetail() {
         {activeTab === 'tabla' && torneo.tabla && <StandingsTable tabla={torneo.tabla} />}
         {activeTab === 'fixture' && <FixtureList partidos={torneo.partidos} />}
         {activeTab === 'equipos' && (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {torneo.equipos.map((equipo, i) => (
-              <motion.div key={equipo.id}
-                initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.04 }}
-                className="rounded-xl border border-[#1C1C32] bg-[#0E0E1C] p-4 hover:border-[#2A2A45] transition-colors">
+              <motion.div
+                key={equipo.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.04 }}
+                className="glass-card p-5 rounded-xl hover:border-[#C8FF00]/50 transition-all"
+              >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full flex items-center justify-center text-xl border-2"
-                    style={{ borderColor: equipo.color + '60', background: equipo.color + '20' }}>
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl border-2"
+                    style={{ borderColor: equipo.color + '60', background: equipo.color + '15' }}
+                  >
                     {equipo.escudo}
                   </div>
-                  <div>
-                    <p className="font-semibold text-sm text-[#E8E8FF]">{equipo.nombre}</p>
-                    <p className="text-xs text-[#4A4A70]">{equipo.ciudad}</p>
+                  <div className="min-w-0">
+                    <p className="font-display font-bold text-lg text-white uppercase truncate">{equipo.nombre}</p>
+                    <p className="text-xs text-[#8E9479] font-mono">{equipo.ciudad}</p>
                   </div>
                 </div>
-                <div className="h-0.5 rounded-full" style={{ background: equipo.color + '40' }} />
+                <div className="h-0.5 rounded-full" style={{ background: equipo.color + '60' }} />
               </motion.div>
             ))}
           </div>

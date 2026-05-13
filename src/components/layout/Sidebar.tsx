@@ -1,63 +1,43 @@
-﻿import { NavLink, useLocation } from 'react-router-dom';
-import { Trophy, LayoutDashboard, Users, PlusCircle, ChevronRight } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+import { Trophy, LayoutDashboard, Users, PlusCircle } from 'lucide-react';
 
 const links = [
   { to: '/',         label: 'Dashboard',  icon: LayoutDashboard },
   { to: '/torneos',  label: 'Torneos',    icon: Trophy },
-  { to: '/equipos',  label: 'Equipos',    icon: Users },
-  { to: '/nuevo',    label: 'Nuevo',      icon: PlusCircle },
+  { to: '/equipos',  label: 'Cantera',    icon: Users },
 ];
 
 export default function Sidebar() {
-  const location = useLocation();
-
   return (
-    <aside className="flex flex-col w-16 lg:w-56 shrink-0 border-r border-[#1C1C32] bg-[#07070F] h-screen sticky top-0 z-40">
-      {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-5 border-b border-[#1C1C32]">
-        <div className="w-8 h-8 rounded-lg bg-[#C8FF00] flex items-center justify-center shrink-0">
-          <Trophy size={16} className="text-[#07070F]" strokeWidth={2.5} />
-        </div>
-        <span className="hidden lg:block font-display font-extrabold text-xl tracking-widest text-[#E8E8FF] uppercase">
-          Torneos
-        </span>
-      </div>
+    <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-64px)] sticky top-16 bg-[#0C0F04]/60 backdrop-blur-xl border-r border-[#434933] p-4 gap-2">
+      {links.map(({ to, label, icon: Icon }) => (
+        <NavLink
+          key={to}
+          to={to}
+          end={to === '/'}
+          className={({ isActive }) =>
+            [
+              'flex items-center gap-4 rounded-lg px-3 py-3 transition-all duration-200 label-caps',
+              isActive
+                ? 'bg-[#C8FF00] text-[#161F00]'
+                : 'text-[#C4CAAC] hover:bg-[#282C1D] hover:text-white',
+            ].join(' ')
+          }
+        >
+          <Icon size={20} strokeWidth={2} />
+          <span>{label}</span>
+        </NavLink>
+      ))}
 
-      {/* Nav */}
-      <nav className="flex-1 py-4 flex flex-col gap-1 px-2">
-        {links.map(({ to, label, icon: Icon }) => {
-          const active = to === '/'
-            ? location.pathname === '/'
-            : location.pathname.startsWith(to);
-
-          return (
-            <NavLink
-              key={to}
-              to={to}
-              className={[
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150 group relative',
-                active
-                  ? 'bg-[#1E2800] text-[#C8FF00]'
-                  : 'text-[#4A4A70] hover:text-[#E8E8FF] hover:bg-[#0E0E1C]',
-              ].join(' ')}
-            >
-              {active && (
-                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-5 bg-[#C8FF00] rounded-r-full" />
-              )}
-              <Icon size={18} strokeWidth={active ? 2.5 : 2} className="shrink-0" />
-              <span className="hidden lg:block text-sm font-medium">{label}</span>
-              {active && <ChevronRight size={14} className="hidden lg:block ml-auto opacity-60" />}
-            </NavLink>
-          );
-        })}
-      </nav>
-
-      {/* Footer badge */}
-      <div className="hidden lg:flex items-center gap-2 px-4 py-4 border-t border-[#1C1C32]">
-        <div className="w-2 h-2 rounded-full bg-[#00E87A] animate-pulse shrink-0" />
-        <span className="text-xs text-[#4A4A70] font-mono">v1.0 Â· UI Demo</span>
+      <div className="mt-auto border-t border-[#434933] pt-4">
+        <NavLink
+          to="/nuevo"
+          className="w-full bg-[#C8FF00] text-[#161F00] font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform glow-green-lg label-caps"
+        >
+          <PlusCircle size={18} />
+          <span>Nuevo Torneo</span>
+        </NavLink>
       </div>
     </aside>
   );
 }
-
