@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Local artifacts (skills ZIPs, extracted dirs, design references)
+*.zip
+_skills_*/
+stitch_torneos/
+Torneos de Futbol/

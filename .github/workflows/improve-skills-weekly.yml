@@ -1,0 +1,117 @@
+name: Improve skills weekly
+
+# Outer loop semanal: revisa PRs recientes del repo Torneos- y propone
+# mejoras a las skills basadas en patrones detectados.
+#
+# Es OPCIONAL. Si no quieres ejecutarlo automáticamente, simplemente
+# no copies este archivo al repo y corre el outer loop manualmente
+# con la skill `improve-skill` cuando te apetezca.
+
+on:
+  schedule:
+    # Lunes a las 09:00 UTC (10:00/11:00 hora España según horario)
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+    # Permite ejecutarlo a mano desde la pestaña Actions
+
+permissions:
+  contents: read
+  pull-requests: read
+  issues: write
+
+jobs:
+  analyze-and-propose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get recent PRs (last 7 days)
+        id: recent_prs
+        run: |
+          gh pr list \
+            --state merged \
+            --limit 20 \
+            --json number,title,mergedAt,additions,deletions,changedFiles \
+            --search "merged:>$(date -d '7 days ago' -I)" \
+            > /tmp/recent_prs.json
+          cat /tmp/recent_prs.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get review comments on recent PRs
+        run: |
+          # Recopila comentarios de review de los últimos 7 días.
+          # Los comentarios son la principal fuente de feedback para mejoras.
+          jq -r '.[].number' /tmp/recent_prs.json | while read pr; do
+            echo "=== PR #$pr ==="
+            gh pr view "$pr" --json comments,reviews \
+              --jq '.comments[].body, .reviews[].body' || true
+          done > /tmp/recent_feedback.txt
+          
+          echo "---"
+          echo "Feedback length: $(wc -l < /tmp/recent_feedback.txt) lines"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create or update tracking issue
+        run: |
+          # Busca si ya existe un issue de "outer loop weekly".
+          # Si no, lo crea. Si sí, añade comentario con el resumen.
+          
+          existing=$(gh issue list \
+            --label "outer-loop" \
+            --state open \
+            --json number \
+            --jq '.[0].number // empty')
+          
+          BODY=$(cat <<'EOF'
+          ## Outer loop semanal — feedback acumulado
+          
+          Este issue resume los PRs recientes para identificar patrones que
+          puedan llevar a mejoras de las skills.
+          
+          **Acción humana sugerida:**
+          1. Revisar los PRs listados abajo y los comentarios de review.
+          2. Identificar 3-5 patrones de feedback (skill marcó algo mal, no detectó algo, output poco útil, etc.).
+          3. Abrir Claude Code en el repo Torneos- y ejecutar:
+          
+          ```
+          "Mejora [skill] con estos feedbacks: [...]"
+          ```
+          
+          La skill `improve-skill` aplicará edits mínimos a las skills correspondientes.
+          
+          ### PRs recientes
+          (ver artifact `recent_prs.json` del workflow run)
+          
+          ### Feedback recopilado
+          (ver artifact `recent_feedback.txt` del workflow run)
+          
+          ---
+          
+          *Este issue se actualiza automáticamente cada lunes. Ciérralo cuando hayas procesado el feedback.*
+          EOF
+          )
+          
+          if [ -z "$existing" ]; then
+            gh issue create \
+              --title "Outer loop semanal — $(date -I)" \
+              --label "outer-loop" \
+              --body "$BODY"
+          else
+            gh issue comment "$existing" --body "$BODY"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: outer-loop-data-${{ github.run_number }}
+          path: |
+            /tmp/recent_prs.json
+            /tmp/recent_feedback.txt
+          retention-days: 30
