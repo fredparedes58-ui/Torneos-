@@ -9,7 +9,7 @@ const links = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex flex-col w-64 h-[calc(100vh-64px)] sticky top-16 bg-[#0C0F04]/60 backdrop-blur-xl border-r border-[#434933] p-4 gap-2">
+    <aside className="hidden md:flex flex-col w-60 h-[calc(100vh-64px)] sticky top-16 bg-[#07070F]/80 backdrop-blur-xl border-r border-[#1C1C32] p-4 gap-1 z-20">
       {links.map(({ to, label, icon: Icon }) => (
         <NavLink
           key={to}
@@ -17,26 +17,29 @@ export default function Sidebar() {
           end={to === '/'}
           className={({ isActive }) =>
             [
-              'flex items-center gap-4 rounded-lg px-3 py-3 transition-all duration-200 label-caps',
+              'flex items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 group relative overflow-hidden',
               isActive
                 ? 'bg-[#C8FF00] text-[#161F00]'
-                : 'text-[#C4CAAC] hover:bg-[#282C1D] hover:text-white',
+                : 'text-[#8E9479] hover:bg-[#13131F] hover:text-white',
             ].join(' ')
           }
         >
           <Icon size={20} strokeWidth={2} />
-          <span>{label}</span>
+          <span className="label-caps">{label}</span>
         </NavLink>
       ))}
 
-      <div className="mt-auto border-t border-[#434933] pt-4">
+      <div className="mt-auto pt-4 border-t border-[#1C1C32]">
         <NavLink
           to="/nuevo"
-          className="w-full bg-[#C8FF00] text-[#161F00] font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform glow-green-lg label-caps"
+          className="relative w-full bg-[#C8FF00] text-[#161F00] font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform glow-green-lg label-caps overflow-hidden"
         >
           <PlusCircle size={18} />
           <span>Nuevo Torneo</span>
         </NavLink>
+        <p className="text-[10px] text-[#4A4A70] mt-3 font-mono text-center">
+          v4.2.1 · Torneos Engine
+        </p>
       </div>
     </aside>
   );

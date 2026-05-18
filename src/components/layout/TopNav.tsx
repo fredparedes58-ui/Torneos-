@@ -1,25 +1,29 @@
 import { Link } from 'react-router-dom';
-import { Bell, Trophy } from 'lucide-react';
+import { Bell, Search, Trophy } from 'lucide-react';
+import Avatar from '../effects/Avatar';
 
 export default function TopNav() {
   return (
-    <nav className="sticky top-0 z-50 flex justify-between items-center w-full px-4 md:px-8 h-16 bg-[#111508]/90 backdrop-blur-md border-b border-[#434933]">
-      <Link to="/" className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-[#C8FF00] flex items-center justify-center rounded-lg glow-green">
-          <Trophy size={20} className="text-[#161F00]" strokeWidth={2.5} />
+    <nav className="sticky top-0 z-50 flex justify-between items-center w-full px-4 md:px-8 h-16 bg-[#07070F]/85 backdrop-blur-xl border-b border-[#1C1C32]">
+      <Link to="/" className="flex items-center gap-3 group">
+        <div className="relative w-10 h-10 bg-[#C8FF00] flex items-center justify-center rounded-lg glow-green transition-transform group-hover:scale-105">
+          <Trophy size={20} className="text-[#161F00]" strokeWidth={2.6} />
+          <span className="absolute -bottom-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#00E87A] border-2 border-[#07070F] pulse-dot" />
         </div>
         <span className="font-display font-extrabold text-2xl text-white tracking-tight uppercase">
-          Cantera Hub
+          Torneos<span className="text-[#C8FF00]">.</span>
         </span>
       </Link>
 
-      <div className="flex items-center gap-3">
-        <button className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#282C1D] transition-transform active:scale-95 duration-150">
-          <Bell size={20} className="text-[#C4CAAC]" />
+      <div className="flex items-center gap-2">
+        <button className="hidden md:flex w-10 h-10 items-center justify-center rounded-full hover:bg-[#13131F] transition-colors text-[#8E9479] hover:text-white">
+          <Search size={18} />
         </button>
-        <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-[#C8FF00] bg-gradient-to-br from-[#282C1D] to-[#191D10] flex items-center justify-center label-caps text-[#C8FF00]">
-          FP
-        </div>
+        <button className="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#13131F] transition-colors text-[#8E9479] hover:text-white">
+          <Bell size={18} />
+          <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-[#C8FF00] pulse-dot" />
+        </button>
+        <Avatar seed={42} size={36} ring="lime" />
       </div>
     </nav>
   );
