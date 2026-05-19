@@ -17,7 +17,7 @@ function MatchCard({ partido, delay }: { partido: Partido; delay: number }) {
       transition={{ delay, duration: 0.35 }}
       className={[
         'w-56 rounded-xl border bg-[#1A2010] overflow-hidden transition-all',
-        isLive ? 'border-[#D4FF1F] glow-green' : 'border-[#5A6644] hover:border-[#D4FF1F]/50',
+        isLive ? 'border-[#F2C53D] glow-green' : 'border-[#5A6644] hover:border-[#F2C53D]/50',
       ].join(' ')}
     >
       {/* Pitch label */}
@@ -42,21 +42,21 @@ function MatchCard({ partido, delay }: { partido: Partido; delay: number }) {
           className={[
             'flex items-center gap-2 px-3 py-2.5 transition-colors relative',
             i === 0 ? 'border-b border-[#5A6644]' : '',
-            gana ? 'bg-[#2A3500]' : '',
+            gana ? 'bg-[#3A2A00]' : '',
           ].join(' ')}
         >
-          {gana && <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#D4FF1F]" />}
+          {gana && <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#F2C53D]" />}
           <div
             className="w-7 h-7 rounded font-mono font-bold text-[10px] flex items-center justify-center shrink-0"
             style={{ background: (equipo.color || '#2A3320') + '25', color: equipo.color, border: `1px solid ${equipo.color}50` }}
           >
             {equipo.escudo}
           </div>
-          <span className={['text-xs font-medium flex-1 truncate', gana ? 'text-[#D4FF1F] font-bold' : 'text-white'].join(' ')}>
+          <span className={['text-xs font-medium flex-1 truncate', gana ? 'text-[#F2C53D] font-bold' : 'text-white'].join(' ')}>
             {equipo.nombre}
           </span>
           {(isJugado || isLive) ? (
-            <span className={['font-mono font-bold text-sm w-5 text-right', gana ? 'text-[#D4FF1F]' : 'text-[#A5B084]'].join(' ')}>
+            <span className={['font-mono font-bold text-sm w-5 text-right', gana ? 'text-[#F2C53D]' : 'text-[#A5B084]'].join(' ')}>
               {goles}
             </span>
           ) : (
@@ -131,7 +131,7 @@ export default function BracketView({ bracket }: Props) {
                         />
                         <path
                           d={`M 24 ${pairHeight / 2} H 48`}
-                          fill="none" stroke="#D4FF1F" strokeOpacity="0.7" strokeWidth="1.5"
+                          fill="none" stroke="#F2C53D" strokeOpacity="0.7" strokeWidth="1.5"
                           className="bracket-line"
                           style={{ animationDelay: '0.2s' }}
                         />
@@ -152,12 +152,12 @@ export default function BracketView({ bracket }: Props) {
           className="flex flex-col items-center ml-6 mt-12"
         >
           <span className="label-caps text-[#A5B084] mb-4">Trofeo</span>
-          <div className="relative w-60 h-40 rounded-2xl bg-gradient-to-br from-[#2A3500] to-[#1A2010] border-2 border-[#D4FF1F] flex flex-col items-center justify-center glow-green-lg overflow-hidden">
+          <div className="relative w-60 h-40 rounded-2xl bg-gradient-to-br from-[#3A2A00] to-[#1A2010] border-2 border-[#F2C53D] flex flex-col items-center justify-center glow-green-lg overflow-hidden">
             <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-[#D4FF1F] blur-3xl" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-[#F2C53D] blur-3xl" />
             </div>
-            <Trophy size={38} className="text-[#D4FF1F] mb-2 relative float-y" strokeWidth={2.2} />
-            <span className="label-caps text-[#D4FF1F] relative">Gran Final</span>
+            <Trophy size={38} className="text-[#F2C53D] mb-2 relative float-y" strokeWidth={2.2} />
+            <span className="label-caps text-[#F2C53D] relative">Gran Final</span>
             <span className="font-display font-extrabold text-4xl text-white relative">?</span>
           </div>
         </motion.div>

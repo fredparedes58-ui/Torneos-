@@ -18,7 +18,7 @@ import Avatar from '../components/effects/Avatar';
 type Tab = 'bracket' | 'tabla' | 'fixture' | 'equipos' | 'media';
 
 const statusMap = {
-  activo:     { label: 'EN VIVO',     color: '#D4FF1F', textCls: 'text-[#D4FF1F]', bgCls: 'bg-[#2A3500] border-[#D4FF1F]' },
+  activo:     { label: 'EN VIVO',     color: '#F2C53D', textCls: 'text-[#F2C53D]', bgCls: 'bg-[#3A2A00] border-[#F2C53D]' },
   proximo:    { label: 'PRÓXIMO',     color: '#7AB8FF', textCls: 'text-[#7AB8FF]', bgCls: 'bg-[#102240] border-[#7AB8FF]' },
   finalizado: { label: 'FINALIZADO',  color: '#D5DBB8', textCls: 'text-[#D5DBB8]', bgCls: 'bg-[#282C1D] border-[#7A8A55]' },
 };
@@ -88,13 +88,13 @@ export default function TorneoDetail() {
           </Link>
 
           {/* Logo monogram big */}
-          <div className="absolute right-4 md:right-8 top-12 text-[180px] md:text-[240px] font-display font-extrabold leading-none text-[#D4FF1F]/5 select-none pointer-events-none">
+          <div className="absolute right-4 md:right-8 top-12 text-[180px] md:text-[240px] font-display font-extrabold leading-none text-[#F2C53D]/5 select-none pointer-events-none">
             {torneo.logo}
           </div>
 
           <div className="relative max-w-4xl mt-8">
-            <span className="label-caps text-[#D4FF1F] mb-4 flex items-center gap-2 text-glow-green">
-              <span className={['w-2.5 h-2.5 rounded-full', torneo.status === 'activo' ? 'bg-[#D4FF1F] pulse-dot' : 'bg-[#7A8A55]'].join(' ')} />
+            <span className="label-caps text-[#F2C53D] mb-4 flex items-center gap-2 text-glow-green">
+              <span className={['w-2.5 h-2.5 rounded-full', torneo.status === 'activo' ? 'bg-[#F2C53D] pulse-dot' : 'bg-[#7A8A55]'].join(' ')} />
               Champions Elite Series · {torneo.categoria}
             </span>
 
@@ -121,7 +121,7 @@ export default function TorneoDetail() {
                 {torneo.totalEquipos} Teams
               </span>
               {torneo.tags?.[0] && (
-                <span className="px-3 py-1.5 rounded-full bg-[#D4FF1F]/10 border border-[#D4FF1F]/30 label-caps text-[#D4FF1F]">
+                <span className="px-3 py-1.5 rounded-full bg-[#F2C53D]/10 border border-[#F2C53D]/30 label-caps text-[#F2C53D]">
                   {torneo.tags[0]}
                 </span>
               )}
@@ -131,11 +131,11 @@ export default function TorneoDetail() {
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-[#D5DBB8] font-mono text-xs md:text-sm mb-8">
               {torneo.sede && (
                 <span className="flex items-center gap-1.5">
-                  <MapPin size={13} className="text-[#D4FF1F]" /> {torneo.sede}
+                  <MapPin size={13} className="text-[#F2C53D]" /> {torneo.sede}
                 </span>
               )}
               <span className="flex items-center gap-1.5">
-                <Calendar size={13} className="text-[#D4FF1F]" /> {torneo.fechaInicio} → {torneo.fechaFin}
+                <Calendar size={13} className="text-[#F2C53D]" /> {torneo.fechaInicio} → {torneo.fechaFin}
               </span>
               {torneo.premio && (
                 <span className="flex items-center gap-1.5">
@@ -147,17 +147,17 @@ export default function TorneoDetail() {
             {/* Actions */}
             <div className="flex flex-wrap gap-3">
               {torneo.status === 'activo' && (
-                <button className="relative bg-[#D4FF1F] text-[#0F1408] label-caps px-6 py-3.5 rounded-lg glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden flex items-center gap-2">
+                <button className="relative bg-[#F2C53D] text-[#0F1408] label-caps px-6 py-3.5 rounded-lg glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden flex items-center gap-2">
                   <Sparkles count={8} color="#0F1408" />
                   <Tv size={14} /><span className="relative">Seguir Torneo</span>
                 </button>
               )}
               {torneo.status === 'proximo' && (
-                <button className="bg-[#D4FF1F] text-[#0F1408] label-caps px-6 py-3.5 rounded-lg glow-green hover:scale-[1.02] transition-transform">
+                <button className="bg-[#F2C53D] text-[#0F1408] label-caps px-6 py-3.5 rounded-lg glow-green hover:scale-[1.02] transition-transform">
                   Register Team →
                 </button>
               )}
-              <button className="bg-transparent text-white label-caps px-6 py-3.5 rounded-lg border border-[#7A8A55] hover:border-[#D4FF1F] transition-colors">
+              <button className="bg-transparent text-white label-caps px-6 py-3.5 rounded-lg border border-[#7A8A55] hover:border-[#F2C53D] transition-colors">
                 Standings
               </button>
             </div>
@@ -192,7 +192,7 @@ export default function TorneoDetail() {
                   className={[
                     'flex items-center gap-2 px-5 py-4 label-caps border-b-2 transition-all -mb-px whitespace-nowrap',
                     active
-                      ? 'text-[#D4FF1F] border-[#D4FF1F]'
+                      ? 'text-[#F2C53D] border-[#F2C53D]'
                       : 'text-[#A5B084] border-transparent hover:text-white hover:border-[#7A8A55]',
                   ].join(' ')}
                 >
@@ -227,7 +227,7 @@ export default function TorneoDetail() {
                 key={equipo.id}
                 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
-                className="glass-card rounded-2xl p-5 hover:border-[#D4FF1F]/50 transition-all group relative overflow-hidden"
+                className="glass-card rounded-2xl p-5 hover:border-[#F2C53D]/50 transition-all group relative overflow-hidden"
               >
                 <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity"
                      style={{ background: equipo.color }} />
@@ -235,7 +235,7 @@ export default function TorneoDetail() {
                 <div className="relative flex items-center justify-between mb-4">
                   <span className="label-caps text-[#A5B084]">{equipo.division ?? 'Cadete'}</span>
                   {equipo.rank && (
-                    <span className="font-mono font-bold text-[#D4FF1F] text-sm">#{String(equipo.rank).padStart(2, '0')}</span>
+                    <span className="font-mono font-bold text-[#F2C53D] text-sm">#{String(equipo.rank).padStart(2, '0')}</span>
                   )}
                 </div>
 
@@ -247,7 +247,7 @@ export default function TorneoDetail() {
                     {equipo.escudo}
                   </div>
                   <div className="min-w-0">
-                    <p className="font-display font-extrabold text-lg text-white uppercase leading-tight truncate group-hover:text-[#D4FF1F] transition-colors">
+                    <p className="font-display font-extrabold text-lg text-white uppercase leading-tight truncate group-hover:text-[#F2C53D] transition-colors">
                       {equipo.nombre}
                     </p>
                     <p className="text-xs text-[#A5B084] font-mono flex items-center gap-1"><MapPin size={9} /> {equipo.ciudad}</p>
@@ -272,7 +272,7 @@ export default function TorneoDetail() {
                 <div className="grid grid-cols-3 gap-2 pt-3 border-t border-[#5A6644]">
                   <div>
                     <p className="label-caps text-[#A5B084]">Goles</p>
-                    <p className="font-mono font-bold text-[#D4FF1F] text-lg">{equipo.jugadorEstrella?.goles ?? equipo.wins ?? '–'}</p>
+                    <p className="font-mono font-bold text-[#F2C53D] text-lg">{equipo.jugadorEstrella?.goles ?? equipo.wins ?? '–'}</p>
                   </div>
                   <div>
                     <p className="label-caps text-[#A5B084]">PJ</p>
@@ -280,7 +280,7 @@ export default function TorneoDetail() {
                   </div>
                   <div>
                     <p className="label-caps text-[#A5B084]">Rating</p>
-                    <p className="font-mono font-bold text-[#D4FF1F] text-lg">{equipo.rating ?? '–'}</p>
+                    <p className="font-mono font-bold text-[#F2C53D] text-lg">{equipo.rating ?? '–'}</p>
                   </div>
                 </div>
               </motion.div>
@@ -294,7 +294,7 @@ export default function TorneoDetail() {
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.05 }}
-                className="relative aspect-video rounded-xl overflow-hidden border border-[#5A6644] hover:border-[#D4FF1F] transition-colors group cursor-pointer"
+                className="relative aspect-video rounded-xl overflow-hidden border border-[#5A6644] hover:border-[#F2C53D] transition-colors group cursor-pointer"
               >
                 <div className="absolute inset-0 pitch-bg" />
                 <img
@@ -305,11 +305,11 @@ export default function TorneoDetail() {
                 />
                 <div className="absolute inset-0 stadium-overlay" />
                 <div className="absolute bottom-3 left-3">
-                  <span className="label-caps text-[#D4FF1F]">Highlight · {i}</span>
+                  <span className="label-caps text-[#F2C53D]">Highlight · {i}</span>
                   <p className="font-display font-bold text-sm text-white uppercase">Mejores Jugadas — J{i}</p>
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-12 h-12 rounded-full bg-[#D4FF1F] flex items-center justify-center glow-green">
+                  <div className="w-12 h-12 rounded-full bg-[#F2C53D] flex items-center justify-center glow-green">
                     <ChevronRight size={20} className="text-[#0F1408]" />
                   </div>
                 </div>
@@ -344,14 +344,14 @@ export default function TorneoDetail() {
                       {torneo.topScorer.nombre}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
-                      <Target size={11} className="text-[#D4FF1F]" />
-                      <span className="font-mono font-bold text-[#D4FF1F]">
+                      <Target size={11} className="text-[#F2C53D]" />
+                      <span className="font-mono font-bold text-[#F2C53D]">
                         <CounterUp to={torneo.topScorer.goles} /> Goles
                       </span>
                     </div>
                   </div>
                 </div>
-                <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-[#D4FF1F] opacity-10 blur-2xl" />
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-[#F2C53D] opacity-10 blur-2xl" />
               </motion.div>
             )}
 
@@ -387,11 +387,11 @@ export default function TorneoDetail() {
                 <div className="h-12 w-px bg-[#7A8A55]" />
                 <div className="flex flex-col flex-1">
                   <span className="label-caps text-[#A5B084] mb-1">Completion</span>
-                  <span className="font-mono font-bold text-[#D4FF1F] text-2xl">
+                  <span className="font-mono font-bold text-[#F2C53D] text-2xl">
                     <CounterUp to={torneo.completion ?? 0} suffix="%" />
                   </span>
                   <div className="w-full h-1.5 bg-[#5A6644] rounded-full mt-2 overflow-hidden">
-                    <div className="h-full bg-[#D4FF1F]" style={{ width: `${torneo.completion ?? 0}%` }} />
+                    <div className="h-full bg-[#F2C53D]" style={{ width: `${torneo.completion ?? 0}%` }} />
                   </div>
                 </div>
               </div>
@@ -401,13 +401,13 @@ export default function TorneoDetail() {
           {/* Premium Pass */}
           <motion.div
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-            className="relative rounded-2xl bg-[#D4FF1F] p-6 overflow-hidden glow-green-lg"
+            className="relative rounded-2xl bg-[#F2C53D] p-6 overflow-hidden glow-green-lg"
           >
             <Sparkles count={20} color="#0F1408" />
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-xl bg-[#0F1408] flex items-center justify-center shrink-0">
-                  <SparkIcon size={26} className="text-[#D4FF1F]" />
+                  <SparkIcon size={26} className="text-[#F2C53D]" />
                 </div>
                 <div>
                   <span className="label-caps text-[#0F1408]/70 block mb-1">Premium Pass</span>
@@ -416,7 +416,7 @@ export default function TorneoDetail() {
                   </p>
                 </div>
               </div>
-              <button className="bg-[#0F1408] text-[#D4FF1F] label-caps px-6 py-3.5 rounded-lg hover:scale-[1.02] transition-transform flex items-center gap-2 shrink-0">
+              <button className="bg-[#0F1408] text-[#F2C53D] label-caps px-6 py-3.5 rounded-lg hover:scale-[1.02] transition-transform flex items-center gap-2 shrink-0">
                 <TrendingUp size={14} /> Upgrade
               </button>
             </div>

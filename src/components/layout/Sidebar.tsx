@@ -19,7 +19,7 @@ export default function Sidebar() {
             [
               'flex items-center gap-3 rounded-xl px-3 py-3.5 transition-all duration-250 group relative overflow-hidden',
               isActive
-                ? 'bg-gradient-to-r from-[#D4FF1F] to-[#A8D700] text-[#0F1408] glow-green'
+                ? 'bg-gradient-to-r from-[#F2C53D] to-[#C49B25] text-[#0F1408] glow-green'
                 : 'text-[#D5DBB8] hover:bg-[#2A3320] hover:text-white',
             ].join(' ')
           }
@@ -37,13 +37,13 @@ export default function Sidebar() {
       <div className="mt-auto pt-4 border-t border-[#5A6644]">
         <NavLink
           to="/nuevo"
-          className="relative w-full bg-[#D4FF1F] text-[#0F1408] font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.03] transition-transform glow-green-lg label-caps overflow-hidden btn-shimmer"
+          className="relative w-full bg-[#F2C53D] text-[#0F1408] font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.03] transition-transform glow-green-lg label-caps overflow-hidden btn-shimmer"
         >
           <PlusCircle size={18} />
           <span className="relative z-[1]">Nuevo Torneo</span>
         </NavLink>
         <div className="flex items-center justify-center gap-1.5 mt-4 text-[10px] text-[#7A8A55] font-mono">
-          <SparkIcon size={9} className="text-[#D4FF1F]" />
+          <SparkIcon size={9} className="text-[#F2C53D]" />
           <span>v4.2.1 · Torneos Engine</span>
         </div>
       </div>

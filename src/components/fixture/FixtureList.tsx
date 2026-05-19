@@ -31,7 +31,7 @@ function MatchRow({ partido, delay }: { partido: Partido; delay: number }) {
       </div>
 
       <div className="flex items-center gap-2 flex-1 justify-end">
-        <span className={['text-sm font-medium truncate max-w-28', localGana ? 'text-[#D4FF1F]' : 'text-white'].join(' ')}>
+        <span className={['text-sm font-medium truncate max-w-28', localGana ? 'text-[#F2C53D]' : 'text-white'].join(' ')}>
           {partido.local.nombre}
         </span>
         <span className="text-lg shrink-0">{partido.local.escudo}</span>
@@ -56,7 +56,7 @@ function MatchRow({ partido, delay }: { partido: Partido; delay: number }) {
 
       <div className="flex items-center gap-2 flex-1">
         <span className="text-lg shrink-0">{partido.visitante.escudo}</span>
-        <span className={['text-sm font-medium truncate max-w-28', visitGana ? 'text-[#D4FF1F]' : 'text-white'].join(' ')}>
+        <span className={['text-sm font-medium truncate max-w-28', visitGana ? 'text-[#F2C53D]' : 'text-white'].join(' ')}>
           {partido.visitante.nombre}
         </span>
       </div>
@@ -65,7 +65,7 @@ function MatchRow({ partido, delay }: { partido: Partido; delay: number }) {
         <span className={[
           'text-[9px] font-mono font-bold uppercase tracking-widest',
           partido.estado === 'jugado'   ? 'text-[#4DFFA0]' :
-          partido.estado === 'en_curso' ? 'text-[#D4FF1F]' : 'text-[#A5B084]',
+          partido.estado === 'en_curso' ? 'text-[#F2C53D]' : 'text-[#A5B084]',
         ].join(' ')}>
           {partido.estado === 'jugado' ? 'FIN' : partido.estado === 'en_curso' ? 'LIVE' : 'PEND'}
         </span>

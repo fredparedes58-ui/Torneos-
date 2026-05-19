@@ -13,20 +13,20 @@ import Marquee from '../components/effects/Marquee';
 import Avatar from '../components/effects/Avatar';
 
 const stats = [
-  { label: 'Torneos Activos', value: statsGlobales.torneosActivos, icon: Trophy,   hint: '+2 esta semana',     color: '#D4FF1F' },
+  { label: 'Torneos Activos', value: statsGlobales.torneosActivos, icon: Trophy,   hint: '+2 esta semana',     color: '#F2C53D' },
   { label: 'Jugadores U18',   value: statsGlobales.jugadoresU18,   icon: Users,    hint: '15 Proyectos Elite', color: '#7AB8FF' },
   { label: 'Informes',        value: statsGlobales.informes,       icon: FileText, hint: '86 nuevos hoy',      color: '#4DFFA0' },
   { label: 'Goles U12-U18',   value: statsGlobales.golesMarcados * 26, icon: Zap,  hint: 'Prom. 4.2 p/p',      color: '#FFD23B' },
 ];
 
 const tagMap = {
-  activo:     { label: 'EN VIVO',     cls: 'bg-[#D4FF1F] text-[#0F1408]' },
-  proximo:    { label: 'PRÓXIMO',     cls: 'bg-[#2A3500] text-[#D4FF1F] border border-[#D4FF1F40]' },
+  activo:     { label: 'EN VIVO',     cls: 'bg-[#F2C53D] text-[#0F1408]' },
+  proximo:    { label: 'PRÓXIMO',     cls: 'bg-[#3A2A00] text-[#F2C53D] border border-[#F2C53D40]' },
   finalizado: { label: 'FINALIZADO',  cls: 'bg-[#282C1D] text-[#A5B084]' },
 };
 
 const toneMap = {
-  green: { bg: 'bg-[#2A3500]', color: 'text-[#D4FF1F]', icon: Star,        ring: 'lime' as const },
+  green: { bg: 'bg-[#3A2A00]', color: 'text-[#F2C53D]', icon: Star,        ring: 'lime' as const },
   blue:  { bg: 'bg-[#102240]', color: 'text-[#7AB8FF]', icon: Activity,    ring: 'blue' as const },
   gold:  { bg: 'bg-[#2A1F00]', color: 'text-[#FFD23B]', icon: Award,       ring: 'gold' as const },
   red:   { bg: 'bg-[#2A000F]', color: 'text-[#FFC9C2]', icon: HeartPulse,  ring: 'red' as const },
@@ -47,8 +47,8 @@ export default function Dashboard() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-4"
         >
           <div className="relative">
-            <span className="label-caps text-[#D4FF1F] mb-3 flex items-center gap-2 text-glow-green">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#D4FF1F] pulse-dot" />
+            <span className="label-caps text-[#F2C53D] mb-3 flex items-center gap-2 text-glow-green">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#F2C53D] pulse-dot" />
               Temporada 2026 · Youth Elite
             </span>
             <h1 className="headline-mega text-6xl md:text-8xl lg:text-9xl leading-[0.82]">
@@ -62,9 +62,9 @@ export default function Dashboard() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#D4FF1F]/10 border border-[#D4FF1F]/30 self-start">
-              <span className="w-2 h-2 rounded-full bg-[#D4FF1F] pulse-dot" />
-              <span className="label-caps text-[#D4FF1F]">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F2C53D]/10 border border-[#F2C53D]/30 self-start">
+              <span className="w-2 h-2 rounded-full bg-[#F2C53D] pulse-dot" />
+              <span className="label-caps text-[#F2C53D]">
                 {statsGlobales.scoutsActivos} Scouts Activos
               </span>
             </div>
@@ -82,7 +82,7 @@ export default function Dashboard() {
         >
           <Marquee speed={45}>
             <span className="text-xs font-mono text-[#A5B084]">
-              <span className="text-[#D4FF1F]">●</span> LIVE · FC Barcelona A 2–1 Valencia CF · Minuto 74'
+              <span className="text-[#F2C53D]">●</span> LIVE · FC Barcelona A 2–1 Valencia CF · Minuto 74'
             </span>
             <span className="text-xs font-mono text-[#A5B084]">
               <span className="text-[#FFD23B]">▲</span> Marcus Vane lidera tabla de goleo · 24 G
@@ -94,7 +94,7 @@ export default function Dashboard() {
               <span className="text-[#4DFFA0]">↑</span> +40% inscripciones esta semana
             </span>
             <span className="text-xs font-mono text-[#A5B084]">
-              <span className="text-[#D4FF1F]">★</span> Marc Bellini (Barça A · #10) — Jugador revelación U17
+              <span className="text-[#F2C53D]">★</span> Marc Bellini (Barça A · #10) — Jugador revelación U17
             </span>
           </Marquee>
         </motion.div>
@@ -109,7 +109,7 @@ export default function Dashboard() {
             <motion.div
               key={label}
               variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.4 } } }}
-              className="relative glass-card rounded-xl p-5 group hover:border-[#D4FF1F]/40 transition-all duration-300 overflow-hidden"
+              className="relative glass-card rounded-xl p-5 group hover:border-[#F2C53D]/40 transition-all duration-300 overflow-hidden"
             >
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full blur-2xl" style={{ background: color, opacity: 0.15 }} />
@@ -122,7 +122,7 @@ export default function Dashboard() {
                 <CounterUp to={value} />
               </div>
               <div className="relative mt-2 flex items-center gap-1.5">
-                <TrendingUp size={11} className="text-[#D4FF1F]" />
+                <TrendingUp size={11} className="text-[#F2C53D]" />
                 <span className="text-xs text-[#A5B084] font-mono">{hint}</span>
               </div>
             </motion.div>
@@ -145,7 +145,7 @@ export default function Dashboard() {
               </div>
               <Link
                 to="/torneos"
-                className="text-[#D4FF1F] label-caps flex items-center gap-1.5 hover:gap-2.5 transition-all group whitespace-nowrap"
+                className="text-[#F2C53D] label-caps flex items-center gap-1.5 hover:gap-2.5 transition-all group whitespace-nowrap"
               >
                 Explorar <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
               </Link>
@@ -162,7 +162,7 @@ export default function Dashboard() {
                   >
                     <Link
                       to={`/torneos/${t.id}`}
-                      className="block relative bg-[#1A2010] rounded-xl overflow-hidden border border-[#5A6644] hover:border-[#D4FF1F] transition-all duration-400 group tilt-hover"
+                      className="block relative bg-[#1A2010] rounded-xl overflow-hidden border border-[#5A6644] hover:border-[#F2C53D] transition-all duration-400 group tilt-hover"
                     >
                       {/* Hero image */}
                       <div className="h-44 relative overflow-hidden">
@@ -190,14 +190,14 @@ export default function Dashboard() {
                         </div>
 
                         {/* Decorative emoji-shield bottom-right */}
-                        <div className="absolute bottom-3 right-3 w-12 h-12 rounded-lg bg-[#1A2010]/70 backdrop-blur border border-[#D4FF1F40] flex items-center justify-center font-display font-extrabold text-[#D4FF1F] text-sm">
+                        <div className="absolute bottom-3 right-3 w-12 h-12 rounded-lg bg-[#1A2010]/70 backdrop-blur border border-[#F2C53D40] flex items-center justify-center font-display font-extrabold text-[#F2C53D] text-sm">
                           {t.logo}
                         </div>
                       </div>
 
                       {/* Body */}
                       <div className="p-4 relative">
-                        <h3 className="font-display font-extrabold text-xl text-white mb-1 uppercase tracking-tight leading-tight group-hover:text-[#D4FF1F] transition-colors">
+                        <h3 className="font-display font-extrabold text-xl text-white mb-1 uppercase tracking-tight leading-tight group-hover:text-[#F2C53D] transition-colors">
                           {t.nombre}
                         </h3>
                         <div className="flex items-center gap-3 text-[#A5B084] font-mono text-[10px]">
@@ -258,7 +258,7 @@ export default function Dashboard() {
             {/* CTA Premium */}
             <Link
               to="/nuevo"
-              className="relative block bg-[#D4FF1F] text-[#0F1408] p-5 rounded-xl glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden group"
+              className="relative block bg-[#F2C53D] text-[#0F1408] p-5 rounded-xl glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden group"
             >
               <Sparkles count={10} color="#0F1408" />
               <div className="relative flex items-center justify-between">
@@ -294,14 +294,14 @@ export default function Dashboard() {
                 </div>
                 <h2 className="font-display font-extrabold text-3xl md:text-4xl text-white uppercase leading-none mb-2">
                   {liveMatches[0].local.nombre}
-                  <span className="text-[#D4FF1F] mx-3">vs</span>
+                  <span className="text-[#F2C53D] mx-3">vs</span>
                   {liveMatches[0].visitante.nombre}
                 </h2>
                 <p className="text-xs font-mono text-[#A5B084]">{liveMatches[0].pitch} · Semifinal</p>
               </div>
               <div className="flex items-center justify-center gap-6">
                 <div className="text-center">
-                  <p className="font-mono font-bold text-6xl md:text-7xl text-[#D4FF1F] leading-none">
+                  <p className="font-mono font-bold text-6xl md:text-7xl text-[#F2C53D] leading-none">
                     {liveMatches[0].golesLocal}
                   </p>
                   <p className="label-caps text-[#A5B084] mt-2">{liveMatches[0].local.escudo}</p>
@@ -319,7 +319,7 @@ export default function Dashboard() {
               <span className="label-caps text-[#A5B084] flex items-center gap-2">
                 <Eye size={12} /> 2.4k espectadores
               </span>
-              <button className="label-caps text-[#D4FF1F] hover:underline flex items-center gap-1">
+              <button className="label-caps text-[#F2C53D] hover:underline flex items-center gap-1">
                 Ver transmisión <ArrowRight size={11} />
               </button>
             </div>

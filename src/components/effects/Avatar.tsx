@@ -6,7 +6,7 @@ interface Props {
 }
 
 const ringColors = {
-  lime: '#D4FF1F',
+  lime: '#F2C53D',
   gold: '#FFD23B',
   red:  '#FF6B7E',
   blue: '#7AB8FF',

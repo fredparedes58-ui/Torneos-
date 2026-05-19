@@ -19,7 +19,7 @@ export default function BottomNav() {
           className={({ isActive }) =>
             [
               'flex flex-col items-center justify-center rounded-lg px-3 py-1 transition-all duration-200',
-              isActive ? 'bg-[#D4FF1F] text-[#0F1408] scale-95' : 'text-[#D5DBB8] hover:text-white',
+              isActive ? 'bg-[#F2C53D] text-[#0F1408] scale-95' : 'text-[#D5DBB8] hover:text-white',
             ].join(' ')
           }
         >

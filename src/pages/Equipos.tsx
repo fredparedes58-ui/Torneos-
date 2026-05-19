@@ -10,7 +10,7 @@ import Avatar from '../components/effects/Avatar';
 type ExtendedEquipo = Equipo & { torneo: string };
 
 const divisionColorMap: Record<string, { ring: string; ringAlpha: string; text: string }> = {
-  'Pro A':  { ring: '#D4FF1F', ringAlpha: 'rgba(200,255,0,0.4)',  text: 'text-[#D4FF1F]' },
+  'Pro A':  { ring: '#F2C53D', ringAlpha: 'rgba(242,197,61,0.4)',  text: 'text-[#F2C53D]' },
   'Pro B':  { ring: '#FFC9C2', ringAlpha: 'rgba(255,180,171,0.3)', text: 'text-[#FFC9C2]' },
   'Cadete': { ring: '#7AB8FF', ringAlpha: 'rgba(78,143,255,0.3)',  text: 'text-[#7AB8FF]' },
 };
@@ -57,8 +57,8 @@ export default function Equipos() {
       <div className="relative p-4 md:p-8 space-y-8 max-w-[1400px] mx-auto">
         {/* ━━━ Hero ━━━ */}
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-          <span className="label-caps text-[#D4FF1F] mb-3 flex items-center gap-2 text-glow-green">
-            <span className="w-2 h-2 rounded-full bg-[#D4FF1F] pulse-dot" />
+          <span className="label-caps text-[#F2C53D] mb-3 flex items-center gap-2 text-glow-green">
+            <span className="w-2 h-2 rounded-full bg-[#F2C53D] pulse-dot" />
             Scouting Directory v4.2
           </span>
           <h1 className="headline-mega text-6xl md:text-8xl lg:text-9xl leading-[0.82]">
@@ -82,7 +82,7 @@ export default function Equipos() {
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder="Buscar equipo o jugador..."
-              className="w-full bg-[#1A2010]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#D4FF1F] transition-colors"
+              className="w-full bg-[#1A2010]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors"
             />
           </div>
           <div className="flex gap-2">
@@ -113,7 +113,7 @@ export default function Equipos() {
               className={[
                 'px-4 py-3.5 rounded-xl label-caps transition-colors flex items-center gap-2 border',
                 sortBy === 'rating'
-                  ? 'bg-[#D4FF1F] text-[#0F1408] border-[#D4FF1F]'
+                  ? 'bg-[#F2C53D] text-[#0F1408] border-[#F2C53D]'
                   : 'bg-transparent text-[#A5B084] border-[#5A6644] hover:text-white',
               ].join(' ')}
             >
@@ -133,7 +133,7 @@ export default function Equipos() {
           </div>
           <div className="rounded-xl border border-[#5A6644] bg-[#1A2010]/60 backdrop-blur p-4">
             <span className="label-caps text-[#A5B084] block mb-2">Goles Totales</span>
-            <p className="font-mono font-bold text-2xl text-[#D4FF1F]"><CounterUp to={totalGoles} /></p>
+            <p className="font-mono font-bold text-2xl text-[#F2C53D]"><CounterUp to={totalGoles} /></p>
           </div>
           <div className="rounded-xl border border-[#5A6644] bg-[#1A2010]/60 backdrop-blur p-4">
             <span className="label-caps text-[#A5B084] block mb-2">Paradas</span>
@@ -217,7 +217,7 @@ export default function Equipos() {
                     {equipo.jugadorEstrella?.goles !== undefined && (
                       <div>
                         <p className="label-caps text-[#A5B084] mb-1 flex items-center gap-1"><Target size={9} /> Goles</p>
-                        <p className="font-mono font-bold text-[#D4FF1F] text-xl">{equipo.jugadorEstrella.goles}</p>
+                        <p className="font-mono font-bold text-[#F2C53D] text-xl">{equipo.jugadorEstrella.goles}</p>
                       </div>
                     )}
                     {equipo.jugadorEstrella?.paradas !== undefined && (
