@@ -18,12 +18,12 @@ const filters: { value: 'all' | TorneoStatus; label: string }[] = [
 ];
 
 const statusMap = {
-  activo:     { label: 'EN JUEGO',           dotCls: 'bg-[#C8FF00]',     textCls: 'text-[#C8FF00]', bgCls: 'bg-[#C8FF00]/15 border-[#C8FF00]/30',
-                ctaLabel: 'Ver Live',        ctaIcon: Tv,                ctaCls: 'bg-[#C8FF00] text-[#161F00]' },
-  proximo:    { label: 'INSCRIPCIÓN ABIERTA', dotCls: 'bg-[#4E8FFF]',     textCls: 'text-[#4E8FFF]', bgCls: 'bg-[#4E8FFF]/15 border-[#4E8FFF]/30',
-                ctaLabel: 'Ver Detalles',    ctaIcon: ArrowRight,        ctaCls: 'bg-[#13131F] text-[#C4CAAC] border border-[#434933]' },
-  finalizado: { label: 'FINALIZADO',         dotCls: 'bg-[#8E9479]',     textCls: 'text-[#C4CAAC]', bgCls: 'bg-[#282C1D] border-[#434933]',
-                ctaLabel: 'Scouting',        ctaIcon: BarChart3,         ctaCls: 'bg-[#13131F] text-[#C4CAAC] border border-[#434933]' },
+  activo:     { label: 'EN JUEGO',           dotCls: 'bg-[#D4FF1F]',     textCls: 'text-[#D4FF1F]', bgCls: 'bg-[#D4FF1F]/15 border-[#D4FF1F]/30',
+                ctaLabel: 'Ver Live',        ctaIcon: Tv,                ctaCls: 'bg-[#D4FF1F] text-[#0F1408]' },
+  proximo:    { label: 'INSCRIPCIÓN ABIERTA', dotCls: 'bg-[#7AB8FF]',     textCls: 'text-[#7AB8FF]', bgCls: 'bg-[#7AB8FF]/15 border-[#7AB8FF]/30',
+                ctaLabel: 'Ver Detalles',    ctaIcon: ArrowRight,        ctaCls: 'bg-[#2A3320] text-[#D5DBB8] border border-[#7A8A55]' },
+  finalizado: { label: 'FINALIZADO',         dotCls: 'bg-[#A5B084]',     textCls: 'text-[#D5DBB8]', bgCls: 'bg-[#282C1D] border-[#7A8A55]',
+                ctaLabel: 'Scouting',        ctaIcon: BarChart3,         ctaCls: 'bg-[#2A3320] text-[#D5DBB8] border border-[#7A8A55]' },
 };
 
 export default function TorneosList() {
@@ -43,16 +43,18 @@ export default function TorneosList() {
 
       <div className="relative p-4 md:p-8 space-y-6 max-w-[1400px] mx-auto">
         {/* ━━━ Hero header ━━━ */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          <span className="label-caps text-[#C8FF00] block mb-2">Cantera Hub · Directorio</span>
-          <h1 className="font-display font-extrabold text-5xl md:text-7xl headline-cream leading-none">
-            Explorar <span className="italic-accent">Torneos</span>
+        <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
+          <span className="label-caps text-[#D4FF1F] mb-3 flex items-center gap-2 text-glow-green">
+            <span className="w-2 h-2 rounded-full bg-[#D4FF1F] pulse-dot" />
+            Cantera Hub · Directorio
+          </span>
+          <h1 className="headline-mega text-6xl md:text-8xl lg:text-9xl leading-[0.82]">
+            <span className="gradient-text-cream">Explorar</span>
+            <br />
+            <span className="italic-accent">Torneos.</span>
           </h1>
-          <p className="text-sm text-[#8E9479] mt-3 font-mono max-w-xl">
-            {torneos.length} competiciones registradas · Filtra por estado, categoría o disciplina.
+          <p className="text-base text-[#D5DBB8] mt-5 font-body max-w-xl leading-relaxed">
+            {torneos.length} competiciones registradas. Filtra por estado, categoría o disciplina y descubre el próximo gran escenario.
           </p>
         </motion.div>
 
@@ -61,12 +63,12 @@ export default function TorneosList() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}
           className="relative"
         >
-          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8E9479]" />
+          <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#A5B084]" />
           <input
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Buscar torneo de formación..."
-            className="w-full bg-[#0E0E1C]/80 backdrop-blur border border-[#1C1C32] rounded-xl pl-12 pr-4 py-4 text-sm text-white placeholder-[#8E9479] focus:outline-none focus:border-[#C8FF00] transition-colors"
+            className="w-full bg-[#1A2010]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-4 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#D4FF1F] transition-colors"
           />
         </motion.div>
 
@@ -75,7 +77,7 @@ export default function TorneosList() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
           className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 items-center"
         >
-          <Filter size={14} className="text-[#8E9479] shrink-0" />
+          <Filter size={14} className="text-[#A5B084] shrink-0" />
           {filters.map(f => (
             <button
               key={f.value}
@@ -83,8 +85,8 @@ export default function TorneosList() {
               className={[
                 'px-4 py-2.5 rounded-full label-caps whitespace-nowrap transition-all border',
                 filter === f.value
-                  ? 'bg-[#C8FF00] text-[#161F00] border-[#C8FF00] glow-green'
-                  : 'bg-transparent text-[#C4CAAC] border-[#434933] hover:border-[#8E9479] hover:text-white',
+                  ? 'bg-[#D4FF1F] text-[#0F1408] border-[#D4FF1F] glow-green'
+                  : 'bg-transparent text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white',
               ].join(' ')}
             >
               {f.label}
@@ -108,7 +110,7 @@ export default function TorneosList() {
               >
                 <Link
                   to={`/torneos/${t.id}`}
-                  className="block relative bg-[#0E0E1C] rounded-2xl overflow-hidden border border-[#1C1C32] hover:border-[#C8FF00] transition-all duration-400 group"
+                  className="block relative bg-[#1A2010] rounded-2xl overflow-hidden border border-[#5A6644] hover:border-[#D4FF1F] transition-all duration-400 group"
                   style={{ animationDelay: `${i * 0.05}s` }}
                 >
                   {/* Image hero */}
@@ -133,42 +135,42 @@ export default function TorneosList() {
 
                     {/* Trophy on finalized */}
                     {t.status === 'finalizado' && t.campeon && (
-                      <div className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFB80020] backdrop-blur border border-[#FFB80060]">
-                        <Trophy size={12} className="text-[#FFB800]" />
-                        <span className="label-caps text-[#FFB800]">Campeón: {t.campeon.nombre}</span>
+                      <div className="absolute bottom-4 right-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#FFD23B20] backdrop-blur border border-[#FFD23B60]">
+                        <Trophy size={12} className="text-[#FFD23B]" />
+                        <span className="label-caps text-[#FFD23B]">Campeón: {t.campeon.nombre}</span>
                       </div>
                     )}
 
                     {/* Shield monogram */}
-                    <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-[#0E0E1C]/80 backdrop-blur border border-[#C8FF0040] flex items-center justify-center font-display font-extrabold text-[#C8FF00] text-lg">
+                    <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-[#1A2010]/80 backdrop-blur border border-[#D4FF1F40] flex items-center justify-center font-display font-extrabold text-[#D4FF1F] text-lg">
                       {t.logo}
                     </div>
                   </div>
 
                   {/* Body */}
                   <div className="p-5">
-                    <h3 className="font-display font-extrabold text-2xl text-white uppercase tracking-tight leading-tight group-hover:text-[#C8FF00] transition-colors mb-3">
+                    <h3 className="font-display font-extrabold text-2xl text-white uppercase tracking-tight leading-tight group-hover:text-[#D4FF1F] transition-colors mb-3">
                       {t.nombre}
                     </h3>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-3">
                       {t.tags?.map(tag => (
-                        <span key={tag} className="px-2 py-0.5 rounded text-[10px] font-mono text-[#C4CAAC] bg-[#13131F] border border-[#434933]">
+                        <span key={tag} className="px-2 py-0.5 rounded text-[10px] font-mono text-[#D5DBB8] bg-[#2A3320] border border-[#7A8A55]">
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <p className="text-xs text-[#C4CAAC] mb-4 line-clamp-2 leading-relaxed">{t.descripcion}</p>
+                    <p className="text-xs text-[#D5DBB8] mb-4 line-clamp-2 leading-relaxed">{t.descripcion}</p>
 
-                    <div className="flex items-center justify-between pt-3 border-t border-[#1C1C32]">
+                    <div className="flex items-center justify-between pt-3 border-t border-[#5A6644]">
                       <div className="flex flex-col gap-1">
-                        <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#8E9479]">
+                        <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#A5B084]">
                           <Calendar size={11} /> {t.fechaInicio.slice(5)} → {t.fechaFin.slice(5)}
                         </span>
                         {t.sede && (
-                          <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#8E9479]">
+                          <span className="flex items-center gap-1.5 text-[10px] font-mono text-[#A5B084]">
                             <MapPin size={11} /> {t.sede.split('·')[0]?.trim()}
                           </span>
                         )}
@@ -193,30 +195,30 @@ export default function TorneosList() {
         {filtered.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
-            className="relative rounded-2xl border border-[#C8FF00] bg-[#C8FF00] p-6 md:p-8 overflow-hidden glow-green-lg"
+            className="relative rounded-2xl border border-[#D4FF1F] bg-[#D4FF1F] p-6 md:p-8 overflow-hidden glow-green-lg"
           >
-            <Sparkles count={15} color="#161F00" />
+            <Sparkles count={15} color="#0F1408" />
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <span className="label-caps text-[#161F00] mb-2 block flex items-center gap-2">
+                <span className="label-caps text-[#0F1408] mb-2 block flex items-center gap-2">
                   <CheckCircle2 size={12} /> Premios de Colección
                 </span>
-                <h3 className="font-display font-extrabold text-3xl md:text-4xl text-[#161F00] uppercase leading-none">
+                <h3 className="font-display font-extrabold text-3xl md:text-4xl text-[#0F1408] uppercase leading-none">
                   Siguiente Gran Reto
                 </h3>
-                <p className="text-sm text-[#161F00]/80 mt-2 max-w-md">
+                <p className="text-sm text-[#0F1408]/80 mt-2 max-w-md">
                   Completa el álbum de la Liga Pro y gana acceso exclusivo a la Final en el Estadio Metropolitano.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-[#161F00] text-[#C8FF00]">
+                <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-[#0F1408] text-[#D4FF1F]">
                   <Users size={14} />
                   <span className="font-mono font-bold text-lg">1.2k+</span>
                   <span className="label-caps">Inscritos</span>
                 </div>
                 <Link
                   to="/nuevo"
-                  className="px-6 py-3 rounded-lg bg-[#161F00] text-[#C8FF00] label-caps text-center hover:scale-[1.02] transition-transform"
+                  className="px-6 py-3 rounded-lg bg-[#0F1408] text-[#D4FF1F] label-caps text-center hover:scale-[1.02] transition-transform"
                 >
                   Crear Torneo →
                 </Link>
@@ -226,7 +228,7 @@ export default function TorneosList() {
         )}
 
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-[#8E9479]">
+          <div className="text-center py-20 text-[#A5B084]">
             <Trophy size={48} className="mx-auto mb-3 opacity-30" />
             <p className="font-display font-bold text-xl uppercase">No se encontraron torneos</p>
             <p className="text-xs font-mono mt-2">Prueba a cambiar el filtro o la búsqueda</p>

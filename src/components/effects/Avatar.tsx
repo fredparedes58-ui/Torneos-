@@ -6,10 +6,10 @@ interface Props {
 }
 
 const ringColors = {
-  lime: '#C8FF00',
-  gold: '#FFB800',
-  red:  '#FF3B5C',
-  blue: '#4E8FFF',
+  lime: '#D4FF1F',
+  gold: '#FFD23B',
+  red:  '#FF6B7E',
+  blue: '#7AB8FF',
   none: 'transparent',
 };
 
@@ -26,7 +26,7 @@ export default function Avatar({ seed, size = 40, ring = 'none', className = '' 
       style={{
         width: size, height: size,
         boxShadow: ring !== 'none' ? `0 0 0 2px ${ringColor}, 0 0 12px ${ringColor}50` : undefined,
-        background: 'linear-gradient(135deg, #282C1D 0%, #0E0E1C 100%)',
+        background: 'linear-gradient(135deg, #282C1D 0%, #1A2010 100%)',
       }}
     >
       <img

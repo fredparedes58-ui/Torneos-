@@ -10,7 +10,7 @@ const links = [
 
 export default function BottomNav() {
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-3 py-2 bg-[#0C0F04] border-t border-[#434933] backdrop-blur-md">
+    <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-3 py-2 bg-[#0A0F00] border-t border-[#7A8A55] backdrop-blur-md">
       {links.map(({ to, label, icon: Icon, end }) => (
         <NavLink
           key={to}
@@ -19,7 +19,7 @@ export default function BottomNav() {
           className={({ isActive }) =>
             [
               'flex flex-col items-center justify-center rounded-lg px-3 py-1 transition-all duration-200',
-              isActive ? 'bg-[#C8FF00] text-[#161F00] scale-95' : 'text-[#C4CAAC] hover:text-white',
+              isActive ? 'bg-[#D4FF1F] text-[#0F1408] scale-95' : 'text-[#D5DBB8] hover:text-white',
             ].join(' ')
           }
         >

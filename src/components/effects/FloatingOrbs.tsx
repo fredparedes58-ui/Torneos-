@@ -7,9 +7,9 @@ export default function FloatingOrbs({ variant = 'green', intensity = 'medium' }
   const opacity = intensity === 'subtle' ? 0.15 : intensity === 'medium' ? 0.28 : 0.45;
 
   const palette = {
-    green: ['#C8FF00', '#A8D700', '#1E2800'],
-    mixed: ['#C8FF00', '#4E8FFF', '#FF3B5C'],
-    gold:  ['#FFB800', '#C8FF00', '#FF8C00'],
+    green: ['#D4FF1F', '#A8D700', '#2A3500'],
+    mixed: ['#D4FF1F', '#7AB8FF', '#FF6B7E'],
+    gold:  ['#FFD23B', '#D4FF1F', '#FF8C00'],
   }[variant];
 
   return (
