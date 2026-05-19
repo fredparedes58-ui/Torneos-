@@ -19,11 +19,11 @@ const filters: { value: 'all' | TorneoStatus; label: string }[] = [
 
 const statusMap = {
   activo:     { label: 'EN JUEGO',           dotCls: 'bg-[#F2C53D]',     textCls: 'text-[#F2C53D]', bgCls: 'bg-[#F2C53D]/15 border-[#F2C53D]/30',
-                ctaLabel: 'Ver Live',        ctaIcon: Tv,                ctaCls: 'bg-[#F2C53D] text-[#0F1408]' },
+                ctaLabel: 'Ver Live',        ctaIcon: Tv,                ctaCls: 'bg-[#F2C53D] text-[#1F2818]' },
   proximo:    { label: 'INSCRIPCIÓN ABIERTA', dotCls: 'bg-[#7AB8FF]',     textCls: 'text-[#7AB8FF]', bgCls: 'bg-[#7AB8FF]/15 border-[#7AB8FF]/30',
-                ctaLabel: 'Ver Detalles',    ctaIcon: ArrowRight,        ctaCls: 'bg-[#2A3320] text-[#D5DBB8] border border-[#7A8A55]' },
+                ctaLabel: 'Ver Detalles',    ctaIcon: ArrowRight,        ctaCls: 'bg-[#374028] text-[#D5DBB8] border border-[#7A8A55]' },
   finalizado: { label: 'FINALIZADO',         dotCls: 'bg-[#A5B084]',     textCls: 'text-[#D5DBB8]', bgCls: 'bg-[#282C1D] border-[#7A8A55]',
-                ctaLabel: 'Scouting',        ctaIcon: BarChart3,         ctaCls: 'bg-[#2A3320] text-[#D5DBB8] border border-[#7A8A55]' },
+                ctaLabel: 'Scouting',        ctaIcon: BarChart3,         ctaCls: 'bg-[#374028] text-[#D5DBB8] border border-[#7A8A55]' },
 };
 
 export default function TorneosList() {
@@ -68,7 +68,7 @@ export default function TorneosList() {
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Buscar torneo de formación..."
-            className="w-full bg-[#1A2010]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-4 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors"
+            className="w-full bg-[#2A3320]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-4 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors"
           />
         </motion.div>
 
@@ -85,7 +85,7 @@ export default function TorneosList() {
               className={[
                 'px-4 py-2.5 rounded-full label-caps whitespace-nowrap transition-all border',
                 filter === f.value
-                  ? 'bg-[#F2C53D] text-[#0F1408] border-[#F2C53D] glow-green'
+                  ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D] glow-green'
                   : 'bg-transparent text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white',
               ].join(' ')}
             >
@@ -110,7 +110,7 @@ export default function TorneosList() {
               >
                 <Link
                   to={`/torneos/${t.id}`}
-                  className="block relative bg-[#1A2010] rounded-2xl overflow-hidden border border-[#5A6644] hover:border-[#F2C53D] transition-all duration-400 group"
+                  className="block relative bg-[#2A3320] rounded-2xl overflow-hidden border border-[#5A6644] hover:border-[#F2C53D] transition-all duration-400 group"
                   style={{ animationDelay: `${i * 0.05}s` }}
                 >
                   {/* Image hero */}
@@ -142,7 +142,7 @@ export default function TorneosList() {
                     )}
 
                     {/* Shield monogram */}
-                    <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-[#1A2010]/80 backdrop-blur border border-[#F2C53D40] flex items-center justify-center font-display font-extrabold text-[#F2C53D] text-lg">
+                    <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-[#2A3320]/80 backdrop-blur border border-[#F2C53D40] flex items-center justify-center font-display font-extrabold text-[#F2C53D] text-lg">
                       {t.logo}
                     </div>
                   </div>
@@ -156,7 +156,7 @@ export default function TorneosList() {
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-3">
                       {t.tags?.map(tag => (
-                        <span key={tag} className="px-2 py-0.5 rounded text-[10px] font-mono text-[#D5DBB8] bg-[#2A3320] border border-[#7A8A55]">
+                        <span key={tag} className="px-2 py-0.5 rounded text-[10px] font-mono text-[#D5DBB8] bg-[#374028] border border-[#7A8A55]">
                           {tag}
                         </span>
                       ))}
@@ -197,28 +197,28 @@ export default function TorneosList() {
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}
             className="relative rounded-2xl border border-[#F2C53D] bg-[#F2C53D] p-6 md:p-8 overflow-hidden glow-green-lg"
           >
-            <Sparkles count={15} color="#0F1408" />
+            <Sparkles count={15} color="#1F2818" />
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div>
-                <span className="label-caps text-[#0F1408] mb-2 block flex items-center gap-2">
+                <span className="label-caps text-[#1F2818] mb-2 block flex items-center gap-2">
                   <CheckCircle2 size={12} /> Premios de Colección
                 </span>
-                <h3 className="font-display font-extrabold text-3xl md:text-4xl text-[#0F1408] uppercase leading-none">
+                <h3 className="font-display font-extrabold text-3xl md:text-4xl text-[#1F2818] uppercase leading-none">
                   Siguiente Gran Reto
                 </h3>
-                <p className="text-sm text-[#0F1408]/80 mt-2 max-w-md">
+                <p className="text-sm text-[#1F2818]/80 mt-2 max-w-md">
                   Completa el álbum de la Liga Pro y gana acceso exclusivo a la Final en el Estadio Metropolitano.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
-                <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-[#0F1408] text-[#F2C53D]">
+                <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-[#1F2818] text-[#F2C53D]">
                   <Users size={14} />
                   <span className="font-mono font-bold text-lg">1.2k+</span>
                   <span className="label-caps">Inscritos</span>
                 </div>
                 <Link
                   to="/nuevo"
-                  className="px-6 py-3 rounded-lg bg-[#0F1408] text-[#F2C53D] label-caps text-center hover:scale-[1.02] transition-transform"
+                  className="px-6 py-3 rounded-lg bg-[#1F2818] text-[#F2C53D] label-caps text-center hover:scale-[1.02] transition-transform"
                 >
                   Crear Torneo →
                 </Link>

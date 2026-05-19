@@ -20,7 +20,7 @@ const stats = [
 ];
 
 const tagMap = {
-  activo:     { label: 'EN VIVO',     cls: 'bg-[#F2C53D] text-[#0F1408]' },
+  activo:     { label: 'EN VIVO',     cls: 'bg-[#F2C53D] text-[#1F2818]' },
   proximo:    { label: 'PRÓXIMO',     cls: 'bg-[#3A2A00] text-[#F2C53D] border border-[#F2C53D40]' },
   finalizado: { label: 'FINALIZADO',  cls: 'bg-[#282C1D] text-[#A5B084]' },
 };
@@ -68,7 +68,7 @@ export default function Dashboard() {
                 {statsGlobales.scoutsActivos} Scouts Activos
               </span>
             </div>
-            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1A2010]/60 border border-[#5A6644] self-start">
+            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#2A3320]/60 border border-[#5A6644] self-start">
               <Radio size={11} className="text-[#4DFFA0]" />
               <span className="label-caps text-[#4DFFA0]">{liveMatches.length} Partidos Live</span>
             </div>
@@ -78,7 +78,7 @@ export default function Dashboard() {
         {/* ━━━ Marquee de actividad ━━━ */}
         <motion.div
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
-          className="rounded-xl border border-[#5A6644] bg-gradient-to-r from-[#1A2010] via-[#2A3320] to-[#1A2010] py-2"
+          className="rounded-xl border border-[#5A6644] bg-gradient-to-r from-[#2A3320] via-[#374028] to-[#2A3320] py-2"
         >
           <Marquee speed={45}>
             <span className="text-xs font-mono text-[#A5B084]">
@@ -162,7 +162,7 @@ export default function Dashboard() {
                   >
                     <Link
                       to={`/torneos/${t.id}`}
-                      className="block relative bg-[#1A2010] rounded-xl overflow-hidden border border-[#5A6644] hover:border-[#F2C53D] transition-all duration-400 group tilt-hover"
+                      className="block relative bg-[#2A3320] rounded-xl overflow-hidden border border-[#5A6644] hover:border-[#F2C53D] transition-all duration-400 group tilt-hover"
                     >
                       {/* Hero image */}
                       <div className="h-44 relative overflow-hidden">
@@ -179,7 +179,7 @@ export default function Dashboard() {
                         {/* Top tags */}
                         <div className="absolute top-3 left-3 flex flex-wrap gap-1.5">
                           <span className={['px-2 py-1 text-[9px] font-bold rounded label-caps', tag.cls].join(' ')}>
-                            {t.status === 'activo' && <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#0F1408] mr-1 pulse-dot" />}
+                            {t.status === 'activo' && <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#1F2818] mr-1 pulse-dot" />}
                             {tag.label}
                           </span>
                           {t.tags?.[0] && (
@@ -190,7 +190,7 @@ export default function Dashboard() {
                         </div>
 
                         {/* Decorative emoji-shield bottom-right */}
-                        <div className="absolute bottom-3 right-3 w-12 h-12 rounded-lg bg-[#1A2010]/70 backdrop-blur border border-[#F2C53D40] flex items-center justify-center font-display font-extrabold text-[#F2C53D] text-sm">
+                        <div className="absolute bottom-3 right-3 w-12 h-12 rounded-lg bg-[#2A3320]/70 backdrop-blur border border-[#F2C53D40] flex items-center justify-center font-display font-extrabold text-[#F2C53D] text-sm">
                           {t.logo}
                         </div>
                       </div>
@@ -229,7 +229,7 @@ export default function Dashboard() {
               </h2>
             </div>
 
-            <div className="bg-[#1A2010]/80 backdrop-blur border border-[#5A6644] rounded-xl divide-y divide-[#5A6644] overflow-hidden">
+            <div className="bg-[#2A3320]/80 backdrop-blur border border-[#5A6644] rounded-xl divide-y divide-[#5A6644] overflow-hidden">
               {scoutingFeed.map((item, i) => {
                 const tone = toneMap[item.tone as keyof typeof toneMap];
                 const Icon = tone.icon;
@@ -237,7 +237,7 @@ export default function Dashboard() {
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.5 + i * 0.08 }}
-                    className="p-4 flex gap-3 items-center hover:bg-[#2A3320] transition-colors group"
+                    className="p-4 flex gap-3 items-center hover:bg-[#374028] transition-colors group"
                   >
                     <div className="relative shrink-0">
                       <Avatar seed={item.avatarSeed} size={42} ring={tone.ring} />
@@ -258,9 +258,9 @@ export default function Dashboard() {
             {/* CTA Premium */}
             <Link
               to="/nuevo"
-              className="relative block bg-[#F2C53D] text-[#0F1408] p-5 rounded-xl glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden group"
+              className="relative block bg-[#F2C53D] text-[#1F2818] p-5 rounded-xl glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden group"
             >
-              <Sparkles count={10} color="#0F1408" />
+              <Sparkles count={10} color="#1F2818" />
               <div className="relative flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
@@ -315,7 +315,7 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
-            <div className="relative px-6 md:px-8 py-3 border-t border-[#5A6644] bg-[#0F1408]/60 flex items-center justify-between">
+            <div className="relative px-6 md:px-8 py-3 border-t border-[#5A6644] bg-[#1F2818]/60 flex items-center justify-between">
               <span className="label-caps text-[#A5B084] flex items-center gap-2">
                 <Eye size={12} /> 2.4k espectadores
               </span>

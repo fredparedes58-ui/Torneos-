@@ -26,7 +26,7 @@ export default function Avatar({ seed, size = 40, ring = 'none', className = '' 
       style={{
         width: size, height: size,
         boxShadow: ring !== 'none' ? `0 0 0 2px ${ringColor}, 0 0 12px ${ringColor}50` : undefined,
-        background: 'linear-gradient(135deg, #282C1D 0%, #1A2010 100%)',
+        background: 'linear-gradient(135deg, #282C1D 0%, #2A3320 100%)',
       }}
     >
       <img

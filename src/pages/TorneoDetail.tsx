@@ -82,7 +82,7 @@ export default function TorneoDetail() {
           {/* Back link */}
           <Link
             to="/torneos"
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1A2010]/70 backdrop-blur text-xs text-[#D5DBB8] hover:text-white transition-colors border border-[#7A8A55] mb-8"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2A3320]/70 backdrop-blur text-xs text-[#D5DBB8] hover:text-white transition-colors border border-[#7A8A55] mb-8"
           >
             <ArrowLeft size={14} /> Volver
           </Link>
@@ -113,11 +113,11 @@ export default function TorneoDetail() {
                 {s.label}
               </span>
               {torneo.jornadaActual && (
-                <span className="px-3 py-1.5 rounded-full bg-[#1A2010]/70 backdrop-blur border border-[#7A8A55] label-caps text-[#D5DBB8]">
+                <span className="px-3 py-1.5 rounded-full bg-[#2A3320]/70 backdrop-blur border border-[#7A8A55] label-caps text-[#D5DBB8]">
                   Matchday {torneo.jornadaActual}
                 </span>
               )}
-              <span className="px-3 py-1.5 rounded-full bg-[#1A2010]/70 backdrop-blur border border-[#7A8A55] label-caps text-[#D5DBB8]">
+              <span className="px-3 py-1.5 rounded-full bg-[#2A3320]/70 backdrop-blur border border-[#7A8A55] label-caps text-[#D5DBB8]">
                 {torneo.totalEquipos} Teams
               </span>
               {torneo.tags?.[0] && (
@@ -147,13 +147,13 @@ export default function TorneoDetail() {
             {/* Actions */}
             <div className="flex flex-wrap gap-3">
               {torneo.status === 'activo' && (
-                <button className="relative bg-[#F2C53D] text-[#0F1408] label-caps px-6 py-3.5 rounded-lg glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden flex items-center gap-2">
-                  <Sparkles count={8} color="#0F1408" />
+                <button className="relative bg-[#F2C53D] text-[#1F2818] label-caps px-6 py-3.5 rounded-lg glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden flex items-center gap-2">
+                  <Sparkles count={8} color="#1F2818" />
                   <Tv size={14} /><span className="relative">Seguir Torneo</span>
                 </button>
               )}
               {torneo.status === 'proximo' && (
-                <button className="bg-[#F2C53D] text-[#0F1408] label-caps px-6 py-3.5 rounded-lg glow-green hover:scale-[1.02] transition-transform">
+                <button className="bg-[#F2C53D] text-[#1F2818] label-caps px-6 py-3.5 rounded-lg glow-green hover:scale-[1.02] transition-transform">
                   Register Team →
                 </button>
               )}
@@ -166,7 +166,7 @@ export default function TorneoDetail() {
             {torneo.campeon && (
               <div className="mt-6 inline-flex items-center gap-4 bg-gradient-to-r from-[#FFD23B20] to-transparent border border-[#FFD23B50] rounded-xl px-5 py-3 backdrop-blur">
                 <div className="w-12 h-12 rounded-full bg-[#FFD23B] flex items-center justify-center glow-gold">
-                  <Crown size={22} className="text-[#0F1408]" />
+                  <Crown size={22} className="text-[#1F2818]" />
                 </div>
                 <div>
                   <p className="label-caps text-[#FFD23B]/70">Campeón Histórico</p>
@@ -179,7 +179,7 @@ export default function TorneoDetail() {
       </div>
 
       {/* ━━━ Tabs sticky ━━━ */}
-      <div className="sticky top-16 bg-[#0F1408]/95 backdrop-blur-xl z-30 border-b border-[#5A6644]">
+      <div className="sticky top-16 bg-[#1F2818]/95 backdrop-blur-xl z-30 border-b border-[#5A6644]">
         <div className="px-4 md:px-8 max-w-[1400px] mx-auto">
           <div className="flex gap-1 overflow-x-auto">
             {fmtConfig.tabs.map(tab => {
@@ -256,7 +256,7 @@ export default function TorneoDetail() {
 
                 {/* Jugador estrella */}
                 {equipo.jugadorEstrella && (
-                  <div className="relative rounded-lg bg-[#2A3320]/60 border border-[#7A8A55] p-3 mb-4">
+                  <div className="relative rounded-lg bg-[#374028]/60 border border-[#7A8A55] p-3 mb-4">
                     <span className="label-caps text-[#A5B084] block mb-2">Jugador Estrella</span>
                     <div className="flex items-center gap-3">
                       <Avatar seed={equipo.jugadorEstrella.avatarSeed} size={36} ring="lime" />
@@ -310,7 +310,7 @@ export default function TorneoDetail() {
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="w-12 h-12 rounded-full bg-[#F2C53D] flex items-center justify-center glow-green">
-                    <ChevronRight size={20} className="text-[#0F1408]" />
+                    <ChevronRight size={20} className="text-[#1F2818]" />
                   </div>
                 </div>
               </motion.div>
@@ -403,20 +403,20 @@ export default function TorneoDetail() {
             initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
             className="relative rounded-2xl bg-[#F2C53D] p-6 overflow-hidden glow-green-lg"
           >
-            <Sparkles count={20} color="#0F1408" />
+            <Sparkles count={20} color="#1F2818" />
             <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-xl bg-[#0F1408] flex items-center justify-center shrink-0">
+                <div className="w-14 h-14 rounded-xl bg-[#1F2818] flex items-center justify-center shrink-0">
                   <SparkIcon size={26} className="text-[#F2C53D]" />
                 </div>
                 <div>
-                  <span className="label-caps text-[#0F1408]/70 block mb-1">Premium Pass</span>
-                  <p className="font-display font-extrabold text-2xl md:text-3xl text-[#0F1408] uppercase leading-tight">
+                  <span className="label-caps text-[#1F2818]/70 block mb-1">Premium Pass</span>
+                  <p className="font-display font-extrabold text-2xl md:text-3xl text-[#1F2818] uppercase leading-tight">
                     Acceso a Repeticiones 4K + Stats Live
                   </p>
                 </div>
               </div>
-              <button className="bg-[#0F1408] text-[#F2C53D] label-caps px-6 py-3.5 rounded-lg hover:scale-[1.02] transition-transform flex items-center gap-2 shrink-0">
+              <button className="bg-[#1F2818] text-[#F2C53D] label-caps px-6 py-3.5 rounded-lg hover:scale-[1.02] transition-transform flex items-center gap-2 shrink-0">
                 <TrendingUp size={14} /> Upgrade
               </button>
             </div>

@@ -82,7 +82,7 @@ export default function Equipos() {
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder="Buscar equipo o jugador..."
-              className="w-full bg-[#1A2010]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors"
+              className="w-full bg-[#2A3320]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors"
             />
           </div>
           <div className="flex gap-2">
@@ -91,7 +91,7 @@ export default function Equipos() {
               className={[
                 'px-4 py-3.5 rounded-xl label-caps transition-colors flex items-center gap-2 border',
                 sortBy === 'rank'
-                  ? 'bg-[#1A2010] text-white border-[#7A8A55]'
+                  ? 'bg-[#2A3320] text-white border-[#7A8A55]'
                   : 'bg-transparent text-[#A5B084] border-[#5A6644] hover:text-white',
               ].join(' ')}
             >
@@ -102,7 +102,7 @@ export default function Equipos() {
               className={[
                 'px-4 py-3.5 rounded-xl label-caps transition-colors flex items-center gap-2 border',
                 sortBy === 'name'
-                  ? 'bg-[#1A2010] text-white border-[#7A8A55]'
+                  ? 'bg-[#2A3320] text-white border-[#7A8A55]'
                   : 'bg-transparent text-[#A5B084] border-[#5A6644] hover:text-white',
               ].join(' ')}
             >
@@ -113,7 +113,7 @@ export default function Equipos() {
               className={[
                 'px-4 py-3.5 rounded-xl label-caps transition-colors flex items-center gap-2 border',
                 sortBy === 'rating'
-                  ? 'bg-[#F2C53D] text-[#0F1408] border-[#F2C53D]'
+                  ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]'
                   : 'bg-transparent text-[#A5B084] border-[#5A6644] hover:text-white',
               ].join(' ')}
             >
@@ -127,19 +127,19 @@ export default function Equipos() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-3"
         >
-          <div className="rounded-xl border border-[#5A6644] bg-[#1A2010]/60 backdrop-blur p-4">
+          <div className="rounded-xl border border-[#5A6644] bg-[#2A3320]/60 backdrop-blur p-4">
             <span className="label-caps text-[#A5B084] block mb-2">Equipos</span>
             <p className="font-mono font-bold text-2xl text-white"><CounterUp to={allEquipos.length} /></p>
           </div>
-          <div className="rounded-xl border border-[#5A6644] bg-[#1A2010]/60 backdrop-blur p-4">
+          <div className="rounded-xl border border-[#5A6644] bg-[#2A3320]/60 backdrop-blur p-4">
             <span className="label-caps text-[#A5B084] block mb-2">Goles Totales</span>
             <p className="font-mono font-bold text-2xl text-[#F2C53D]"><CounterUp to={totalGoles} /></p>
           </div>
-          <div className="rounded-xl border border-[#5A6644] bg-[#1A2010]/60 backdrop-blur p-4">
+          <div className="rounded-xl border border-[#5A6644] bg-[#2A3320]/60 backdrop-blur p-4">
             <span className="label-caps text-[#A5B084] block mb-2">Paradas</span>
             <p className="font-mono font-bold text-2xl text-[#7AB8FF]"><CounterUp to={totalParadas} /></p>
           </div>
-          <div className="rounded-xl border border-[#5A6644] bg-[#1A2010]/60 backdrop-blur p-4">
+          <div className="rounded-xl border border-[#5A6644] bg-[#2A3320]/60 backdrop-blur p-4">
             <span className="label-caps text-[#A5B084] block mb-2">Avg Rating</span>
             <p className="font-mono font-bold text-2xl text-[#FFD23B]">{avgRating}</p>
           </div>
@@ -159,7 +159,7 @@ export default function Equipos() {
               <motion.div
                 key={equipo.id}
                 variants={{ hidden: { opacity: 0, y: 16 }, show: { opacity: 1, y: 0, transition: { duration: 0.35 } } }}
-                className="relative rounded-2xl overflow-hidden bg-[#1A2010] border-2 hover:scale-[1.02] transition-all group"
+                className="relative rounded-2xl overflow-hidden bg-[#2A3320] border-2 hover:scale-[1.02] transition-all group"
                 style={{
                   borderColor: divColor.ringAlpha,
                   boxShadow: `0 8px 30px ${divColor.ringAlpha}`,
@@ -184,7 +184,7 @@ export default function Equipos() {
                     <div
                       className="w-11 h-11 rounded-lg flex items-center justify-center font-display font-extrabold text-sm shrink-0"
                       style={{
-                        background: (equipo.color || '#2A3320') + '20',
+                        background: (equipo.color || '#374028') + '20',
                         border: `2px solid ${equipo.color}50`,
                         color: equipo.color,
                       }}
@@ -195,7 +195,7 @@ export default function Equipos() {
 
                   {/* Jugador estrella */}
                   {equipo.jugadorEstrella ? (
-                    <div className="rounded-xl bg-[#2A3320]/60 border border-[#7A8A55] p-3 mb-4">
+                    <div className="rounded-xl bg-[#374028]/60 border border-[#7A8A55] p-3 mb-4">
                       <span className="label-caps text-[#A5B084] block mb-2">Jugador Estrella</span>
                       <div className="flex items-center gap-3">
                         <Avatar seed={equipo.jugadorEstrella.avatarSeed} size={44} ring="lime" />
@@ -206,7 +206,7 @@ export default function Equipos() {
                       </div>
                     </div>
                   ) : (
-                    <div className="rounded-xl bg-[#2A3320]/40 border border-[#7A8A55] p-4 mb-4 flex items-center justify-center gap-2 text-[#A5B084]">
+                    <div className="rounded-xl bg-[#374028]/40 border border-[#7A8A55] p-4 mb-4 flex items-center justify-center gap-2 text-[#A5B084]">
                       <EyeOff size={14} />
                       <span className="label-caps">Equipo Reservado</span>
                     </div>

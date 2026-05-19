@@ -16,13 +16,13 @@ function MatchCard({ partido, delay }: { partido: Partido; delay: number }) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay, duration: 0.35 }}
       className={[
-        'w-56 rounded-xl border bg-[#1A2010] overflow-hidden transition-all',
+        'w-56 rounded-xl border bg-[#2A3320] overflow-hidden transition-all',
         isLive ? 'border-[#F2C53D] glow-green' : 'border-[#5A6644] hover:border-[#F2C53D]/50',
       ].join(' ')}
     >
       {/* Pitch label */}
       {partido.pitch && (
-        <div className="px-3 py-1.5 bg-[#2A3320] flex justify-between items-center border-b border-[#5A6644]">
+        <div className="px-3 py-1.5 bg-[#374028] flex justify-between items-center border-b border-[#5A6644]">
           <span className="label-caps text-[#A5B084]">{partido.pitch}</span>
           <span className={[
             'label-caps font-bold',
@@ -48,7 +48,7 @@ function MatchCard({ partido, delay }: { partido: Partido; delay: number }) {
           {gana && <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#F2C53D]" />}
           <div
             className="w-7 h-7 rounded font-mono font-bold text-[10px] flex items-center justify-center shrink-0"
-            style={{ background: (equipo.color || '#2A3320') + '25', color: equipo.color, border: `1px solid ${equipo.color}50` }}
+            style={{ background: (equipo.color || '#374028') + '25', color: equipo.color, border: `1px solid ${equipo.color}50` }}
           >
             {equipo.escudo}
           </div>
@@ -152,7 +152,7 @@ export default function BracketView({ bracket }: Props) {
           className="flex flex-col items-center ml-6 mt-12"
         >
           <span className="label-caps text-[#A5B084] mb-4">Trofeo</span>
-          <div className="relative w-60 h-40 rounded-2xl bg-gradient-to-br from-[#3A2A00] to-[#1A2010] border-2 border-[#F2C53D] flex flex-col items-center justify-center glow-green-lg overflow-hidden">
+          <div className="relative w-60 h-40 rounded-2xl bg-gradient-to-br from-[#3A2A00] to-[#2A3320] border-2 border-[#F2C53D] flex flex-col items-center justify-center glow-green-lg overflow-hidden">
             <div className="absolute inset-0 opacity-20">
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-[#F2C53D] blur-3xl" />
             </div>

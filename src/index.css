@@ -2,19 +2,19 @@
 
 @theme {
   /* ━━━ Twilight Stadium — paleta v3 (más brillante, más contraste) ━━━ */
-  --color-bg:        #0F1408;
-  --color-bg2:       #1A2010;
+  --color-bg:        #1F2818;
+  --color-bg2:       #2A3320;
   --color-bg3:       #232D14;
-  --color-card:      #1A2010;
-  --color-card2:     #2A3320;
-  --color-card3:     #374028;
+  --color-card:      #2A3320;
+  --color-card2:     #374028;
+  --color-card3:     #4A5635;
   --color-card4:     #4A5635;
   --color-border:    #5A6644;
   --color-border2:   #7A8A55;
   --color-accent:    #F2C53D;
   --color-accent-2:  #C49B25;
   --color-accent-dim:#3A2A00;
-  --color-on-accent: #0F1408;
+  --color-on-accent: #1F2818;
   --color-text:      #F5F7E8;
   --color-text-cream:#FAFCEC;
   --color-muted:     #D5DBB8;
@@ -38,7 +38,7 @@ html, body, #root { margin: 0; padding: 0; }
 html, body { min-height: 100%; }
 
 body {
-  background-color: #0F1408;
+  background-color: #1F2818;
   color: #F5F7E8;
   font-family: "DM Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -80,16 +80,16 @@ body::after {
 #root { position: relative; z-index: 1; min-height: 100vh; }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #0F1408; }
+::-webkit-scrollbar-track { background: #1F2818; }
 ::-webkit-scrollbar-thumb { background: #4A5635; border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: #7A8A55; }
 
-::selection { background: #F2C53D; color: #0F1408; }
+::selection { background: #F2C53D; color: #1F2818; }
 
 /* ━━━━━━ UTILITIES ━━━━━━ */
 
 .glass-card {
-  background: rgba(26, 32, 16, 0.7);
+  background: rgba(42, 51, 32, 0.7);
   backdrop-filter: blur(20px) saturate(160%);
   -webkit-backdrop-filter: blur(20px) saturate(160%);
   border: 1px solid rgba(242, 197, 61, 0.15);
@@ -110,17 +110,17 @@ body::after {
 
 .stadium-overlay {
   background:
-    linear-gradient(180deg, rgba(15,20,8,0.0) 0%, rgba(15,20,8,0.4) 40%, rgba(15,20,8,0.95) 100%);
+    linear-gradient(180deg, rgba(31,40,24,0.0) 0%, rgba(31,40,24,0.4) 40%, rgba(31,40,24,0.95) 100%);
 }
 
 .stadium-overlay-strong {
   background:
-    linear-gradient(180deg, rgba(15,20,8,0.45) 0%, rgba(15,20,8,0.7) 50%, rgba(15,20,8,1) 100%);
+    linear-gradient(180deg, rgba(31,40,24,0.45) 0%, rgba(31,40,24,0.7) 50%, rgba(31,40,24,1) 100%);
 }
 
 .vignette {
   background:
-    radial-gradient(ellipse at center, transparent 40%, rgba(15,20,8,0.7) 100%);
+    radial-gradient(ellipse at center, transparent 40%, rgba(31,40,24,0.7) 100%);
 }
 
 .pitch-bg {
@@ -128,14 +128,14 @@ body::after {
     radial-gradient(ellipse at 50% 75%, rgba(242,197,61,0.16) 0%, transparent 60%),
     radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.08) 0%, transparent 50%),
     repeating-linear-gradient(90deg, rgba(90,102,68,0.22) 0px, rgba(90,102,68,0.22) 1px, transparent 1px, transparent 56px),
-    linear-gradient(135deg, #3A2A00 0%, #0F1408 100%);
+    linear-gradient(135deg, #3A2A00 0%, #1F2818 100%);
 }
 
 .pitch-bg-blue {
   background:
     radial-gradient(ellipse at 50% 75%, rgba(122,184,255,0.16) 0%, transparent 60%),
     repeating-linear-gradient(90deg, rgba(122,184,255,0.12) 0px, rgba(122,184,255,0.12) 1px, transparent 1px, transparent 56px),
-    linear-gradient(135deg, #122440 0%, #0F1408 100%);
+    linear-gradient(135deg, #122440 0%, #1F2818 100%);
 }
 
 .pitch-bg-gold {
@@ -399,7 +399,7 @@ body::after {
 
 /* Image fallback */
 img.img-fallback {
-  background: linear-gradient(135deg, #3A2A00 0%, #0F1408 100%);
+  background: linear-gradient(135deg, #3A2A00 0%, #1F2818 100%);
 }
 
 /* Hexagon clip path */

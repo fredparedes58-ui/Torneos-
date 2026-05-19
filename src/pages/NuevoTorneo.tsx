@@ -44,7 +44,7 @@ export default function NuevoTorneo() {
           </p>
           <button
             onClick={() => { setDone(false); setStep(0); setForm({ nombre: '', categoria: 'Sub-17', fechaInicio: '', fechaFin: '', formato: 'eliminacion', totalEquipos: '8', descripcion: '' }); }}
-            className="px-6 py-2.5 rounded-lg bg-[#F2C53D] text-[#0F1408] font-bold text-sm hover:opacity-90 transition-opacity label-caps"
+            className="px-6 py-2.5 rounded-lg bg-[#F2C53D] text-[#1F2818] font-bold text-sm hover:opacity-90 transition-opacity label-caps"
           >
             Crear otro torneo
           </button>
@@ -69,7 +69,7 @@ export default function NuevoTorneo() {
             <div className="flex flex-col items-center gap-1">
               <div className={[
                 'w-9 h-9 rounded-full flex items-center justify-center text-xs font-mono font-bold border-2 transition-all',
-                i < step   ? 'bg-[#F2C53D] border-[#F2C53D] text-[#0F1408]' :
+                i < step   ? 'bg-[#F2C53D] border-[#F2C53D] text-[#1F2818]' :
                 i === step ? 'border-[#F2C53D] text-[#F2C53D] bg-[#3A2A00]' :
                              'border-[#7A8A55] text-[#A5B084] bg-[#191D10]',
               ].join(' ')}>
@@ -109,7 +109,7 @@ export default function NuevoTorneo() {
                 {categorias.map(c => (
                   <button key={c} onClick={() => update('categoria', c)}
                     className={['px-3 py-1.5 rounded-full text-xs font-medium border transition-all label-caps',
-                      form.categoria === c ? 'bg-[#F2C53D] text-[#0F1408] border-[#F2C53D]' : 'bg-transparent text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white'].join(' ')}>
+                      form.categoria === c ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]' : 'bg-transparent text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white'].join(' ')}>
                     {c}
                   </button>
                 ))}
@@ -164,7 +164,7 @@ export default function NuevoTorneo() {
                 {['4', '8', '16', '32'].map(n => (
                   <button key={n} onClick={() => update('totalEquipos', n)}
                     className={['px-6 py-3 rounded-lg text-base font-mono font-bold border transition-all',
-                      form.totalEquipos === n ? 'bg-[#F2C53D] text-[#0F1408] border-[#F2C53D]' : 'bg-[#0A0F00] text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white'].join(' ')}>
+                      form.totalEquipos === n ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]' : 'bg-[#0A0F00] text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white'].join(' ')}>
                     {n}
                   </button>
                 ))}
@@ -192,7 +192,7 @@ export default function NuevoTorneo() {
               Confirma la creacion de <strong className="text-[#F2C53D]">{form.nombre}</strong>
             </p>
             <button onClick={() => setDone(true)}
-              className="w-full py-4 rounded-xl bg-[#F2C53D] text-[#0F1408] font-display font-extrabold text-xl uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all glow-green-lg">
+              className="w-full py-4 rounded-xl bg-[#F2C53D] text-[#1F2818] font-display font-extrabold text-xl uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all glow-green-lg">
               Crear Torneo
             </button>
           </div>
@@ -206,7 +206,7 @@ export default function NuevoTorneo() {
             Atras
           </button>
           <button onClick={() => setStep(s => Math.min(3, s + 1))} disabled={step === 0 && !form.nombre.trim()}
-            className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#F2C53D] text-[#0F1408] font-bold text-sm hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity label-caps">
+            className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#F2C53D] text-[#1F2818] font-bold text-sm hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity label-caps">
             Siguiente <ChevronRight size={15} />
           </button>
         </div>
