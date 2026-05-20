@@ -178,6 +178,110 @@ export default function TorneoDetail() {
         </div>
       </div>
 
+      {/* ━━━ Info strip: organizer + price + schedule preview ━━━ */}
+      <div className="relative px-4 md:px-8 py-6 max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Organizer card */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
+            className="rounded-2xl border border-[#5A6644] bg-[#2A3320]/70 backdrop-blur p-5"
+          >
+            <span className="label-caps text-[#A5B084] block mb-3">Organizado por</span>
+            <div className="flex items-center gap-3">
+              <div className="w-14 h-14 rounded-xl flex items-center justify-center font-display font-extrabold text-lg shrink-0"
+                style={{ background: torneo.organizador.color + '25', color: torneo.organizador.color, border: `2px solid ${torneo.organizador.color}80` }}>
+                {torneo.organizador.logo}
+              </div>
+              <div className="min-w-0">
+                <p className="font-display font-extrabold text-lg text-white uppercase leading-tight">{torneo.organizador.nombre}</p>
+                <p className="text-[10px] font-mono text-[#A5B084] uppercase tracking-wider">{torneo.organizador.tipo}</p>
+                {torneo.organizador.web && (
+                  <a href={`https://${torneo.organizador.web}`} target="_blank" rel="noreferrer"
+                    className="text-[10px] font-mono text-[#F2C53D] hover:underline">{torneo.organizador.web}</a>
+                )}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Price + level card */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }}
+            className="rounded-2xl border border-[#5A6644] bg-[#2A3320]/70 backdrop-blur p-5"
+          >
+            <span className="label-caps text-[#A5B084] block mb-3">Coste oficial · Nivel</span>
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                {torneo.precio > 0 ? (
+                  <p className="font-mono font-bold text-4xl text-[#F2C53D] leading-none">
+                    €{torneo.precio}
+                  </p>
+                ) : (
+                  <p className="font-display font-extrabold text-3xl text-[#4DFFA0] uppercase">Invitacion</p>
+                )}
+                <p className="text-[10px] font-mono text-[#A5B084] uppercase tracking-wider mt-1">por equipo</p>
+              </div>
+              <span className="px-3 py-1.5 rounded-full text-[10px] font-mono uppercase tracking-wider"
+                style={{ background: '#F2C53D20', color: '#F2C53D', border: '1px solid #F2C53D40' }}>
+                {torneo.nivel}
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Location card */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="rounded-2xl border border-[#5A6644] bg-[#2A3320]/70 backdrop-blur p-5"
+          >
+            <span className="label-caps text-[#A5B084] block mb-3">Localizacion</span>
+            <div className="flex items-center gap-3">
+              <MapPin size={36} className="text-[#F2C53D] shrink-0" />
+              <div className="min-w-0">
+                <p className="font-display font-extrabold text-lg text-white uppercase leading-tight">{torneo.ciudad}</p>
+                <p className="text-xs font-mono text-[#D5DBB8]">{torneo.provincia}, {torneo.region}</p>
+                <p className="text-[10px] font-mono text-[#A5B084] uppercase tracking-wider mt-1">{torneo.pais}</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Schedule completo */}
+        {torneo.schedule && torneo.schedule.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+            className="mt-5 rounded-2xl border border-[#5A6644] bg-[#2A3320]/60 backdrop-blur overflow-hidden"
+          >
+            <div className="px-5 py-3 border-b border-[#5A6644] flex items-center justify-between">
+              <span className="label-caps text-[#F2C53D] flex items-center gap-2">
+                <Calendar size={12} /> Horarios oficiales · {torneo.schedule.length} dias
+              </span>
+              <span className="text-[10px] font-mono text-[#A5B084]">
+                {torneo.schedule.reduce((acc, d) => acc + d.partidos, 0)} partidos totales
+              </span>
+            </div>
+            <div className="divide-y divide-[#5A6644]">
+              {torneo.schedule.map((d, i) => (
+                <div key={i} className="px-5 py-3 grid grid-cols-12 gap-3 items-center hover:bg-[#374028] transition-colors">
+                  <div className="col-span-3">
+                    <p className="font-mono font-bold text-white text-sm">{d.diaSemana}</p>
+                    <p className="text-[10px] font-mono text-[#A5B084]">{d.dia}</p>
+                  </div>
+                  <div className="col-span-4">
+                    <p className="label-caps text-[#F2C53D] text-[10px]">{d.fase}</p>
+                  </div>
+                  <div className="col-span-3 text-right">
+                    <p className="font-mono text-xs text-[#D5DBB8]">{d.horaInicio}–{d.horaFin}</p>
+                  </div>
+                  <div className="col-span-2 text-right">
+                    <p className="font-mono font-bold text-[#F2C53D] text-sm">{d.partidos}</p>
+                    <p className="text-[9px] font-mono text-[#A5B084] uppercase tracking-wider">partidos</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </div>
+
       {/* ━━━ Tabs sticky ━━━ */}
       <div className="sticky top-16 bg-[#1F2818]/95 backdrop-blur-xl z-30 border-b border-[#5A6644]">
         <div className="px-4 md:px-8 max-w-[1400px] mx-auto">

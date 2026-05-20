@@ -1,16 +1,36 @@
 export type TorneoStatus = 'activo' | 'proximo' | 'finalizado';
 export type TorneoFormato = 'eliminacion' | 'liga' | 'grupos';
 export type Disciplina = 'futbol-11' | 'futbol-7' | 'futbol-sala' | 'infantil' | 'veteranos';
+export type Estacion = 'primavera' | 'verano' | 'otono' | 'invierno';
+export type NivelTorneo = 'amateur' | 'semi-pro' | 'pro' | 'elite' | 'internacional';
+export type TipoOrganizador = 'cantera' | 'privado' | 'ayuntamiento' | 'federacion';
+
+export interface OrganizerInfo {
+  nombre: string;
+  tipo: TipoOrganizador;
+  logo: string;     // monogram
+  color: string;
+  web?: string;
+}
+
+export interface DiaSchedule {
+  dia: string;     // ISO date
+  diaSemana: string;
+  horaInicio: string;
+  horaFin: string;
+  partidos: number;
+  fase: string;
+}
 
 export interface JugadorEstrella {
   nombre: string;
   posicion: string;
   numero: number;
-  rating: number;       // 0-10
+  rating: number;
   goles?: number;
   asistencias?: number;
   paradas?: number;
-  avatarSeed: number;   // pravatar seed
+  avatarSeed: number;
 }
 
 export interface Equipo {
@@ -81,4 +101,20 @@ export interface Torneo {
   cleanSheets?: { equipo: string; cantidad: number };
   redCards?: number;
   completion?: number;
+
+  // ─── Nuevos campos: localizacion + organizacion + economia ───
+  region: string;
+  provincia: string;
+  ciudad: string;
+  pueblo?: string;
+  pais: string;
+  estacion: Estacion;
+  mes: number;             // 1-12
+  organizador: OrganizerInfo;
+  precio: number;          // EUR (0 = invitacion)
+  nivel: NivelTorneo;
+  schedule?: DiaSchedule[];
+  cityImage?: string;
+  disciplina?: Disciplina;
+  yearsRunning?: number;
 }
