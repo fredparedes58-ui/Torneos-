@@ -57,17 +57,25 @@ export default function Equipos() {
       <div className="relative p-4 md:p-8 space-y-8 max-w-[1400px] mx-auto">
         {/* ━━━ Hero ━━━ */}
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-          <span className="label-caps text-[#F2C53D] mb-3 flex items-center gap-2 text-glow-green">
-            <span className="w-2 h-2 rounded-full bg-[#F2C53D] pulse-dot" />
-            Scouting Directory v4.2
-          </span>
+          <div className="flex items-center gap-3 mb-3">
+            <span className="label-caps text-[#F2C53D] flex items-center gap-2 text-glow-green">
+              <span className="w-2 h-2 rounded-full bg-[#F2C53D] pulse-dot" />
+              Cantera Hub · Scouting Directory v4.2
+            </span>
+            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#7AB8FF]/15 border border-[#7AB8FF]/40 text-[#7AB8FF] text-[10px] font-mono font-bold uppercase tracking-widest">
+              <ShieldCheck size={11} /> Solo lectura
+            </span>
+          </div>
           <h1 className="headline-mega text-6xl md:text-8xl lg:text-9xl leading-[0.82]">
-            <span className="gradient-text-cream">Directorio de</span>
+            <span className="gradient-text-cream">Cantera</span>
             <br />
-            <span className="italic-accent">Equipos.</span>
+            <span className="italic-accent">Nacional.</span>
           </h1>
-          <p className="text-base text-[#D5DBB8] mt-5 font-body max-w-xl leading-relaxed">
-            Explora la élite competitiva. Estadísticas en tiempo real y perfiles de los jugadores estrella que dominan el campo.
+          <p className="text-base text-[#D5DBB8] mt-5 font-body max-w-2xl leading-relaxed">
+            <strong className="text-white">Directorio nacional de jugadores y equipos en activo</strong>. Explora la élite competitiva, jugadores estrella, ratings y estadísticas en tiempo real de los {allEquipos.length} equipos del catálogo Krujens.
+          </p>
+          <p className="text-xs text-[#A5B084] mt-3 font-mono italic">
+            ⓘ Esta vista es de exploración. Para registrar un torneo nuevo o inscribir equipos, usa <span className="text-[#F2C53D] font-bold">+ Nuevo Torneo</span> en la barra lateral.
           </p>
         </motion.div>
 

@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TORNEOS · Executive Summary · 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#1F2818; --card:#2A3320; --card2:#374028; --border:#5A6644;
+    --accent:#F2C53D; --text:#F5F7E8; --cream:#FAFCEC; --muted:#D5DBB8; --muted2:#A5B084;
+    --success:#4DFFA0; --danger:#FF6B7E; --warning:#FFD23B; --blue:#7AB8FF; --purple:#C19BFF;
+  }
+  *,*::before,*::after { box-sizing:border-box; }
+  html,body { margin:0; padding:0; }
+  body {
+    background-color:var(--bg); color:var(--text);
+    font-family:"DM Sans",sans-serif;
+    -webkit-font-smoothing:antialiased;
+    background-image: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(242,197,61,0.10) 0%, transparent 55%);
+    background-attachment:fixed;
+  }
+  .page {
+    max-width:1100px; margin:0 auto; padding:48px 40px;
+    page-break-after: always;
+    min-height: 100vh;
+    position:relative;
+  }
+  .page:last-of-type { page-break-after: auto; }
+
+  .label { font-family:"JetBrains Mono",monospace; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); }
+  h1 { font-family:"Barlow Condensed",sans-serif; font-weight:800; text-transform:uppercase; font-size:clamp(56px,8vw,96px); letter-spacing:-0.035em; line-height:0.85; margin:6px 0 14px; }
+  h1 .cream { background:linear-gradient(180deg,#fff 0%,#FAFCEC 50%,#C4CAAC 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  h1 .gold { font-style:italic; color:var(--accent); text-shadow:0 0 32px rgba(242,197,61,0.5); }
+  h2 { font-family:"Barlow Condensed",sans-serif; font-weight:800; text-transform:uppercase; font-size:38px; letter-spacing:-0.02em; line-height:1; margin:32px 0 14px; color:var(--cream); }
+  h3 { font-family:"Barlow Condensed",sans-serif; font-weight:800; text-transform:uppercase; font-size:22px; margin:18px 0 10px; color:var(--accent); }
+  p, li { color:var(--muted); line-height:1.6; font-size:14px; }
+  p strong, li strong { color:var(--cream); }
+  ul { padding-left:22px; margin:8px 0 14px; }
+  ul li { margin-bottom:6px; }
+
+  .pill-row { display:flex; flex-wrap:wrap; gap:6px; margin:14px 0; }
+  .tag { display:inline-flex; align-items:center; gap:5px; padding:3px 9px; background:var(--card2); border:1px solid var(--border); border-radius:999px; font-family:"JetBrains Mono",monospace; font-size:10px; font-weight:600; color:var(--muted); }
+  .tag-gold { background:rgba(242,197,61,0.15); border-color:rgba(242,197,61,0.45); color:var(--accent); }
+  .tag-red { background:rgba(255,107,126,0.15); border-color:rgba(255,107,126,0.4); color:var(--danger); }
+  .tag-green { background:rgba(77,255,160,0.15); border-color:rgba(77,255,160,0.4); color:var(--success); }
+
+  .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:18px; }
+  .grid3 { display:grid; grid-template-columns: 1fr 1fr 1fr; gap:16px; }
+  @media (max-width:680px){ .grid2,.grid3 { grid-template-columns:1fr; } }
+
+  .card {
+    background: rgba(42,51,32,0.6); backdrop-filter:blur(14px);
+    border:1px solid var(--border); border-radius:14px;
+    padding:18px;
+  }
+  .card.danger { border-color:rgba(255,107,126,0.4); background:rgba(64,30,30,0.45); }
+  .card.success { border-color:rgba(77,255,160,0.4); background:rgba(30,55,42,0.45); }
+  .card.gold { border-color:rgba(242,197,61,0.5); background:rgba(60,48,15,0.45); }
+
+  .stat-row { display:grid; grid-template-columns: repeat(4,1fr); gap:12px; margin:18px 0; }
+  @media (max-width:680px){ .stat-row { grid-template-columns: 1fr 1fr; } }
+  .stat {
+    padding:14px; border:1px solid var(--border); border-radius:12px;
+    background: rgba(42,51,32,0.5);
+  }
+  .stat .num { font-family:"JetBrains Mono",monospace; font-size:28px; font-weight:700; color:var(--accent); line-height:1; }
+  .stat .lbl { font-family:"JetBrains Mono",monospace; font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--muted2); margin-top:5px; }
+
+  .page-num {
+    position: absolute; top:24px; right:40px;
+    font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--muted2); letter-spacing:0.1em;
+  }
+
+  pre { font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--cream); background:rgba(42,51,32,0.6); border:1px solid var(--border); border-radius:10px; padding:14px; white-space:pre-wrap; line-height:1.5; margin:8px 0; overflow-x:auto; }
+
+  .mk { display:inline-block; padding:1px 6px; font-family:"JetBrains Mono",monospace; font-size:9px; font-weight:700; border-radius:4px; vertical-align:middle; }
+  .mk-data { background:rgba(77,255,160,0.2); color:var(--success); border:1px solid rgba(77,255,160,0.4); }
+  .mk-assum { background:rgba(255,210,59,0.2); color:var(--warning); border:1px solid rgba(255,210,59,0.4); }
+
+  /* Print: each .page on a separate sheet */
+  @media print {
+    body { background:white; color:black; }
+    .page { page-break-after: always; min-height: auto; }
+    .card { background:white; border-color:#ccc; }
+    h1 .cream, h1 .gold { color:black !important; -webkit-text-fill-color:initial; background:none; text-shadow:none; }
+    p, li, .stat .lbl { color:#333 !important; }
+    .stat { background:#f8f8f0; border-color:#ccc; }
+    .stat .num { color:#111 !important; }
+    pre { background:#f4f4f0; border-color:#ddd; color:#222; }
+  }
+
+  hr { border:0; border-top:1px solid var(--border); margin:24px 0; }
+</style>
+</head>
+<body>
+
+<!-- ━━━━━━━━━━━━━━━━━━ PAGE 1 ━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="page-num">01 · TESIS</div>
+  <span class="label">Executive summary · TORNEOS competitive analysis</span>
+  <h1><span class="cream">Torneos</span><br><span class="gold">vs. el mundo.</span></h1>
+
+  <p style="font-size:18px; color:var(--cream); line-height:1.5; max-width:760px;">
+    <strong>TORNEOS</strong> es la plataforma de gestión de torneos de fútbol base con catálogo nacional cantera y scouting overlay integrado.
+    Es el funnel barato de adquisición de jugadores para <strong>VITAS</strong> (scouting pro con corrección PHV) y <strong>LUDUS</strong> (academy ops).
+  </p>
+
+  <div class="pill-row">
+    <span class="tag tag-gold">Pre-MVP</span>
+    <span class="tag">España · Europa · LATAM</span>
+    <span class="tag">11 competidores analizados</span>
+    <span class="tag-green tag">LTV/CAC 20.4× combinado</span>
+  </div>
+
+  <h2>La tesis en 3 líneas</h2>
+  <div class="grid3">
+    <div class="card gold">
+      <h3>El mercado existe</h3>
+      <p>Sports Mgmt SW <strong>$9B → $26B</strong> (CAGR 14.4%). Europa <strong>45%</strong> consumo global. <strong>1.800+</strong> clubes españoles con software. Incumbentes débilmente capitalizados (Competize: 13 años, €250k revenue).</p>
+    </div>
+    <div class="card gold">
+      <h3>El moat es ecosistémico</h3>
+      <p>Ningún competidor europeo combina <strong>torneos + catálogo + scouting + academy</strong>. El multiplicador ecosistémico es <strong>6.0×</strong> — un organizador genera €1.350 en operativa directa, €8.154 cuando se carry-overa Vitas + Ludus.</p>
+    </div>
+    <div class="card gold">
+      <h3>La ventana se cierra</h3>
+      <p><strong>Hudl + Wyscout entran a torneos juveniles en España feb/2026</strong>. OTTO SPORT AI levantó <strong>$16.5M seed ene/2026</strong>. Ventana de 12-18 meses para capturar federaciones territoriales antes de competidores globales.</p>
+    </div>
+  </div>
+
+  <h2>Tamaño y posicionamiento</h2>
+  <div class="stat-row">
+    <div class="stat"><div class="num">$26B</div><div class="lbl">Mercado SW 2032 <span class="mk mk-data">📊</span></div></div>
+    <div class="stat"><div class="num">€4-6M</div><div class="lbl">TAM España <span class="mk mk-assum">💭</span></div></div>
+    <div class="stat"><div class="num">€8.154</div><div class="lbl">LTV combinado <span class="mk mk-assum">💭</span></div></div>
+    <div class="stat"><div class="num">20.4×</div><div class="lbl">LTV/CAC ratio <span class="mk mk-assum">💭</span></div></div>
+  </div>
+
+  <h3 style="margin-top:32px;">Mercado prioritario</h3>
+  <p><strong>P0 España (12 meses):</strong> 1.800+ clubes + 19 federaciones territoriales + ~500 ayuntamientos con torneo anual. <strong>P1 Europa (Italia, Portugal):</strong> similitud cultural + sin player europeo dominante. <strong>P2 LATAM (México, Brasil):</strong> apalanca presencia previa Vitas en mercado de bajo coste de adquisición.</p>
+
+  <hr>
+  <p style="font-size:11px; color:var(--muted2); font-family:'JetBrains Mono',monospace; margin-top:auto;">
+    Krujens · TORNEOS · mayo 2026 · documento de uso interno y conversaciones con inversores · v1.0
+  </p>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━ PAGE 2 ━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="page-num">02 · COMPETIDORES + MOAT</div>
+  <span class="label">Resumen competitivo</span>
+  <h2 style="margin-top:6px;">Quién juega y dónde tiene Krujens ventaja</h2>
+
+  <div class="grid2">
+    <div class="card">
+      <h3 style="color:var(--accent);">Tier 1 · España (incumbentes débiles)</h3>
+      <ul>
+        <li><strong>Competize</strong> · 700k usu., €250k revenue, bootstrapped. <em>Vulnerable a producto premium.</em></li>
+        <li><strong>bcoach Arena</strong> · tesis parecida (torneos + training). Menor escala, sin AI.</li>
+        <li><strong>Federaciones territoriales</strong> · gatekeepers, no competidores. <em>Oportunidad partnership.</em></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--accent);">Tier 2 · Internacionales</h3>
+      <ul>
+        <li><strong>Tournify</strong> 🇳🇱 · €300/año por 30 torneos. <em>Price leader EU.</em></li>
+        <li><strong>GotSport</strong> 🇺🇸 · líder USA $4-5/player. Sin presencia EU.</li>
+        <li><strong>SportsEngine</strong> 🇺🇸 · NBC/Comcast. <em>USA-only por ahora.</em></li>
+      </ul>
+    </div>
+    <div class="card danger">
+      <h3 style="color:var(--danger);">Tier 3 · Amenazas estructurales</h3>
+      <ul>
+        <li><strong>OTTO SPORT AI</strong> 🇺🇸 · $16.5M seed ene/2026. AI nativa. Misma visión Krujens.</li>
+        <li><strong>Hudl + Wyscout</strong> 🌐 · adquisición oct/2025. <em>"Hudl Wyscout International Cup in Spain" feb/2026</em>. Existencial.</li>
+        <li><strong>LeagueApps</strong> 🇺🇸 · 0% sub, % transacciones. Más liga que torneo.</li>
+      </ul>
+    </div>
+    <div class="card success">
+      <h3 style="color:var(--success);">Dónde gana Krujens hoy</h3>
+      <ul>
+        <li><strong>UI premium</strong> 10× sobre Competize/Tournify (defendibilidad 2/5)</li>
+        <li><strong>Ecosistema declarado</strong> Torneos→Vitas→Ludus (4/5 cuando esté construido)</li>
+        <li><strong>Compliance RGPD/LO 8/2021 menores</strong> (5/5 — los USA mal posicionados)</li>
+        <li><strong>Visión catálogo nacional</strong> que Competize no ha materializado en 13 años</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Las 5 capas del moat (de menos a más defendible)</h2>
+  <pre>
+   1 · Marca + UI Twilight Stadium ........... 2/5  (imitable 3-6 meses)
+   2 · Datos del catálogo persistente ........ 3/5  (network effect emergente)
+   3 · Integración federaciones territoriales  4/5  (alto switch cost — ganar 1-2 en 12 mo)
+   4 · Ecosistema Vitas + Ludus .............. 4/5  (único en EU si se construye)
+   5 · Compliance regulatorio (RGPD menores).. 5/5  (Krujens puede convertirlo en moat)
+  </pre>
+
+  <h3>Lo que falta para llegar a MVP comercializable</h3>
+  <div class="card danger">
+    <p><strong>10 capacidades críticas missing:</strong> pasarela de pago real (Stripe/Redsys), generador automático de calendarios, gestión de árbitros, comité disciplinario, backend persistente (Supabase + RLS), live scoring desde móvil, app para equipos/familias, tiebreakers configurables, streaming/clipping (al menos integración tercer), API federación.</p>
+    <p><strong>Gap crítico ecosistémico:</strong> la integración real Torneos → Vitas → Ludus <strong>no existe todavía en código</strong>. Es el moat declarado y aún sin construir. Esta ronda lo financia.</p>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━ PAGE 3 ━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="page-num">03 · LTV + ROADMAP</div>
+  <span class="label">El número que justifica la tesis</span>
+  <h2 style="margin-top:6px;">LTV combinado: el multiplicador ecosistémico</h2>
+
+  <pre>
+INPUTS (todos 💭 — recalibrar al cerrar primeros clientes):
+
+  ARPU directo TORNEOS              €450/año   (Competize benchmark €228-2400/año)
+  CAC organizador                   €400       (SaaS B2B vertical ES)
+  Retention                         3 años     (mediana SaaS vertical)
+
+  Torneos/año/organizador           3          (mediana clubes/ayto/federación)
+  Jugadores cualificados/torneo     60         (16 eq × 12 jug × 30% scoutables)
+  Jugadores/año en catálogo         180
+
+  Conv. catálogo → Vitas            2%         (conservador)
+  ARPU Vitas anual                  €480       (entre Wyscout €299 y Vitas pro)
+  Conv. catálogo → Ludus            1%
+  ARPU Ludus anual                  €300
+
+CÁLCULOS:
+
+  LTV directo Torneos (3 años)     = €450 × 3            =  €1.350
+  LTV indirecto Vitas              = 180 × 2% × €480 × 3 =  €5.184
+  LTV indirecto Ludus              = 180 × 1% × €300 × 3 =  €1.620
+  ───────────────────────────────────────────────────────────────
+  LTV COMBINADO POR ORGANIZADOR                          =  €8.154
+
+  LTV / CAC sin ecosistema         = €1.350 / €400       =   3.4×
+  LTV / CAC con ecosistema         = €8.154 / €400       =  20.4×
+  Multiplicador ecosistémico                             =   6.0×
+  </pre>
+
+  <p style="color:var(--cream); font-size:15px;"><strong>Mensaje a inversores:</strong> "Un competidor que solo gestiona torneos (Competize, Tournify) genera €1.350 de LTV por organizador. Krujens genera €8.154 porque cada organizador inyecta 180 jugadores/año al catálogo, y el 2-3% se convierte en suscripción Vitas/Ludus. <strong>El moat no es el producto: es el funnel.</strong>"</p>
+
+  <h2>Roadmap a Serie A · 18 meses</h2>
+  <div class="grid3">
+    <div class="card">
+      <h3>Q3-Q4 2026<br>Salir del pre-MVP</h3>
+      <ul>
+        <li>Pasarela Stripe + Redsys</li>
+        <li>Generador de calendarios</li>
+        <li>10 organizadores piloto pagando</li>
+        <li>API Vitas: 1 jugador end-to-end</li>
+        <li><strong>Cerrar 1 federación territorial</strong></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q1-Q2 2027<br>Ronda Seed €1.5-3M</h3>
+      <ul>
+        <li>50 organizadores · ARR €22k</li>
+        <li>5 conversiones Vitas medidas</li>
+        <li>Dossier RGPD/LO 8/2021 cerrado</li>
+        <li>Claude+RAG operativo (vs OTTO Pilot)</li>
+        <li>2ª federación + piloto LATAM/EU</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Q3-Q4 2027<br>Conversación Serie A</h3>
+      <ul>
+        <li>150-250 organizadores · ARR €100-150k</li>
+        <li>Multiplicador ecosistémico validado</li>
+        <li>3 federaciones firmadas</li>
+        <li>Pitch: "single EU OS for youth football"</li>
+        <li>M&A defensiva con Hudl en horizonte</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Veredicto</h2>
+  <div class="card gold">
+    <p style="color:var(--cream); font-size:16px; line-height:1.55;"><strong>TORNEOS tiene la visión correcta y una ventana real (España premium + ecosistema Krujens).</strong> Pero llega a una carrera donde Hudl/Wyscout y OTTO ya corren con capital y los incumbentes españoles están atrincherados.</p>
+    <p style="color:var(--cream); font-size:16px; line-height:1.55;"><strong>El moat no es el producto: es la velocidad de captura de la red España + LATAM antes de que Hudl extienda Wyscout a base con tournament module.</strong> La tesis ecosistémica solo es defendible si el "Vitas + Ludus en producción" se traduce en métricas medibles dentro de 6 meses.</p>
+    <p style="color:var(--accent); font-weight:700; font-size:15px;">Recomendación: ejecutar Roadmap Q3-Q4 2026 con foco quirúrgico en (1) salir del pre-MVP, (2) cerrar 1 federación territorial, (3) demostrar 1 conversión real catálogo → Vitas. Sin esos 3 hitos, la tesis se queda en deck.</p>
+  </div>
+
+  <hr>
+  <p style="font-size:10px; color:var(--muted2); font-family:'JetBrains Mono',monospace; margin-top:24px;">
+    Documento completo: <strong>competitive-analysis-torneos.html</strong> (12 secciones, 11 competidores en detalle, matriz comparativa de 18 capacidades × 11 players, 18 referencias bibliográficas).<br>
+    Krujens · TORNEOS · mayo 2026 · v1.0
+  </p>
+</div>
+
+</body>
+</html>

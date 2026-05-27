@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TORNEOS · Showcase del proyecto</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:       #1F2818;
+      --bg2:      #2A3320;
+      --card:     #2A3320;
+      --card2:    #374028;
+      --border:   #5A6644;
+      --border2:  #7A8A55;
+      --accent:   #F2C53D;
+      --accent-2: #C49B25;
+      --text:     #F5F7E8;
+      --muted:    #D5DBB8;
+      --muted2:   #A5B084;
+      --muted3:   #7A8A55;
+      --success:  #4DFFA0;
+      --danger:   #FF6B7E;
+      --warning:  #FFD23B;
+      --blue:     #7AB8FF;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% 0%,   rgba(242,197,61,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 5%  20%,  rgba(122,184,255,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 35% at 95% 70%,  rgba(255,210,59,0.06)  0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 50% 100%, rgba(242,197,61,0.05)  0%, transparent 50%);
+      background-attachment: fixed;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(242,197,61,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(242,197,61,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity: 0.5;
+    }
+    main { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; padding: 64px 32px; }
+
+    /* Typography */
+    .label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    h1.mega {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800; text-transform: uppercase;
+      font-size: clamp(56px, 10vw, 128px);
+      letter-spacing: -0.035em; line-height: 0.82;
+      margin: 12px 0 24px;
+    }
+    h1.mega .cream {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAFCEC 50%, #C4CAAC 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    h1.mega .gold {
+      font-style: italic;
+      color: var(--accent);
+      text-shadow: 0 0 28px rgba(242,197,61,0.45);
+    }
+    h2.section {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800; text-transform: uppercase;
+      font-size: clamp(36px, 6vw, 64px);
+      letter-spacing: -0.025em; line-height: 0.9;
+      margin: 0;
+    }
+    h2.section .num {
+      display: inline-block;
+      width: 64px; height: 64px;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: 16px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 32px;
+      line-height: 64px; text-align: center;
+      margin-right: 16px;
+      vertical-align: middle;
+      box-shadow: 0 0 24px rgba(242,197,61,0.4);
+    }
+    p.intro { font-size: 18px; color: var(--muted); line-height: 1.6; max-width: 720px; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: var(--card2); border: 1px solid var(--border);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; font-weight: 600; color: var(--muted);
+    }
+    .tag-gold { background: rgba(242,197,61,0.15); border-color: rgba(242,197,61,0.4); color: var(--accent); }
+
+    /* Hero card */
+    .hero-card {
+      position: relative;
+      border: 1px solid var(--border);
+      background: rgba(42,51,32,0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 48px;
+      overflow: hidden;
+      margin-bottom: 64px;
+    }
+    .hero-card::after {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 300px; height: 300px;
+      background: var(--accent); opacity: 0.15;
+      filter: blur(80px);
+      border-radius: 50%;
+    }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; position: relative; z-index: 1; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .btn:hover { transform: scale(1.03); }
+    .btn-primary {
+      background: var(--accent); color: var(--bg);
+      box-shadow: 0 8px 32px rgba(242,197,61,0.4), 0 0 0 1px rgba(242,197,61,0.5);
+    }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border2);
+    }
+    .btn-secondary:hover { border-color: var(--accent); }
+    .btn-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Stats grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 32px 0 48px;
+    }
+    .stat {
+      padding: 20px;
+      background: rgba(42,51,32,0.5);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .stat-num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 36px; font-weight: 700;
+      color: var(--accent); line-height: 1;
+    }
+    .stat-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted2); margin-top: 8px;
+    }
+
+    /* Screen sections */
+    section.screen {
+      margin: 96px 0 0;
+      scroll-margin-top: 24px;
+    }
+    .screen-header { margin-bottom: 32px; }
+    .screen-card {
+      position: relative;
+      border: 1px solid var(--border);
+      background: rgba(42,51,32,0.6);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .screen-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(242,197,61,0.3);
+    }
+    .screen-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media (min-width: 1024px) {
+      .screen-grid { grid-template-columns: 1.4fr 1fr; }
+    }
+
+    /* Iframe / preview */
+    .preview-wrap {
+      position: relative;
+      background: var(--bg);
+      min-height: 480px;
+      max-height: 720px;
+      overflow: hidden;
+      border-right: 1px solid var(--border);
+    }
+    .preview-iframe {
+      width: 100%;
+      min-height: 480px;
+      max-height: 720px;
+      border: 0;
+      display: block;
+    }
+    .preview-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px;
+      background: rgba(31,40,24,0.95);
+      border-bottom: 1px solid var(--border);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; color: var(--muted2);
+    }
+    .preview-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .url-pill {
+      flex: 1; padding: 4px 12px; background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 10px; overflow: hidden;
+      text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    /* Info panel */
+    .info-panel {
+      padding: 32px;
+    }
+    .info-panel h3 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 800; text-transform: uppercase;
+      font-size: 28px;
+      letter-spacing: -0.02em; line-height: 1;
+      margin: 0 0 12px;
+      color: white;
+    }
+    .info-panel p {
+      color: var(--muted);
+      font-size: 14px; line-height: 1.6;
+      margin: 0 0 20px;
+    }
+    .features {
+      list-style: none; padding: 0; margin: 0 0 20px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 13px; color: var(--text);
+      line-height: 1.5;
+    }
+    .features li::before {
+      content: '◆';
+      color: var(--accent);
+      font-size: 10px;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .meta-row {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    /* TOC */
+    .toc {
+      position: sticky; top: 24px;
+      background: rgba(42,51,32,0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 64px;
+    }
+    .toc-title {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .toc ol { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc a {
+      display: inline-block;
+      padding: 8px 14px;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .toc a:hover {
+      background: var(--accent); color: var(--bg);
+      border-color: var(--accent);
+    }
+    .toc a span { color: var(--accent); margin-right: 6px; }
+    .toc a:hover span { color: var(--bg); }
+
+    /* Stack badges */
+    .stack-badges {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin: 24px 0; position: relative; z-index: 1;
+    }
+
+    footer {
+      margin-top: 96px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted2);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* Pulse animation */
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+    .pulse { animation: pulse 1.6s infinite ease-in-out; }
+
+    .iframe-note {
+      padding: 12px 16px;
+      background: rgba(122,184,255,0.08);
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      text-align: center;
+    }
+
+    /* Color list */
+    .palette-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
+    .color-chip {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px; color: var(--muted);
+    }
+    .color-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <div class="hero-card">
+    <div class="pill-row">
+      <span class="tag tag-gold">
+        <span class="dot pulse" style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);"></span>
+        Producción · v4.2.1
+      </span>
+      <span class="tag">Espana · Cantera Nacional</span>
+      <span class="tag">16 torneos reales</span>
+      <span class="tag">8 regiones</span>
+    </div>
+
+    <span class="label">Showcase del proyecto</span>
+    <h1 class="mega">
+      <span class="cream">Torneos</span><br/>
+      <span class="gold">Cantera Hub.</span>
+    </h1>
+
+    <p class="intro">
+      Plataforma de gestión y descubrimiento de torneos de fútbol base españoles con scouting profesional.
+      Estética <b>Digital Stadium / Twilight Gold</b> · Construida con React 18, TypeScript, Vite 8, Tailwind v4 y Framer Motion.
+    </p>
+
+    <div class="stack-badges">
+      <span class="tag">React 18</span>
+      <span class="tag">TypeScript</span>
+      <span class="tag">Vite 8</span>
+      <span class="tag">Tailwind CSS v4</span>
+      <span class="tag">Framer Motion</span>
+      <span class="tag">React Router v6</span>
+      <span class="tag">Lucide Icons</span>
+      <span class="tag">Unsplash CDN</span>
+      <span class="tag">Vercel Deploy</span>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-num">16</div><div class="stat-label">Torneos reales</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">Regiones España</div></div>
+      <div class="stat"><div class="stat-num">5</div><div class="stat-label">Pantallas principales</div></div>
+      <div class="stat"><div class="stat-num">9</div><div class="stat-label">Skills Claude Code</div></div>
+      <div class="stat"><div class="stat-num">479kb</div><div class="stat-label">Bundle JS</div></div>
+    </div>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app" target="_blank">
+        🚀 Abrir Live App
+      </a>
+      <a class="btn btn-secondary" href="https://github.com/fredparedes58-ui/Torneos-" target="_blank">
+        📦 GitHub Repo
+      </a>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <nav class="toc">
+    <div class="toc-title">Indice de pantallas</div>
+    <ol>
+      <li><a href="#dashboard"><span>01</span>Dashboard</a></li>
+      <li><a href="#lista"><span>02</span>Torneos · Lista</a></li>
+      <li><a href="#calendario"><span>03</span>Torneos · Calendario</a></li>
+      <li><a href="#detalle"><span>04</span>Detalle de torneo</a></li>
+      <li><a href="#equipos"><span>05</span>Directorio Equipos</a></li>
+      <li><a href="#nuevo"><span>06</span>Nuevo Torneo</a></li>
+      <li><a href="#design"><span>07</span>Sistema diseño</a></li>
+    </ol>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- 01. DASHBOARD -->
+  <!-- ============================================================ -->
+  <section class="screen" id="dashboard">
+    <div class="screen-header">
+      <span class="label">Pantalla 01</span>
+      <h2 class="section"><span class="num">01</span>Dashboard</h2>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-grid">
+        <div class="preview-wrap">
+          <div class="preview-bar">
+            <span class="dot" style="background:#FF6B7E"></span>
+            <span class="dot" style="background:#FFD23B"></span>
+            <span class="dot" style="background:#4DFFA0"></span>
+            <div class="url-pill">torneos.vercel.app/</div>
+          </div>
+          <iframe class="preview-iframe" src="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="iframe-note">
+            Si el preview no carga (autenticación de Vercel) abre el botón "Ver en vivo" abajo
+          </div>
+        </div>
+
+        <div class="info-panel">
+          <h3>Panel de Cantera</h3>
+          <p>
+            Hub principal con resumen de actividad: scouts conectados, partidos en directo, stats agregados y feed de scouting en tiempo real.
+          </p>
+          <div class="meta-row">
+            <span class="tag tag-gold">Twilight Stadium</span>
+            <span class="tag">9xl headlines</span>
+            <span class="tag">CounterUp</span>
+            <span class="tag">Live Marquee</span>
+          </div>
+          <ul class="features">
+            <li>Headline <code>Panel de <i>Cantera.</i></code> 9xl con gradient cream + italic dorado glow</li>
+            <li>Badges "12 Scouts Activos" + "N Partidos Live" con pulse-dot</li>
+            <li>Marquee infinito horizontal con resultados, top scorers y avisos</li>
+            <li>4 stat cards bento con CounterUp animado (torneos, jugadores, informes, goles)</li>
+            <li>Grid 2/3 + 1/3: 4 torneos top con foto cinemática + scouting feed con avatares pravatar</li>
+            <li>Live match ticker con score 7xl y minuto en directo</li>
+            <li>CTA "Registrar Nueva Academia" dorado con sparkles twinkling</li>
+          </ul>
+          <a class="btn btn-secondary" href="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/" target="_blank">Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 02. LISTA -->
+  <!-- ============================================================ -->
+  <section class="screen" id="lista">
+    <div class="screen-header">
+      <span class="label">Pantalla 02</span>
+      <h2 class="section"><span class="num">02</span>Torneos · Lista</h2>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-grid">
+        <div class="preview-wrap">
+          <div class="preview-bar">
+            <span class="dot" style="background:#FF6B7E"></span>
+            <span class="dot" style="background:#FFD23B"></span>
+            <span class="dot" style="background:#4DFFA0"></span>
+            <div class="url-pill">torneos.vercel.app/torneos</div>
+          </div>
+          <iframe class="preview-iframe" src="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/torneos" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="iframe-note">Vista lista con 16 torneos reales de España</div>
+        </div>
+
+        <div class="info-panel">
+          <h3>Explorar Torneos</h3>
+          <p>
+            Directorio nacional con filtros multi-dimensionales: región, estación, organizador, nivel y precio. Hover sobre una card revela horarios.
+          </p>
+          <div class="meta-row">
+            <span class="tag tag-gold">Filtros multi-dim</span>
+            <span class="tag">Sort 3 ejes</span>
+            <span class="tag">Hover popup</span>
+            <span class="tag">Imágenes Unsplash</span>
+          </div>
+          <ul class="features">
+            <li>16 torneos reales con foto hiperrealista de cada ciudad (Costa Brava, Donosti, Madrid, Bilbao, Mallorca…)</li>
+            <li>Filtros expandibles: 8 Regiones + 4 Estaciones (Primavera/Verano/Otoño/Invierno) + 4 Organizadores (Cantera/Privado/Ayuntamiento/Federación) + 5 Niveles</li>
+            <li>Ordenar por: Fecha · Precio · Nivel</li>
+            <li>Cada card muestra: status, precio €/equipo, organizador con monograma colored, ciudad/provincia/región, estación con icon</li>
+            <li>Hover sobre card → popup dorado glow con próximos 5 días del schedule (día/fase/horario/partidos)</li>
+            <li>CTAs adaptados al estado: Ver Live / Inscribirse / Resultados / Scouting</li>
+            <li>Banner final "Siguiente Gran Reto" con sparkles</li>
+          </ul>
+          <a class="btn btn-secondary" href="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/torneos" target="_blank">Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 03. CALENDARIO -->
+  <!-- ============================================================ -->
+  <section class="screen" id="calendario">
+    <div class="screen-header">
+      <span class="label">Pantalla 03</span>
+      <h2 class="section"><span class="num">03</span>Torneos · Calendario</h2>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-grid">
+        <div class="preview-wrap">
+          <div class="preview-bar">
+            <span class="dot" style="background:#FF6B7E"></span>
+            <span class="dot" style="background:#FFD23B"></span>
+            <span class="dot" style="background:#4DFFA0"></span>
+            <div class="url-pill">torneos.vercel.app/torneos · vista calendario</div>
+          </div>
+          <iframe class="preview-iframe" src="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/torneos" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="iframe-note">
+            Activar toggle "Calendario" arriba a la derecha
+          </div>
+        </div>
+
+        <div class="info-panel">
+          <h3>Vista anual por meses</h3>
+          <p>
+            Grid 12-tile (Enero–Diciembre) con conteo de torneos por mes y drill-down al detalle. Cada tile muestra estación icon y status.
+          </p>
+          <div class="meta-row">
+            <span class="tag tag-gold">12 meses</span>
+            <span class="tag">Drill-down</span>
+            <span class="tag">Estación icon</span>
+          </div>
+          <ul class="features">
+            <li>Grid 4 columnas × 3 filas con todos los meses del año</li>
+            <li>Cada tile: número de mes + nombre + icon de estación (Flower / Sun / Leaf / Snowflake)</li>
+            <li>Contador grande dorado del número de torneos del mes</li>
+            <li>Indicador "Hay activos" pulsing si algún torneo está en curso</li>
+            <li>Mini-lista de hasta 4 torneos del mes con dot coloreado por organizador</li>
+            <li>Click → navega al detalle del torneo (drill-down completo)</li>
+            <li>Meses vacíos se muestran difuminados sin contenido</li>
+          </ul>
+          <a class="btn btn-secondary" href="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/torneos" target="_blank">Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 04. DETALLE -->
+  <!-- ============================================================ -->
+  <section class="screen" id="detalle">
+    <div class="screen-header">
+      <span class="label">Pantalla 04</span>
+      <h2 class="section"><span class="num">04</span>Detalle de Torneo</h2>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-grid">
+        <div class="preview-wrap">
+          <div class="preview-bar">
+            <span class="dot" style="background:#FF6B7E"></span>
+            <span class="dot" style="background:#FFD23B"></span>
+            <span class="dot" style="background:#4DFFA0"></span>
+            <div class="url-pill">torneos.vercel.app/torneos/mic</div>
+          </div>
+          <iframe class="preview-iframe" src="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/torneos/mic" loading="lazy" referrerpolicy="no-referrer" style="min-height:720px;max-height:1000px"></iframe>
+          <div class="iframe-note">MIC Football 2026 — Costa Brava · Catalunya · Abril</div>
+        </div>
+
+        <div class="info-panel">
+          <h3>Champions Elite Series</h3>
+          <p>
+            Hero cinemático con foto de la ciudad, datos del organizador, horarios oficiales y 5 tabs ricas: Bracket, Tabla, Fixture, Cantera y Media.
+          </p>
+          <div class="meta-row">
+            <span class="tag tag-gold">Hero 9xl glow</span>
+            <span class="tag">5 tabs</span>
+            <span class="tag">Schedule completo</span>
+            <span class="tag">Stats clave</span>
+          </div>
+          <ul class="features">
+            <li>Hero full-bleed con foto cinemática + orbes flotantes + headline 9xl con gradient-text-cream</li>
+            <li>3 info cards: Organizador (monograma + tipo + web) · Coste oficial (€XXX o "Invitación") · Localización (city/province/region)</li>
+            <li>Tabla de horarios oficiales con día/fase/horario/partidos por jornada + total agregado</li>
+            <li>Tabs sticky: Bracket · Tabla · Fixture · Cantera · Media</li>
+            <li>Bracket con match cards con pitch + minute live + SVG lines animadas + trofeo dorado final con float-y</li>
+            <li>Tab Cantera: grid 3-col con jugador estrella (avatar lima ring + stats goles/paradas/asistencias/rating)</li>
+            <li>Estadísticas Clave: Top Scorer con avatar + Clean Sheets + Red Cards + Completion bar</li>
+            <li>Premium Pass card dorada con sparkles + Upgrade CTA</li>
+          </ul>
+          <a class="btn btn-secondary" href="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/torneos/mic" target="_blank">Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 05. EQUIPOS -->
+  <!-- ============================================================ -->
+  <section class="screen" id="equipos">
+    <div class="screen-header">
+      <span class="label">Pantalla 05</span>
+      <h2 class="section"><span class="num">05</span>Directorio Equipos</h2>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-grid">
+        <div class="preview-wrap">
+          <div class="preview-bar">
+            <span class="dot" style="background:#FF6B7E"></span>
+            <span class="dot" style="background:#FFD23B"></span>
+            <span class="dot" style="background:#4DFFA0"></span>
+            <div class="url-pill">torneos.vercel.app/equipos</div>
+          </div>
+          <iframe class="preview-iframe" src="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/equipos" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="iframe-note">Scouting Directory v4.2</div>
+        </div>
+
+        <div class="info-panel">
+          <h3>Scouting Directory</h3>
+          <p>
+            Album de equipos con jugador estrella, divisiones cromáticas (Pro A dorado / Pro B salmón / Cadete azul) y stats deportivas.
+          </p>
+          <div class="meta-row">
+            <span class="tag tag-gold">Jugador estrella</span>
+            <span class="tag">3 divisiones</span>
+            <span class="tag">Ratings 0-10</span>
+            <span class="tag">Avatares</span>
+          </div>
+          <ul class="features">
+            <li>Hero "Directorio de Equipos." 9xl con eyebrow "Scouting Directory v4.2"</li>
+            <li>Stats overview: total equipos, goles totales, paradas, avg rating</li>
+            <li>3 botones sort: Rank · A-Z · Rating</li>
+            <li>Search por nombre/ciudad/jugador estrella</li>
+            <li>Cards con borde colored según división del equipo</li>
+            <li>Cada card: division + rank + escudo color + nombre + ciudad + jugador estrella con avatar pravatar + ring lima</li>
+            <li>Stats footer: Goles / Paradas / Asistencias / PJ / Rating con colores semánticos</li>
+            <li>Equipos sin jugador estrella muestran "Equipo Reservado" con EyeOff</li>
+          </ul>
+          <a class="btn btn-secondary" href="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/equipos" target="_blank">Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 06. NUEVO TORNEO -->
+  <!-- ============================================================ -->
+  <section class="screen" id="nuevo">
+    <div class="screen-header">
+      <span class="label">Pantalla 06</span>
+      <h2 class="section"><span class="num">06</span>Nuevo Torneo · Wizard</h2>
+    </div>
+
+    <div class="screen-card">
+      <div class="screen-grid">
+        <div class="preview-wrap">
+          <div class="preview-bar">
+            <span class="dot" style="background:#FF6B7E"></span>
+            <span class="dot" style="background:#FFD23B"></span>
+            <span class="dot" style="background:#4DFFA0"></span>
+            <div class="url-pill">torneos.vercel.app/nuevo</div>
+          </div>
+          <iframe class="preview-iframe" src="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/nuevo" loading="lazy" referrerpolicy="no-referrer"></iframe>
+          <div class="iframe-note">Wizard 4 pasos</div>
+        </div>
+
+        <div class="info-panel">
+          <h3>Asistente de creación</h3>
+          <p>
+            Wizard secuencial con 4 pasos para registrar un nuevo torneo: Información · Formato · Equipos · Confirmación.
+          </p>
+          <div class="meta-row">
+            <span class="tag tag-gold">4 pasos</span>
+            <span class="tag">Stepper visual</span>
+            <span class="tag">Validación inline</span>
+          </div>
+          <ul class="features">
+            <li>Stepper horizontal con 4 círculos numerados y barras conectoras</li>
+            <li>Step actual destacado con border lima glow</li>
+            <li>Steps completados con check verde lima</li>
+            <li>Step 1 · Información: nombre + chips de categoría + fechas + descripción</li>
+            <li>Step 2 · Formato: radio cards (Eliminación / Liga / Grupos) con descripción</li>
+            <li>Step 3 · Equipos: chips numéricos (4/8/16/32) + resumen del torneo</li>
+            <li>Step 4 · Confirmación: trofeo dorado glow + CTA gigante "Crear Torneo"</li>
+            <li>Pantalla de éxito con CheckCircle pulsing y opción de crear otro</li>
+          </ul>
+          <a class="btn btn-secondary" href="https://torneos-nhxp1rq2l-fred-paredes-projects.vercel.app/nuevo" target="_blank">Ver en vivo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- 07. SISTEMA DE DISEÑO -->
+  <!-- ============================================================ -->
+  <section class="screen" id="design">
+    <div class="screen-header">
+      <span class="label">Sistema</span>
+      <h2 class="section"><span class="num">07</span>Sistema de Diseño</h2>
+    </div>
+
+    <div class="screen-card" style="padding: 40px;">
+      <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 20px;color:white;">
+        Twilight Stadium · Gold
+      </h3>
+
+      <p style="color:var(--muted);font-size:14px;line-height:1.6;max-width:720px;margin-bottom:24px;">
+        Paleta dark olive cálida con acento dorado, fondos con gradientes radiales fijos simulando luz cenital de estadio,
+        grid pattern dorado sutil, beam-sweep animado, grain noise, y selección de texto dorada.
+      </p>
+
+      <span class="label" style="display:block;margin-bottom:8px;">Paleta core</span>
+      <div class="palette-row">
+        <span class="color-chip"><span class="color-dot" style="background:#1F2818"></span>#1F2818 bg</span>
+        <span class="color-chip"><span class="color-dot" style="background:#2A3320"></span>#2A3320 card</span>
+        <span class="color-chip"><span class="color-dot" style="background:#374028"></span>#374028 card2</span>
+        <span class="color-chip"><span class="color-dot" style="background:#5A6644"></span>#5A6644 border</span>
+        <span class="color-chip"><span class="color-dot" style="background:#F2C53D"></span>#F2C53D accent</span>
+        <span class="color-chip"><span class="color-dot" style="background:#C49B25"></span>#C49B25 accent-2</span>
+        <span class="color-chip"><span class="color-dot" style="background:#F5F7E8"></span>#F5F7E8 text</span>
+        <span class="color-chip"><span class="color-dot" style="background:#D5DBB8"></span>#D5DBB8 muted</span>
+        <span class="color-chip"><span class="color-dot" style="background:#4DFFA0"></span>#4DFFA0 success</span>
+        <span class="color-chip"><span class="color-dot" style="background:#FF6B7E"></span>#FF6B7E danger</span>
+        <span class="color-chip"><span class="color-dot" style="background:#FFD23B"></span>#FFD23B warning</span>
+        <span class="color-chip"><span class="color-dot" style="background:#7AB8FF"></span>#7AB8FF blue</span>
+      </div>
+
+      <span class="label" style="display:block;margin-top:24px;margin-bottom:8px;">Tipografía</span>
+      <ul class="features">
+        <li><b>Display:</b> Barlow Condensed ExtraBold — headlines 6xl–9xl UPPERCASE con letter-spacing apretado</li>
+        <li><b>Mono:</b> JetBrains Mono — números, datos, label-caps con tracking 0.14em</li>
+        <li><b>Body:</b> DM Sans — descripciones y texto largo</li>
+      </ul>
+
+      <span class="label" style="display:block;margin-top:24px;margin-bottom:8px;">Efectos visuales</span>
+      <ul class="features">
+        <li>4 radial-gradients fijos en body simulando luz cenital de focos</li>
+        <li>Grid pattern dorado 80×80 sobre todo el lienzo</li>
+        <li>beam-sweep que cruza la pantalla cada 12s en diagonal</li>
+        <li>Noise grain sutil con SVG fractalNoise</li>
+        <li>FloatingOrbs: 3 esferas blurred con animaciones independientes (16s, 22s, 13s)</li>
+        <li>Sparkles: partículas que parpadean alrededor de CTAs (seed-based)</li>
+        <li>btn-shimmer: barra de luz que pasa sobre botones primarios</li>
+        <li>rgborder: borde con conic-gradient rotando (4s)</li>
+        <li>tilt-hover: cards con perspective 3D al pasar el ratón</li>
+        <li>scan-line: línea horizontal que cruza cards en hover</li>
+        <li>pulse-dot: dots con box-shadow expansivo (live indicators)</li>
+        <li>CounterUp: animación de números con easing cubic ease-out</li>
+        <li>Marquee infinito horizontal duplicado para loop seamless</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Torneos · Cantera Hub · 2026 · Construido con Claude Code · Despliegue Vercel · Commit f1c5993
+  </footer>
+</main>
+</body>
+</html>

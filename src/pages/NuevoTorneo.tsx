@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ChevronRight, Trophy, Layers } from 'lucide-react';
 
-const steps = ['Informacion', 'Formato', 'Equipos', 'Confirmacion'];
+const steps = ['Informacion', 'Formato', 'Inscripciones', 'Confirmacion'];
 
 interface FormData {
   nombre: string;
