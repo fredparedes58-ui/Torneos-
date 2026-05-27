@@ -16,17 +16,17 @@ function MatchCard({ partido, delay }: { partido: Partido; delay: number }) {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay, duration: 0.35 }}
       className={[
-        'w-56 rounded-xl border bg-[#2A3320] overflow-hidden transition-all',
-        isLive ? 'border-[#F2C53D] glow-green' : 'border-[#5A6644] hover:border-[#F2C53D]/50',
+        'w-56 rounded-xl border bg-[#152849] overflow-hidden transition-all',
+        isLive ? 'border-[#22D3EE] glow-green' : 'border-[#2A4570] hover:border-[#22D3EE]/50',
       ].join(' ')}
     >
       {/* Pitch label */}
       {partido.pitch && (
-        <div className="px-3 py-1.5 bg-[#374028] flex justify-between items-center border-b border-[#5A6644]">
-          <span className="label-caps text-[#A5B084]">{partido.pitch}</span>
+        <div className="px-3 py-1.5 bg-[#1E3560] flex justify-between items-center border-b border-[#2A4570]">
+          <span className="label-caps text-[#8FA3C0]">{partido.pitch}</span>
           <span className={[
             'label-caps font-bold',
-            isLive ? 'text-[#FF6B7E]' : isJugado ? 'text-[#4DFFA0]' : 'text-[#A5B084]',
+            isLive ? 'text-[#FF5577]' : isJugado ? 'text-[#84FF6E]' : 'text-[#8FA3C0]',
           ].join(' ')}>
             {isLive ? `● ${partido.minuto}'` : isJugado ? 'FIN' : 'PEND'}
           </span>
@@ -41,34 +41,34 @@ function MatchCard({ partido, delay }: { partido: Partido; delay: number }) {
           key={equipo.id}
           className={[
             'flex items-center gap-2 px-3 py-2.5 transition-colors relative',
-            i === 0 ? 'border-b border-[#5A6644]' : '',
-            gana ? 'bg-[#3A2A00]' : '',
+            i === 0 ? 'border-b border-[#2A4570]' : '',
+            gana ? 'bg-[#0E2F3A]' : '',
           ].join(' ')}
         >
-          {gana && <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#F2C53D]" />}
+          {gana && <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#22D3EE]" />}
           <div
             className="w-7 h-7 rounded font-mono font-bold text-[10px] flex items-center justify-center shrink-0"
-            style={{ background: (equipo.color || '#374028') + '25', color: equipo.color, border: `1px solid ${equipo.color}50` }}
+            style={{ background: (equipo.color || '#1E3560') + '25', color: equipo.color, border: `1px solid ${equipo.color}50` }}
           >
             {equipo.escudo}
           </div>
-          <span className={['text-xs font-medium flex-1 truncate', gana ? 'text-[#F2C53D] font-bold' : 'text-white'].join(' ')}>
+          <span className={['text-xs font-medium flex-1 truncate', gana ? 'text-[#22D3EE] font-bold' : 'text-white'].join(' ')}>
             {equipo.nombre}
           </span>
           {(isJugado || isLive) ? (
-            <span className={['font-mono font-bold text-sm w-5 text-right', gana ? 'text-[#F2C53D]' : 'text-[#A5B084]'].join(' ')}>
+            <span className={['font-mono font-bold text-sm w-5 text-right', gana ? 'text-[#22D3EE]' : 'text-[#8FA3C0]'].join(' ')}>
               {goles}
             </span>
           ) : (
-            <span className="font-mono text-[10px] text-[#7A8A55]">–</span>
+            <span className="font-mono text-[10px] text-[#496588]">–</span>
           )}
         </div>
       ))}
 
       {/* Date footer */}
-      <div className="px-3 py-1.5 bg-[#0A0F00]/80 flex justify-between items-center">
-        <span className="text-[9px] font-mono text-[#A5B084]">{partido.fecha}</span>
-        <span className="text-[9px] font-mono text-[#A5B084]">{partido.hora}</span>
+      <div className="px-3 py-1.5 bg-[#0A1628]/80 flex justify-between items-center">
+        <span className="text-[9px] font-mono text-[#8FA3C0]">{partido.fecha}</span>
+        <span className="text-[9px] font-mono text-[#8FA3C0]">{partido.hora}</span>
       </div>
     </motion.div>
   );
@@ -84,8 +84,8 @@ export default function BracketView({ bracket }: Props) {
             <div key={ronda.nombre} className="flex items-start">
               <div className="flex flex-col">
                 <div className="mb-5 px-2">
-                  <span className="label-caps text-[#A5B084] block">{ronda.nombre}</span>
-                  <span className="text-[10px] font-mono text-[#7A8A55]">
+                  <span className="label-caps text-[#8FA3C0] block">{ronda.nombre}</span>
+                  <span className="text-[10px] font-mono text-[#496588]">
                     {ronda.partidos.length} {ronda.partidos.length === 1 ? 'partido' : 'partidos'}
                   </span>
                 </div>
@@ -120,18 +120,18 @@ export default function BracketView({ bracket }: Props) {
                       >
                         <path
                           d={`M 0 ${matchHeight / 2} H 24 V ${pairHeight / 2}`}
-                          fill="none" stroke="#7A8A55" strokeWidth="1.5"
+                          fill="none" stroke="#496588" strokeWidth="1.5"
                           className="bracket-line"
                         />
                         <path
                           d={`M 0 ${matchHeight + gap + matchHeight / 2} H 24 V ${pairHeight / 2}`}
-                          fill="none" stroke="#7A8A55" strokeWidth="1.5"
+                          fill="none" stroke="#496588" strokeWidth="1.5"
                           className="bracket-line"
                           style={{ animationDelay: '0.1s' }}
                         />
                         <path
                           d={`M 24 ${pairHeight / 2} H 48`}
-                          fill="none" stroke="#F2C53D" strokeOpacity="0.7" strokeWidth="1.5"
+                          fill="none" stroke="#22D3EE" strokeOpacity="0.7" strokeWidth="1.5"
                           className="bracket-line"
                           style={{ animationDelay: '0.2s' }}
                         />
@@ -151,13 +151,13 @@ export default function BracketView({ bracket }: Props) {
           transition={{ delay: 0.6 }}
           className="flex flex-col items-center ml-6 mt-12"
         >
-          <span className="label-caps text-[#A5B084] mb-4">Trofeo</span>
-          <div className="relative w-60 h-40 rounded-2xl bg-gradient-to-br from-[#3A2A00] to-[#2A3320] border-2 border-[#F2C53D] flex flex-col items-center justify-center glow-green-lg overflow-hidden">
+          <span className="label-caps text-[#8FA3C0] mb-4">Trofeo</span>
+          <div className="relative w-60 h-40 rounded-2xl bg-gradient-to-br from-[#0E2F3A] to-[#152849] border-2 border-[#22D3EE] flex flex-col items-center justify-center glow-green-lg overflow-hidden">
             <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-[#F2C53D] blur-3xl" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 rounded-full bg-[#22D3EE] blur-3xl" />
             </div>
-            <Trophy size={38} className="text-[#F2C53D] mb-2 relative float-y" strokeWidth={2.2} />
-            <span className="label-caps text-[#F2C53D] relative">Gran Final</span>
+            <Trophy size={38} className="text-[#22D3EE] mb-2 relative float-y" strokeWidth={2.2} />
+            <span className="label-caps text-[#22D3EE] relative">Gran Final</span>
             <span className="font-display font-extrabold text-4xl text-white relative">?</span>
           </div>
         </motion.div>

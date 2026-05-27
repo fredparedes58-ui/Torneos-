@@ -7,7 +7,7 @@ interface Props {
  * Renders absolutely-positioned sparkle dots within a relative parent.
  * Each sparkle twinkles with a different delay for organic feel.
  */
-export default function Sparkles({ count = 6, color = '#F2C53D' }: Props) {
+export default function Sparkles({ count = 6, color = '#22D3EE' }: Props) {
   // deterministic seed-based positions so layout is stable
   const positions = Array.from({ length: count }).map((_, i) => {
     const seed = i * 137.5;

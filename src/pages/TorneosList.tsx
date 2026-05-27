@@ -14,10 +14,10 @@ type ViewMode = 'lista' | 'calendario';
 type SortKey  = 'fecha' | 'precio' | 'nivel';
 
 const estaciones: { value: Estacion; label: string; icon: React.ElementType; color: string }[] = [
-  { value: 'primavera', label: 'Primavera', icon: Flower,    color: '#4DFFA0' },
-  { value: 'verano',    label: 'Verano',    icon: Sun,       color: '#FFD23B' },
-  { value: 'otono',     label: 'Otono',     icon: Leaf,      color: '#FF9F45' },
-  { value: 'invierno',  label: 'Invierno',  icon: Snowflake, color: '#7AB8FF' },
+  { value: 'primavera', label: 'Primavera', icon: Flower,    color: '#84FF6E' },
+  { value: 'verano',    label: 'Verano',    icon: Sun,       color: '#FCD34D' },
+  { value: 'otono',     label: 'Otono',     icon: Leaf,      color: '#FCD34D' },
+  { value: 'invierno',  label: 'Invierno',  icon: Snowflake, color: '#A855F7' },
 ];
 
 const organizadores: { value: TipoOrganizador; label: string; icon: React.ElementType }[] = [
@@ -28,11 +28,11 @@ const organizadores: { value: TipoOrganizador; label: string; icon: React.Elemen
 ];
 
 const niveles: { value: NivelTorneo; label: string; color: string }[] = [
-  { value: 'amateur',       label: 'Amateur',       color: '#A5B084' },
-  { value: 'semi-pro',      label: 'Semi-Pro',      color: '#7AB8FF' },
-  { value: 'pro',           label: 'Pro',           color: '#F2C53D' },
-  { value: 'elite',         label: 'Elite',         color: '#FF9F45' },
-  { value: 'internacional', label: 'Internacional', color: '#FF6B7E' },
+  { value: 'amateur',       label: 'Amateur',       color: '#8FA3C0' },
+  { value: 'semi-pro',      label: 'Semi-Pro',      color: '#A855F7' },
+  { value: 'pro',           label: 'Pro',           color: '#22D3EE' },
+  { value: 'elite',         label: 'Elite',         color: '#FCD34D' },
+  { value: 'internacional', label: 'Internacional', color: '#FF5577' },
 ];
 
 const nivelOrder: Record<NivelTorneo, number> = {
@@ -43,12 +43,12 @@ const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov'
 const mesesFull = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
 const statusMap = {
-  activo:     { label: 'EN VIVO',           dotCls: 'bg-[#F2C53D]', textCls: 'text-[#F2C53D]', bgCls: 'bg-[#F2C53D]/15 border-[#F2C53D]/30',
-                ctaLabel: 'Ver Live',       ctaIcon: Tv,            ctaCls: 'bg-[#F2C53D] text-[#1F2818]' },
-  proximo:    { label: 'INSCRIPCION ABIERTA', dotCls: 'bg-[#7AB8FF]', textCls: 'text-[#7AB8FF]', bgCls: 'bg-[#7AB8FF]/15 border-[#7AB8FF]/30',
-                ctaLabel: 'Inscribirse',    ctaIcon: ArrowRight,    ctaCls: 'bg-[#2A3320] text-[#D5DBB8] border border-[#7A8A55]' },
-  finalizado: { label: 'FINALIZADO',         dotCls: 'bg-[#A5B084]', textCls: 'text-[#D5DBB8]', bgCls: 'bg-[#2A3320] border-[#7A8A55]',
-                ctaLabel: 'Scouting',       ctaIcon: BarChart3,     ctaCls: 'bg-[#2A3320] text-[#D5DBB8] border border-[#7A8A55]' },
+  activo:     { label: 'EN VIVO',           dotCls: 'bg-[#22D3EE]', textCls: 'text-[#22D3EE]', bgCls: 'bg-[#22D3EE]/15 border-[#22D3EE]/30',
+                ctaLabel: 'Ver Live',       ctaIcon: Tv,            ctaCls: 'bg-[#22D3EE] text-[#0A1628]' },
+  proximo:    { label: 'INSCRIPCION ABIERTA', dotCls: 'bg-[#A855F7]', textCls: 'text-[#A855F7]', bgCls: 'bg-[#A855F7]/15 border-[#A855F7]/30',
+                ctaLabel: 'Inscribirse',    ctaIcon: ArrowRight,    ctaCls: 'bg-[#152849] text-[#CBDDF0] border border-[#496588]' },
+  finalizado: { label: 'FINALIZADO',         dotCls: 'bg-[#8FA3C0]', textCls: 'text-[#CBDDF0]', bgCls: 'bg-[#152849] border-[#496588]',
+                ctaLabel: 'Scouting',       ctaIcon: BarChart3,     ctaCls: 'bg-[#152849] text-[#CBDDF0] border border-[#496588]' },
 };
 
 export default function TorneosList() {
@@ -103,8 +103,8 @@ export default function TorneosList() {
       <div className="relative p-4 md:p-8 space-y-6 max-w-[1400px] mx-auto">
         {/* ━━━ Hero ━━━ */}
         <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-          <span className="label-caps text-[#F2C53D] mb-3 flex items-center gap-2 text-glow-green">
-            <span className="w-2 h-2 rounded-full bg-[#F2C53D] pulse-dot" />
+          <span className="label-caps text-[#22D3EE] mb-3 flex items-center gap-2 text-glow-green">
+            <span className="w-2 h-2 rounded-full bg-[#22D3EE] pulse-dot" />
             Espana · Cantera Nacional
           </span>
           <h1 className="headline-mega text-6xl md:text-8xl lg:text-9xl leading-[0.82]">
@@ -112,7 +112,7 @@ export default function TorneosList() {
             <br />
             <span className="italic-accent">Torneos.</span>
           </h1>
-          <p className="text-base text-[#D5DBB8] mt-5 font-body max-w-2xl leading-relaxed">
+          <p className="text-base text-[#CBDDF0] mt-5 font-body max-w-2xl leading-relaxed">
             <span className="font-bold text-white">{torneos.length} competiciones reales</span> de futbol base en {regionesDisponibles.length} regiones de Espana. Filtra por estacion, organizador, precio y nivel.
           </p>
         </motion.div>
@@ -123,24 +123,24 @@ export default function TorneosList() {
           className="flex flex-col md:flex-row gap-3 items-stretch"
         >
           <div className="relative flex-1">
-            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#A5B084]" />
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#8FA3C0]" />
             <input
               value={query}
               onChange={e => setQuery(e.target.value)}
               placeholder="Buscar torneo, ciudad o provincia..."
-              className="w-full bg-[#2A3320]/80 backdrop-blur border border-[#5A6644] rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors"
+              className="w-full bg-[#152849]/80 backdrop-blur border border-[#2A4570] rounded-xl pl-12 pr-4 py-3.5 text-sm text-white placeholder-[#8FA3C0] focus:outline-none focus:border-[#22D3EE] transition-colors"
             />
           </div>
 
-          <div className="flex bg-[#2A3320]/80 backdrop-blur border border-[#5A6644] rounded-xl p-1 gap-1">
+          <div className="flex bg-[#152849]/80 backdrop-blur border border-[#2A4570] rounded-xl p-1 gap-1">
             <button onClick={() => setView('lista')}
               className={['px-4 py-2.5 rounded-lg label-caps flex items-center gap-2 transition-all',
-                view === 'lista' ? 'bg-[#F2C53D] text-[#1F2818]' : 'text-[#A5B084] hover:text-white'].join(' ')}>
+                view === 'lista' ? 'bg-[#22D3EE] text-[#0A1628]' : 'text-[#8FA3C0] hover:text-white'].join(' ')}>
               <LayoutGrid size={14} /> Lista
             </button>
             <button onClick={() => setView('calendario')}
               className={['px-4 py-2.5 rounded-lg label-caps flex items-center gap-2 transition-all',
-                view === 'calendario' ? 'bg-[#F2C53D] text-[#1F2818]' : 'text-[#A5B084] hover:text-white'].join(' ')}>
+                view === 'calendario' ? 'bg-[#22D3EE] text-[#0A1628]' : 'text-[#8FA3C0] hover:text-white'].join(' ')}>
               <CalendarDays size={14} /> Calendario
             </button>
           </div>
@@ -148,7 +148,7 @@ export default function TorneosList() {
           <select
             value={sort}
             onChange={e => setSort(e.target.value as SortKey)}
-            className="bg-[#2A3320]/80 backdrop-blur border border-[#5A6644] rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#F2C53D] label-caps cursor-pointer"
+            className="bg-[#152849]/80 backdrop-blur border border-[#2A4570] rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#22D3EE] label-caps cursor-pointer"
           >
             <option value="fecha">Ordenar: Fecha</option>
             <option value="precio">Ordenar: Precio</option>
@@ -159,10 +159,10 @@ export default function TorneosList() {
             onClick={() => setShowFilters(v => !v)}
             className={['px-4 py-3.5 rounded-xl label-caps flex items-center gap-2 transition-all border',
               showFilters || activeFilterCount > 0
-                ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]'
-                : 'bg-transparent text-[#D5DBB8] border-[#5A6644] hover:border-[#F2C53D]'].join(' ')}>
+                ? 'bg-[#22D3EE] text-[#0A1628] border-[#22D3EE]'
+                : 'bg-transparent text-[#CBDDF0] border-[#2A4570] hover:border-[#22D3EE]'].join(' ')}>
             <Filter size={14} /> Filtros {activeFilterCount > 0 && (
-              <span className="bg-[#1F2818] text-[#F2C53D] rounded-full px-1.5 py-0.5 text-[10px] font-bold">
+              <span className="bg-[#0A1628] text-[#22D3EE] rounded-full px-1.5 py-0.5 text-[10px] font-bold">
                 {activeFilterCount}
               </span>
             )}
@@ -178,19 +178,19 @@ export default function TorneosList() {
               exit={{ opacity: 0, height: 0 }}
               className="overflow-hidden"
             >
-              <div className="rounded-2xl border border-[#5A6644] bg-[#2A3320]/60 backdrop-blur p-5 space-y-5">
+              <div className="rounded-2xl border border-[#2A4570] bg-[#152849]/60 backdrop-blur p-5 space-y-5">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <MapPin size={13} className="text-[#F2C53D]" />
-                    <span className="label-caps text-[#D5DBB8]">Region / Comunidad</span>
+                    <MapPin size={13} className="text-[#22D3EE]" />
+                    <span className="label-caps text-[#CBDDF0]">Region / Comunidad</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {regionesDisponibles.map(r => (
                       <button key={r} onClick={() => setRegion(region === r ? null : r)}
                         className={['px-3 py-1.5 rounded-full text-xs font-mono border transition-all',
                           region === r
-                            ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]'
-                            : 'bg-transparent text-[#D5DBB8] border-[#5A6644] hover:border-[#F2C53D]'].join(' ')}>
+                            ? 'bg-[#22D3EE] text-[#0A1628] border-[#22D3EE]'
+                            : 'bg-transparent text-[#CBDDF0] border-[#2A4570] hover:border-[#22D3EE]'].join(' ')}>
                         {r}
                       </button>
                     ))}
@@ -199,8 +199,8 @@ export default function TorneosList() {
 
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <Calendar size={13} className="text-[#F2C53D]" />
-                    <span className="label-caps text-[#D5DBB8]">Estacion del Ano</span>
+                    <Calendar size={13} className="text-[#22D3EE]" />
+                    <span className="label-caps text-[#CBDDF0]">Estacion del Ano</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {estaciones.map(e => {
@@ -209,8 +209,8 @@ export default function TorneosList() {
                       return (
                         <button key={e.value} onClick={() => setEstacion(active ? null : e.value)}
                           className={['px-3 py-1.5 rounded-full text-xs font-mono border flex items-center gap-1.5 transition-all',
-                            active ? 'border-transparent' : 'bg-transparent text-[#D5DBB8] border-[#5A6644] hover:border-[#F2C53D]'].join(' ')}
-                          style={active ? { background: e.color, color: '#1F2818' } : {}}>
+                            active ? 'border-transparent' : 'bg-transparent text-[#CBDDF0] border-[#2A4570] hover:border-[#22D3EE]'].join(' ')}
+                          style={active ? { background: e.color, color: '#0A1628' } : {}}>
                           <Icon size={12} /> {e.label}
                         </button>
                       );
@@ -220,8 +220,8 @@ export default function TorneosList() {
 
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <Building2 size={13} className="text-[#F2C53D]" />
-                    <span className="label-caps text-[#D5DBB8]">Organizado por</span>
+                    <Building2 size={13} className="text-[#22D3EE]" />
+                    <span className="label-caps text-[#CBDDF0]">Organizado por</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {organizadores.map(o => {
@@ -230,8 +230,8 @@ export default function TorneosList() {
                         <button key={o.value} onClick={() => setOrganizador(organizador === o.value ? null : o.value)}
                           className={['px-3 py-1.5 rounded-full text-xs font-mono border flex items-center gap-1.5 transition-all',
                             organizador === o.value
-                              ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]'
-                              : 'bg-transparent text-[#D5DBB8] border-[#5A6644] hover:border-[#F2C53D]'].join(' ')}>
+                              ? 'bg-[#22D3EE] text-[#0A1628] border-[#22D3EE]'
+                              : 'bg-transparent text-[#CBDDF0] border-[#2A4570] hover:border-[#22D3EE]'].join(' ')}>
                           <Icon size={12} /> {o.label}
                         </button>
                       );
@@ -241,8 +241,8 @@ export default function TorneosList() {
 
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <Award size={13} className="text-[#F2C53D]" />
-                    <span className="label-caps text-[#D5DBB8]">Nivel de competicion</span>
+                    <Award size={13} className="text-[#22D3EE]" />
+                    <span className="label-caps text-[#CBDDF0]">Nivel de competicion</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {niveles.map(n => {
@@ -250,8 +250,8 @@ export default function TorneosList() {
                       return (
                         <button key={n.value} onClick={() => setNivel(active ? null : n.value)}
                           className={['px-3 py-1.5 rounded-full text-xs font-mono border transition-all',
-                            active ? 'border-transparent' : 'bg-transparent text-[#D5DBB8] border-[#5A6644] hover:border-[#F2C53D]'].join(' ')}
-                          style={active ? { background: n.color, color: '#1F2818' } : {}}>
+                            active ? 'border-transparent' : 'bg-transparent text-[#CBDDF0] border-[#2A4570] hover:border-[#22D3EE]'].join(' ')}
+                          style={active ? { background: n.color, color: '#0A1628' } : {}}>
                           {n.label}
                         </button>
                       );
@@ -261,7 +261,7 @@ export default function TorneosList() {
 
                 {activeFilterCount > 0 && (
                   <button onClick={clearFilters}
-                    className="text-xs text-[#FF9F45] flex items-center gap-1.5 hover:text-[#FFD23B] transition-colors">
+                    className="text-xs text-[#FCD34D] flex items-center gap-1.5 hover:text-[#FCD34D] transition-colors">
                     <X size={13} /> Limpiar filtros
                   </button>
                 )}
@@ -271,16 +271,16 @@ export default function TorneosList() {
         </AnimatePresence>
 
         <div className="flex items-center justify-between gap-3 flex-wrap">
-          <span className="label-caps text-[#A5B084]">
-            <span className="text-[#F2C53D] font-bold">{filtered.length}</span> torneos encontrados
+          <span className="label-caps text-[#8FA3C0]">
+            <span className="text-[#22D3EE] font-bold">{filtered.length}</span> torneos encontrados
           </span>
           <div className="flex gap-1.5">
             {(['all', 'activo', 'proximo', 'finalizado'] as const).map(s => (
               <button key={s} onClick={() => setStatusF(s)}
                 className={['px-3 py-1.5 rounded-full label-caps text-[10px] transition-all border',
                   statusF === s
-                    ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]'
-                    : 'bg-transparent text-[#D5DBB8] border-[#5A6644] hover:border-[#F2C53D]'].join(' ')}>
+                    ? 'bg-[#22D3EE] text-[#0A1628] border-[#22D3EE]'
+                    : 'bg-transparent text-[#CBDDF0] border-[#2A4570] hover:border-[#22D3EE]'].join(' ')}>
                 {s === 'all' ? 'Todos' : s === 'activo' ? 'En vivo' : s === 'proximo' ? 'Proximos' : 'Historico'}
               </button>
             ))}
@@ -314,7 +314,7 @@ export default function TorneosList() {
                 >
                   <Link
                     to={`/torneos/${t.id}`}
-                    className="block relative bg-[#2A3320] rounded-2xl overflow-hidden border border-[#5A6644] hover:border-[#F2C53D] transition-all duration-400 group"
+                    className="block relative bg-[#152849] rounded-2xl overflow-hidden border border-[#2A4570] hover:border-[#22D3EE] transition-all duration-400 group"
                   >
                     <div className="h-56 relative overflow-hidden">
                       <img src={t.heroImage} alt="" loading="lazy"
@@ -331,52 +331,52 @@ export default function TorneosList() {
                       </div>
 
                       <div className="absolute top-4 right-4">
-                        <div className="px-3 py-1.5 rounded-lg bg-[#1F2818]/80 backdrop-blur border border-[#F2C53D]/40 flex items-center gap-1.5">
+                        <div className="px-3 py-1.5 rounded-lg bg-[#0A1628]/80 backdrop-blur border border-[#22D3EE]/40 flex items-center gap-1.5">
                           {t.precio > 0 ? (
                             <>
-                              <Euro size={11} className="text-[#F2C53D]" />
-                              <span className="font-mono font-bold text-[#F2C53D] text-sm">{t.precio}</span>
-                              <span className="text-[9px] font-mono text-[#A5B084] uppercase tracking-wider">/equipo</span>
+                              <Euro size={11} className="text-[#22D3EE]" />
+                              <span className="font-mono font-bold text-[#22D3EE] text-sm">{t.precio}</span>
+                              <span className="text-[9px] font-mono text-[#8FA3C0] uppercase tracking-wider">/equipo</span>
                             </>
                           ) : (
-                            <span className="label-caps text-[#4DFFA0] text-[10px]">INVITACION</span>
+                            <span className="label-caps text-[#84FF6E] text-[10px]">INVITACION</span>
                           )}
                         </div>
                       </div>
 
-                      <div className="absolute bottom-4 right-4 flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#1F2818]/80 backdrop-blur border border-[#7A8A55] max-w-[60%]">
+                      <div className="absolute bottom-4 right-4 flex items-center gap-2 px-2.5 py-1.5 rounded-lg bg-[#0A1628]/80 backdrop-blur border border-[#496588] max-w-[60%]">
                         <div className="w-7 h-7 rounded font-mono font-bold text-[9px] flex items-center justify-center shrink-0"
                           style={{ background: t.organizador.color + '30', color: t.organizador.color, border: `1px solid ${t.organizador.color}80` }}>
                           {t.organizador.logo}
                         </div>
                         <div className="flex flex-col min-w-0">
-                          <span className="text-[9px] font-mono text-[#A5B084] uppercase tracking-wider flex items-center gap-1">
+                          <span className="text-[9px] font-mono text-[#8FA3C0] uppercase tracking-wider flex items-center gap-1">
                             <OrgIcon size={9} /> {orgMeta?.label}
                           </span>
                           <span className="text-[10px] text-white font-bold truncate">{t.organizador.nombre}</span>
                         </div>
                       </div>
 
-                      <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-[#1F2818]/80 backdrop-blur border border-[#F2C53D]/40 flex items-center justify-center font-display font-extrabold text-[#F2C53D] text-lg">
+                      <div className="absolute bottom-4 left-4 w-14 h-14 rounded-xl bg-[#0A1628]/80 backdrop-blur border border-[#22D3EE]/40 flex items-center justify-center font-display font-extrabold text-[#22D3EE] text-lg">
                         {t.logo}
                       </div>
                     </div>
 
                     <div className="p-5">
-                      <h3 className="font-display font-extrabold text-2xl text-white uppercase tracking-tight leading-tight group-hover:text-[#F2C53D] transition-colors mb-2">
+                      <h3 className="font-display font-extrabold text-2xl text-white uppercase tracking-tight leading-tight group-hover:text-[#22D3EE] transition-colors mb-2">
                         {t.nombre}
                       </h3>
 
-                      <div className="flex items-center gap-1.5 text-xs text-[#D5DBB8] font-mono mb-2">
-                        <MapPin size={11} className="text-[#F2C53D]" />
+                      <div className="flex items-center gap-1.5 text-xs text-[#CBDDF0] font-mono mb-2">
+                        <MapPin size={11} className="text-[#22D3EE]" />
                         <span className="font-bold text-white">{t.ciudad}</span>
-                        <span className="text-[#A5B084]">·</span>
+                        <span className="text-[#8FA3C0]">·</span>
                         <span>{t.provincia}, {t.region}</span>
                       </div>
 
-                      <div className="flex items-center gap-3 text-xs font-mono text-[#A5B084] mb-3">
+                      <div className="flex items-center gap-3 text-xs font-mono text-[#8FA3C0] mb-3">
                         <span className="flex items-center gap-1">
-                          <Calendar size={11} className="text-[#F2C53D]" />
+                          <Calendar size={11} className="text-[#22D3EE]" />
                           {t.fechaInicio.slice(5)} → {t.fechaFin.slice(5)}
                         </span>
                         <span className="flex items-center gap-1" style={{ color: estacionData?.color }}>
@@ -386,27 +386,27 @@ export default function TorneosList() {
 
                       <div className="flex flex-wrap gap-1.5 mb-3">
                         <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase tracking-wider"
-                          style={{ background: (nivelData?.color ?? '#A5B084') + '20',
+                          style={{ background: (nivelData?.color ?? '#8FA3C0') + '20',
                                    color: nivelData?.color,
-                                   border: `1px solid ${(nivelData?.color ?? '#A5B084')}40` }}>
+                                   border: `1px solid ${(nivelData?.color ?? '#8FA3C0')}40` }}>
                           {t.nivel}
                         </span>
                         {t.tags?.slice(0, 2).map(tag => (
-                          <span key={tag} className="px-2 py-0.5 rounded text-[10px] font-mono text-[#D5DBB8] bg-[#374028] border border-[#7A8A55]">
+                          <span key={tag} className="px-2 py-0.5 rounded text-[10px] font-mono text-[#CBDDF0] bg-[#1E3560] border border-[#496588]">
                             {tag}
                           </span>
                         ))}
                       </div>
 
-                      <p className="text-xs text-[#D5DBB8] mb-4 line-clamp-2 leading-relaxed">{t.descripcion}</p>
+                      <p className="text-xs text-[#CBDDF0] mb-4 line-clamp-2 leading-relaxed">{t.descripcion}</p>
 
-                      <div className="flex items-center justify-between pt-3 border-t border-[#5A6644]">
+                      <div className="flex items-center justify-between pt-3 border-t border-[#2A4570]">
                         <div className="flex items-center gap-2">
-                          <span className="label-caps text-[10px] text-[#A5B084]">{t.totalEquipos} equipos</span>
+                          <span className="label-caps text-[10px] text-[#8FA3C0]">{t.totalEquipos} equipos</span>
                           {t.yearsRunning && (
                             <>
-                              <span className="text-[#7A8A55]">·</span>
-                              <span className="label-caps text-[10px] text-[#A5B084]">{t.yearsRunning}a edicion</span>
+                              <span className="text-[#496588]">·</span>
+                              <span className="label-caps text-[10px] text-[#8FA3C0]">{t.yearsRunning}a edicion</span>
                             </>
                           )}
                         </div>
@@ -423,22 +423,22 @@ export default function TorneosList() {
                       <motion.div
                         initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute -top-3 right-3 z-30 bg-[#1F2818]/95 backdrop-blur-xl border border-[#F2C53D] rounded-xl p-3 w-72 glow-green-lg pointer-events-none"
+                        className="absolute -top-3 right-3 z-30 bg-[#0A1628]/95 backdrop-blur-xl border border-[#22D3EE] rounded-xl p-3 w-72 glow-green-lg pointer-events-none"
                       >
-                        <div className="label-caps text-[#F2C53D] mb-2 flex items-center gap-1.5">
+                        <div className="label-caps text-[#22D3EE] mb-2 flex items-center gap-1.5">
                           <Clock size={11} /> Horario del torneo
                         </div>
                         <div className="space-y-1.5">
                           {t.schedule.slice(0, 5).map((d, i) => (
                             <div key={i} className="flex items-center justify-between text-[11px] font-mono gap-2">
                               <span className="text-white font-bold w-16 shrink-0">{d.diaSemana.slice(0, 3)} {d.dia.slice(8)}</span>
-                              <span className="text-[#A5B084] flex-1 truncate">{d.fase}</span>
-                              <span className="text-[#D5DBB8] shrink-0">{d.horaInicio}–{d.horaFin}</span>
-                              <span className="text-[#F2C53D] font-bold w-8 text-right shrink-0">{d.partidos}p</span>
+                              <span className="text-[#8FA3C0] flex-1 truncate">{d.fase}</span>
+                              <span className="text-[#CBDDF0] shrink-0">{d.horaInicio}–{d.horaFin}</span>
+                              <span className="text-[#22D3EE] font-bold w-8 text-right shrink-0">{d.partidos}p</span>
                             </div>
                           ))}
                           {t.schedule.length > 5 && (
-                            <div className="text-[10px] text-[#A5B084] font-mono pt-1 border-t border-[#5A6644]">
+                            <div className="text-[10px] text-[#8FA3C0] font-mono pt-1 border-t border-[#2A4570]">
                               +{t.schedule.length - 5} dias mas · clic para detalle
                             </div>
                           )}
@@ -477,45 +477,45 @@ export default function TorneosList() {
                   transition={{ delay: idx * 0.03 }}
                   className={['rounded-2xl border p-4 transition-all',
                     count > 0
-                      ? 'bg-[#2A3320] border-[#5A6644] hover:border-[#F2C53D]'
-                      : 'bg-[#1F2818]/40 border-[#374028]'].join(' ')}
+                      ? 'bg-[#152849] border-[#2A4570] hover:border-[#22D3EE]'
+                      : 'bg-[#0A1628]/40 border-[#1E3560]'].join(' ')}
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div>
                       <div className="flex items-center gap-1.5 mb-1">
-                        <span className="label-caps text-[#A5B084]">{m.toString().padStart(2, '0')}</span>
+                        <span className="label-caps text-[#8FA3C0]">{m.toString().padStart(2, '0')}</span>
                         <EIcon size={10} style={{ color: eData.color }} />
                       </div>
                       <p className="font-display font-extrabold text-2xl text-white uppercase leading-none">{mesesFull[idx]}</p>
                     </div>
                     {count > 0 ? (
                       <div className="flex flex-col items-end">
-                        <span className="font-mono font-bold text-3xl text-[#F2C53D] leading-none">{count}</span>
-                        <span className="text-[9px] font-mono text-[#A5B084] uppercase tracking-wider">torneos</span>
+                        <span className="font-mono font-bold text-3xl text-[#22D3EE] leading-none">{count}</span>
+                        <span className="text-[9px] font-mono text-[#8FA3C0] uppercase tracking-wider">torneos</span>
                       </div>
                     ) : (
-                      <span className="text-xs font-mono text-[#7A8A55]">–</span>
+                      <span className="text-xs font-mono text-[#496588]">–</span>
                     )}
                   </div>
 
                   {hasActive && (
                     <div className="flex items-center gap-1.5 mb-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#F2C53D] pulse-dot" />
-                      <span className="label-caps text-[#F2C53D] text-[10px]">Hay activos</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#22D3EE] pulse-dot" />
+                      <span className="label-caps text-[#22D3EE] text-[10px]">Hay activos</span>
                     </div>
                   )}
 
                   <div className="space-y-1.5">
                     {torneosDeMes.slice(0, 4).map(t => (
                       <Link key={t.id} to={`/torneos/${t.id}`}
-                        className="flex items-center gap-2 text-xs hover:text-[#F2C53D] transition-colors group">
+                        className="flex items-center gap-2 text-xs hover:text-[#22D3EE] transition-colors group">
                         <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: t.organizador.color }} />
-                        <span className="text-white font-medium truncate flex-1 group-hover:text-[#F2C53D]">{t.nombre}</span>
-                        <span className="font-mono text-[#A5B084] text-[10px] shrink-0">d{t.fechaInicio.slice(8)}</span>
+                        <span className="text-white font-medium truncate flex-1 group-hover:text-[#22D3EE]">{t.nombre}</span>
+                        <span className="font-mono text-[#8FA3C0] text-[10px] shrink-0">d{t.fechaInicio.slice(8)}</span>
                       </Link>
                     ))}
                     {torneosDeMes.length > 4 && (
-                      <p className="text-[10px] font-mono text-[#7A8A55] pt-1">
+                      <p className="text-[10px] font-mono text-[#496588] pt-1">
                         +{torneosDeMes.length - 4} mas
                       </p>
                     )}
@@ -527,11 +527,11 @@ export default function TorneosList() {
         )}
 
         {filtered.length === 0 && (
-          <div className="text-center py-20 text-[#A5B084]">
+          <div className="text-center py-20 text-[#8FA3C0]">
             <Trophy size={48} className="mx-auto mb-3 opacity-30" />
             <p className="font-display font-bold text-xl uppercase">No se encontraron torneos</p>
             <p className="text-xs font-mono mt-2">Prueba a limpiar los filtros</p>
-            <button onClick={clearFilters} className="mt-4 px-4 py-2 rounded-lg bg-[#F2C53D] text-[#1F2818] label-caps">
+            <button onClick={clearFilters} className="mt-4 px-4 py-2 rounded-lg bg-[#22D3EE] text-[#0A1628] label-caps">
               Limpiar filtros
             </button>
           </div>

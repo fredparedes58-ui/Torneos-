@@ -35,16 +35,16 @@ export default function NuevoTorneo() {
     return (
       <div className="min-h-[70vh] flex items-center justify-center p-8">
         <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="text-center max-w-sm">
-          <div className="w-20 h-20 rounded-full bg-[#3A2A00] border-2 border-[#F2C53D] flex items-center justify-center mx-auto mb-6 glow-pulse">
-            <CheckCircle2 size={36} className="text-[#F2C53D]" />
+          <div className="w-20 h-20 rounded-full bg-[#0E2F3A] border-2 border-[#22D3EE] flex items-center justify-center mx-auto mb-6 glow-pulse">
+            <CheckCircle2 size={36} className="text-[#22D3EE]" />
           </div>
           <h2 className="font-display font-extrabold text-4xl text-white uppercase mb-3">Torneo Creado!</h2>
-          <p className="text-[#D5DBB8] text-sm mb-6">
-            <strong className="text-[#F2C53D]">{form.nombre}</strong> ha sido registrado exitosamente.
+          <p className="text-[#CBDDF0] text-sm mb-6">
+            <strong className="text-[#22D3EE]">{form.nombre}</strong> ha sido registrado exitosamente.
           </p>
           <button
             onClick={() => { setDone(false); setStep(0); setForm({ nombre: '', categoria: 'Sub-17', fechaInicio: '', fechaFin: '', formato: 'eliminacion', totalEquipos: '8', descripcion: '' }); }}
-            className="px-6 py-2.5 rounded-lg bg-[#F2C53D] text-[#1F2818] font-bold text-sm hover:opacity-90 transition-opacity label-caps"
+            className="px-6 py-2.5 rounded-lg bg-[#22D3EE] text-[#0A1628] font-bold text-sm hover:opacity-90 transition-opacity label-caps"
           >
             Crear otro torneo
           </button>
@@ -56,7 +56,7 @@ export default function NuevoTorneo() {
   return (
     <div className="p-4 md:p-8 max-w-2xl mx-auto">
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-        <span className="label-caps text-[#F2C53D]">Crear</span>
+        <span className="label-caps text-[#22D3EE]">Crear</span>
         <h1 className="font-display font-extrabold text-5xl md:text-6xl text-white uppercase tracking-tight leading-none mt-2">
           Nuevo Torneo
         </h1>
@@ -69,18 +69,18 @@ export default function NuevoTorneo() {
             <div className="flex flex-col items-center gap-1">
               <div className={[
                 'w-9 h-9 rounded-full flex items-center justify-center text-xs font-mono font-bold border-2 transition-all',
-                i < step   ? 'bg-[#F2C53D] border-[#F2C53D] text-[#1F2818]' :
-                i === step ? 'border-[#F2C53D] text-[#F2C53D] bg-[#3A2A00]' :
-                             'border-[#7A8A55] text-[#A5B084] bg-[#191D10]',
+                i < step   ? 'bg-[#22D3EE] border-[#22D3EE] text-[#0A1628]' :
+                i === step ? 'border-[#22D3EE] text-[#22D3EE] bg-[#0E2F3A]' :
+                             'border-[#496588] text-[#8FA3C0] bg-[#191D10]',
               ].join(' ')}>
                 {i < step ? '✓' : i + 1}
               </div>
-              <span className={['text-[9px] font-medium uppercase tracking-wider whitespace-nowrap', i === step ? 'text-[#F2C53D]' : 'text-[#A5B084]'].join(' ')}>
+              <span className={['text-[9px] font-medium uppercase tracking-wider whitespace-nowrap', i === step ? 'text-[#22D3EE]' : 'text-[#8FA3C0]'].join(' ')}>
                 {s}
               </span>
             </div>
             {i < steps.length - 1 && (
-              <div className={['flex-1 h-px mx-2 mb-4', i < step ? 'bg-[#F2C53D80]' : 'bg-[#7A8A55]'].join(' ')} />
+              <div className={['flex-1 h-px mx-2 mb-4', i < step ? 'bg-[#22D3EE80]' : 'bg-[#496588]'].join(' ')} />
             )}
           </div>
         ))}
@@ -95,21 +95,21 @@ export default function NuevoTorneo() {
         {step === 0 && (
           <div className="flex flex-col gap-5">
             <div>
-              <label className="block label-caps text-[#A5B084] mb-2">Nombre del Torneo *</label>
+              <label className="block label-caps text-[#8FA3C0] mb-2">Nombre del Torneo *</label>
               <input
                 value={form.nombre}
                 onChange={e => update('nombre', e.target.value)}
                 placeholder="Ej: Copa Futuro Sub-17 2026"
-                className="w-full bg-[#0A0F00] border border-[#7A8A55] rounded-lg px-4 py-3 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors"
+                className="w-full bg-[#0A1628] border border-[#496588] rounded-lg px-4 py-3 text-sm text-white placeholder-[#8FA3C0] focus:outline-none focus:border-[#22D3EE] transition-colors"
               />
             </div>
             <div>
-              <label className="block label-caps text-[#A5B084] mb-2">Categoria</label>
+              <label className="block label-caps text-[#8FA3C0] mb-2">Categoria</label>
               <div className="flex flex-wrap gap-2">
                 {categorias.map(c => (
                   <button key={c} onClick={() => update('categoria', c)}
                     className={['px-3 py-1.5 rounded-full text-xs font-medium border transition-all label-caps',
-                      form.categoria === c ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]' : 'bg-transparent text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white'].join(' ')}>
+                      form.categoria === c ? 'bg-[#22D3EE] text-[#0A1628] border-[#22D3EE]' : 'bg-transparent text-[#CBDDF0] border-[#496588] hover:border-[#8FA3C0] hover:text-white'].join(' ')}>
                     {c}
                   </button>
                 ))}
@@ -117,40 +117,40 @@ export default function NuevoTorneo() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block label-caps text-[#A5B084] mb-2">Fecha Inicio</label>
+                <label className="block label-caps text-[#8FA3C0] mb-2">Fecha Inicio</label>
                 <input type="date" value={form.fechaInicio} onChange={e => update('fechaInicio', e.target.value)}
-                  className="w-full bg-[#0A0F00] border border-[#7A8A55] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F2C53D] transition-colors" />
+                  className="w-full bg-[#0A1628] border border-[#496588] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#22D3EE] transition-colors" />
               </div>
               <div>
-                <label className="block label-caps text-[#A5B084] mb-2">Fecha Fin</label>
+                <label className="block label-caps text-[#8FA3C0] mb-2">Fecha Fin</label>
                 <input type="date" value={form.fechaFin} onChange={e => update('fechaFin', e.target.value)}
-                  className="w-full bg-[#0A0F00] border border-[#7A8A55] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#F2C53D] transition-colors" />
+                  className="w-full bg-[#0A1628] border border-[#496588] rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-[#22D3EE] transition-colors" />
               </div>
             </div>
             <div>
-              <label className="block label-caps text-[#A5B084] mb-2">Descripcion</label>
+              <label className="block label-caps text-[#8FA3C0] mb-2">Descripcion</label>
               <textarea value={form.descripcion} onChange={e => update('descripcion', e.target.value)}
                 placeholder="Describe el torneo..." rows={3}
-                className="w-full bg-[#0A0F00] border border-[#7A8A55] rounded-lg px-4 py-3 text-sm text-white placeholder-[#A5B084] focus:outline-none focus:border-[#F2C53D] transition-colors resize-none" />
+                className="w-full bg-[#0A1628] border border-[#496588] rounded-lg px-4 py-3 text-sm text-white placeholder-[#8FA3C0] focus:outline-none focus:border-[#22D3EE] transition-colors resize-none" />
             </div>
           </div>
         )}
 
         {step === 1 && (
           <div className="flex flex-col gap-3">
-            <p className="label-caps text-[#A5B084] mb-2">Formato del Torneo</p>
+            <p className="label-caps text-[#8FA3C0] mb-2">Formato del Torneo</p>
             {formatos.map(f => (
               <button key={f.value} onClick={() => update('formato', f.value)}
                 className={['text-left p-4 rounded-xl border transition-all',
-                  form.formato === f.value ? 'border-[#F2C53D] bg-[#3A2A00]' : 'border-[#7A8A55] bg-[#0A0F00] hover:border-[#A5B084]'].join(' ')}>
+                  form.formato === f.value ? 'border-[#22D3EE] bg-[#0E2F3A]' : 'border-[#496588] bg-[#0A1628] hover:border-[#8FA3C0]'].join(' ')}>
                 <div className="flex items-center gap-3 mb-1">
-                  <Layers size={16} className={form.formato === f.value ? 'text-[#F2C53D]' : 'text-[#A5B084]'} />
-                  <span className={['font-display font-bold uppercase tracking-wide', form.formato === f.value ? 'text-[#F2C53D]' : 'text-white'].join(' ')}>
+                  <Layers size={16} className={form.formato === f.value ? 'text-[#22D3EE]' : 'text-[#8FA3C0]'} />
+                  <span className={['font-display font-bold uppercase tracking-wide', form.formato === f.value ? 'text-[#22D3EE]' : 'text-white'].join(' ')}>
                     {f.label}
                   </span>
-                  {form.formato === f.value && <span className="ml-auto text-[#F2C53D] text-xs">✓</span>}
+                  {form.formato === f.value && <span className="ml-auto text-[#22D3EE] text-xs">✓</span>}
                 </div>
-                <p className="text-xs text-[#D5DBB8] ml-7">{f.desc}</p>
+                <p className="text-xs text-[#CBDDF0] ml-7">{f.desc}</p>
               </button>
             ))}
           </div>
@@ -159,24 +159,24 @@ export default function NuevoTorneo() {
         {step === 2 && (
           <div className="flex flex-col gap-5">
             <div>
-              <label className="block label-caps text-[#A5B084] mb-2">Numero de Equipos</label>
+              <label className="block label-caps text-[#8FA3C0] mb-2">Numero de Equipos</label>
               <div className="flex flex-wrap gap-2">
                 {['4', '8', '16', '32'].map(n => (
                   <button key={n} onClick={() => update('totalEquipos', n)}
                     className={['px-6 py-3 rounded-lg text-base font-mono font-bold border transition-all',
-                      form.totalEquipos === n ? 'bg-[#F2C53D] text-[#1F2818] border-[#F2C53D]' : 'bg-[#0A0F00] text-[#D5DBB8] border-[#7A8A55] hover:border-[#A5B084] hover:text-white'].join(' ')}>
+                      form.totalEquipos === n ? 'bg-[#22D3EE] text-[#0A1628] border-[#22D3EE]' : 'bg-[#0A1628] text-[#CBDDF0] border-[#496588] hover:border-[#8FA3C0] hover:text-white'].join(' ')}>
                     {n}
                   </button>
                 ))}
               </div>
             </div>
-            <div className="rounded-xl border border-[#7A8A55] p-4 bg-[#0A0F00]">
-              <p className="label-caps text-[#A5B084] mb-3">Resumen</p>
+            <div className="rounded-xl border border-[#496588] p-4 bg-[#0A1628]">
+              <p className="label-caps text-[#8FA3C0] mb-3">Resumen</p>
               <div className="flex flex-col gap-2 text-sm">
-                <div className="flex justify-between"><span className="text-[#A5B084]">Torneo</span><span className="text-white font-medium">{form.nombre || '-'}</span></div>
-                <div className="flex justify-between"><span className="text-[#A5B084]">Categoria</span><span className="text-white">{form.categoria}</span></div>
-                <div className="flex justify-between"><span className="text-[#A5B084]">Formato</span><span className="text-white">{formatos.find(f => f.value === form.formato)?.label}</span></div>
-                <div className="flex justify-between"><span className="text-[#A5B084]">Equipos</span><span className="text-[#F2C53D] font-mono font-bold">{form.totalEquipos}</span></div>
+                <div className="flex justify-between"><span className="text-[#8FA3C0]">Torneo</span><span className="text-white font-medium">{form.nombre || '-'}</span></div>
+                <div className="flex justify-between"><span className="text-[#8FA3C0]">Categoria</span><span className="text-white">{form.categoria}</span></div>
+                <div className="flex justify-between"><span className="text-[#8FA3C0]">Formato</span><span className="text-white">{formatos.find(f => f.value === form.formato)?.label}</span></div>
+                <div className="flex justify-between"><span className="text-[#8FA3C0]">Equipos</span><span className="text-[#22D3EE] font-mono font-bold">{form.totalEquipos}</span></div>
               </div>
             </div>
           </div>
@@ -184,15 +184,15 @@ export default function NuevoTorneo() {
 
         {step === 3 && (
           <div className="text-center py-6">
-            <div className="w-16 h-16 rounded-full bg-[#3A2A00] border border-[#F2C53D] flex items-center justify-center mx-auto mb-4">
-              <Trophy size={28} className="text-[#F2C53D]" />
+            <div className="w-16 h-16 rounded-full bg-[#0E2F3A] border border-[#22D3EE] flex items-center justify-center mx-auto mb-4">
+              <Trophy size={28} className="text-[#22D3EE]" />
             </div>
             <h3 className="font-display font-extrabold text-3xl text-white uppercase mb-2">Todo listo</h3>
-            <p className="text-sm text-[#D5DBB8] mb-6">
-              Confirma la creacion de <strong className="text-[#F2C53D]">{form.nombre}</strong>
+            <p className="text-sm text-[#CBDDF0] mb-6">
+              Confirma la creacion de <strong className="text-[#22D3EE]">{form.nombre}</strong>
             </p>
             <button onClick={() => setDone(true)}
-              className="w-full py-4 rounded-xl bg-[#F2C53D] text-[#1F2818] font-display font-extrabold text-xl uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all glow-green-lg">
+              className="w-full py-4 rounded-xl bg-[#22D3EE] text-[#0A1628] font-display font-extrabold text-xl uppercase tracking-wider hover:opacity-90 active:scale-[0.98] transition-all glow-green-lg">
               Crear Torneo
             </button>
           </div>
@@ -202,11 +202,11 @@ export default function NuevoTorneo() {
       {step < 3 && (
         <div className="flex justify-between mt-5">
           <button onClick={() => setStep(s => Math.max(0, s - 1))} disabled={step === 0}
-            className="px-4 py-2 rounded-lg text-sm text-[#A5B084] hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
+            className="px-4 py-2 rounded-lg text-sm text-[#8FA3C0] hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors">
             Atras
           </button>
           <button onClick={() => setStep(s => Math.min(3, s + 1))} disabled={step === 0 && !form.nombre.trim()}
-            className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#F2C53D] text-[#1F2818] font-bold text-sm hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity label-caps">
+            className="flex items-center gap-2 px-5 py-2 rounded-lg bg-[#22D3EE] text-[#0A1628] font-bold text-sm hover:opacity-90 disabled:opacity-30 disabled:cursor-not-allowed transition-opacity label-caps">
             Siguiente <ChevronRight size={15} />
           </button>
         </div>

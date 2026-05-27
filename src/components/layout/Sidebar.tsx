@@ -9,7 +9,7 @@ const links = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex flex-col w-60 h-[calc(100vh-64px)] sticky top-16 bg-[#1F2818]/80 backdrop-blur-xl border-r border-[#5A6644] p-4 gap-1.5 z-20">
+    <aside className="hidden md:flex flex-col w-60 h-[calc(100vh-64px)] sticky top-16 bg-[#0A1628]/80 backdrop-blur-xl border-r border-[#2A4570] p-4 gap-1.5 z-20">
       {links.map(({ to, label, icon: Icon }) => (
         <NavLink
           key={to}
@@ -19,14 +19,14 @@ export default function Sidebar() {
             [
               'flex items-center gap-3 rounded-xl px-3 py-3.5 transition-all duration-250 group relative overflow-hidden',
               isActive
-                ? 'bg-gradient-to-r from-[#F2C53D] to-[#C49B25] text-[#1F2818] glow-green'
-                : 'text-[#D5DBB8] hover:bg-[#374028] hover:text-white',
+                ? 'bg-gradient-to-r from-[#22D3EE] to-[#0891B2] text-[#0A1628] glow-green'
+                : 'text-[#CBDDF0] hover:bg-[#1E3560] hover:text-white',
             ].join(' ')
           }
         >
           {({ isActive }) => (
             <>
-              {isActive && <span className="absolute right-2 top-2 w-1.5 h-1.5 rounded-full bg-[#1F2818] pulse-dot" />}
+              {isActive && <span className="absolute right-2 top-2 w-1.5 h-1.5 rounded-full bg-[#0A1628] pulse-dot" />}
               <Icon size={20} strokeWidth={isActive ? 2.5 : 2} />
               <span className="label-caps text-[12px]">{label}</span>
             </>
@@ -34,16 +34,16 @@ export default function Sidebar() {
         </NavLink>
       ))}
 
-      <div className="mt-auto pt-4 border-t border-[#5A6644]">
+      <div className="mt-auto pt-4 border-t border-[#2A4570]">
         <NavLink
           to="/nuevo"
-          className="relative w-full bg-[#F2C53D] text-[#1F2818] font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.03] transition-transform glow-green-lg label-caps overflow-hidden btn-shimmer"
+          className="relative w-full bg-[#22D3EE] text-[#0A1628] font-bold py-4 px-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.03] transition-transform glow-green-lg label-caps overflow-hidden btn-shimmer"
         >
           <PlusCircle size={18} />
           <span className="relative z-[1]">Nuevo Torneo</span>
         </NavLink>
-        <div className="flex items-center justify-center gap-1.5 mt-4 text-[10px] text-[#7A8A55] font-mono">
-          <SparkIcon size={9} className="text-[#F2C53D]" />
+        <div className="flex items-center justify-center gap-1.5 mt-4 text-[10px] text-[#496588] font-mono">
+          <SparkIcon size={9} className="text-[#22D3EE]" />
           <span>v4.2.1 · Torneos Engine</span>
         </div>
       </div>
