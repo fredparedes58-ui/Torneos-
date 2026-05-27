@@ -75,7 +75,7 @@ export default function Equipos() {
             <strong className="text-white">Directorio nacional de jugadores y equipos en activo</strong>. Explora la élite competitiva, jugadores estrella, ratings y estadísticas en tiempo real de los {allEquipos.length} equipos del catálogo Krujens.
           </p>
           <p className="text-xs text-[#8FA3C0] mt-3 font-mono italic">
-            ⓘ Esta vista es de exploración. Para registrar un torneo nuevo o inscribir equipos, usa <span className="text-[#22D3EE] font-bold">+ Nuevo Torneo</span> en la barra lateral.
+            ⓘ Esta vista es de exploración. Si quieres acceder a videos IA, informes y publicar tus propios análisis, usa <span className="text-[#22D3EE] font-bold">+ Soy Scout</span> en la barra lateral.
           </p>
         </motion.div>
 

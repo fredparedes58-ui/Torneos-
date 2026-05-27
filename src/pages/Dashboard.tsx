@@ -256,22 +256,22 @@ export default function Dashboard() {
               })}
             </div>
 
-            {/* CTA Premium */}
+            {/* CTA Scout */}
             <Link
-              to="/nuevo"
-              className="relative block bg-[#22D3EE] text-[#0A1628] p-5 rounded-xl glow-green-lg hover:scale-[1.02] transition-transform overflow-hidden group"
+              to="/registro"
+              className="relative block bg-gradient-to-br from-[#22D3EE] to-[#84FF6E] text-[#0A1628] p-5 rounded-xl glow-cyan-lg hover:scale-[1.02] transition-transform overflow-hidden group btn-shimmer"
             >
               <Sparkles count={10} color="#0A1628" />
               <div className="relative flex items-center justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
                     <SparkIcon size={14} />
-                    <span className="label-caps">Premium</span>
+                    <span className="label-caps">Acceso scout</span>
                   </div>
                   <p className="font-display font-extrabold text-2xl uppercase leading-tight">
-                    Registrar<br />Nueva Academia
+                    Soy Scout / <br />Empresa
                   </p>
-                  <p className="text-xs mt-2 opacity-80">Acceso a scouting profesional + heatmaps</p>
+                  <p className="text-xs mt-2 opacity-85">Videos IA · Informes · Publica análisis</p>
                 </div>
                 <PlusCircle size={36} className="float-y" />
               </div>

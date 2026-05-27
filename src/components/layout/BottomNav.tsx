@@ -1,11 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Trophy, Users, PlusCircle } from 'lucide-react';
+import { LayoutDashboard, Trophy, Users, UserPlus } from 'lucide-react';
 
 const links = [
   { to: '/',         label: 'Hub',      icon: LayoutDashboard, end: true },
   { to: '/torneos',  label: 'Torneos',  icon: Trophy },
   { to: '/equipos',  label: 'Cantera',  icon: Users },
-  { to: '/nuevo',    label: 'Nuevo',    icon: PlusCircle },
+  { to: '/registro', label: 'Scout',    icon: UserPlus },
 ];
 
 export default function BottomNav() {

@@ -1,10 +1,10 @@
-﻿import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Dashboard from './pages/Dashboard';
 import TorneosList from './pages/TorneosList';
 import TorneoDetail from './pages/TorneoDetail';
 import Equipos from './pages/Equipos';
-import NuevoTorneo from './pages/NuevoTorneo';
+import RegistroScout from './pages/RegistroScout';
 
 export default function App() {
   return (
@@ -15,10 +15,11 @@ export default function App() {
           <Route path="torneos" element={<TorneosList />} />
           <Route path="torneos/:id" element={<TorneoDetail />} />
           <Route path="equipos" element={<Equipos />} />
-          <Route path="nuevo" element={<NuevoTorneo />} />
+          <Route path="registro" element={<RegistroScout />} />
+          {/* alias legacy → registro */}
+          <Route path="nuevo" element={<Navigate to="/registro" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-
