@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, Filter, ArrowDownAZ, ShieldCheck, Target, Award, MapPin, EyeOff, Trophy } from 'lucide-react';
+import { Search, Filter, ArrowDownAZ, ShieldCheck, Target, Award, MapPin, EyeOff, Trophy, ChevronRight } from 'lucide-react';
 import { torneos } from '../data/mock';
 import type { Equipo } from '../types';
 import FloatingOrbs from '../components/effects/FloatingOrbs';
@@ -201,18 +202,24 @@ export default function Equipos() {
                     </div>
                   </div>
 
-                  {/* Jugador estrella */}
+                  {/* Jugador estrella — clickable → /jugador/:seed */}
                   {equipo.jugadorEstrella ? (
-                    <div className="rounded-xl bg-[#1E3560]/60 border border-[#496588] p-3 mb-4">
-                      <span className="label-caps text-[#8FA3C0] block mb-2">Jugador Estrella</span>
+                    <Link
+                      to={`/jugador/${equipo.jugadorEstrella.avatarSeed}`}
+                      className="block rounded-xl bg-[#1E3560]/60 border border-[#496588] p-3 mb-4 hover:border-[#22D3EE] hover:bg-[#1E3560] transition-all group/jug"
+                    >
+                      <span className="label-caps text-[#8FA3C0] mb-2 flex items-center justify-between">
+                        Jugador Estrella
+                        <ChevronRight size={11} className="text-[#496588] group-hover/jug:text-[#22D3EE] group-hover/jug:translate-x-0.5 transition-all" />
+                      </span>
                       <div className="flex items-center gap-3">
                         <Avatar seed={equipo.jugadorEstrella.avatarSeed} size={44} ring="lime" />
                         <div className="min-w-0 flex-1">
-                          <p className="font-display font-extrabold text-base text-white uppercase truncate">{equipo.jugadorEstrella.nombre}</p>
+                          <p className="font-display font-extrabold text-base text-white uppercase truncate group-hover/jug:text-[#22D3EE] transition-colors">{equipo.jugadorEstrella.nombre}</p>
                           <p className="text-[10px] text-[#CBDDF0] font-mono uppercase tracking-wider">{equipo.jugadorEstrella.posicion} · #{equipo.jugadorEstrella.numero}</p>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ) : (
                     <div className="rounded-xl bg-[#1E3560]/40 border border-[#496588] p-4 mb-4 flex items-center justify-center gap-2 text-[#8FA3C0]">
                       <EyeOff size={14} />

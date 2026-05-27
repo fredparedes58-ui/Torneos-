@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
-import { Trophy, LayoutDashboard, Users, UserPlus, Sparkles as SparkIcon } from 'lucide-react';
+import { Trophy, LayoutDashboard, Users, UserPlus, Eye, Sparkles as SparkIcon } from 'lucide-react';
 
 const links = [
   { to: '/',         label: 'Dashboard',  icon: LayoutDashboard },
   { to: '/torneos',  label: 'Torneos',    icon: Trophy },
   { to: '/equipos',  label: 'Cantera',    icon: Users },
+  { to: '/portal',   label: 'Portal Scout', icon: Eye },
 ];
 
 export default function Sidebar() {
@@ -43,11 +44,11 @@ export default function Sidebar() {
           <span className="relative z-[1]">Soy Scout</span>
         </NavLink>
         <p className="text-[10px] text-[#8FA3C0] text-center font-mono leading-relaxed">
-          Acceso a videos IA<br/>+ informes + publicaciones
+          Registro · Acceso al portal<br/>+ publicaciones
         </p>
         <div className="flex items-center justify-center gap-1.5 pt-2 border-t border-[#1E3560] text-[10px] text-[#496588] font-mono">
           <SparkIcon size={9} className="text-[#22D3EE]" />
-          <span>v4.3.0 · Torneos Engine</span>
+          <span>v4.4.0 · Torneos Engine</span>
         </div>
       </div>
     </aside>

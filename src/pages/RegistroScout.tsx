@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   CheckCircle2, ChevronRight, ChevronLeft, User, Building2, Mail, Phone,
@@ -245,12 +246,20 @@ export default function RegistroScout() {
               <span className="px-2 py-0.5 rounded-full border border-[#2A4570]">PDF hasta 25MB</span>
               <span className="px-2 py-0.5 rounded-full border border-[#2A4570]">Markdown</span>
             </div>
-            <button
-              onClick={() => { setDone(false); setStep(0); }}
-              className="mt-6 inline-flex items-center gap-2 text-xs text-[#8FA3C0] hover:text-white transition-colors"
-            >
-              <ChevronLeft size={12} /> Volver al inicio
-            </button>
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+              <Link
+                to="/portal"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl cta-neon label-caps glow-cyan hover:scale-[1.03] transition-transform btn-shimmer relative overflow-hidden"
+              >
+                <span className="relative z-[1]">Entrar al Portal Scout →</span>
+              </Link>
+              <button
+                onClick={() => { setDone(false); setStep(0); }}
+                className="inline-flex items-center gap-2 text-xs text-[#8FA3C0] hover:text-white transition-colors"
+              >
+                <ChevronLeft size={12} /> Volver al inicio
+              </button>
+            </div>
           </motion.div>
         </div>
       </div>
